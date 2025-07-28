@@ -8,7 +8,7 @@ const WhyChooseLDB = () => {
     {
       id: 1,
       title: "Fair Promise Over Delivery",
-      icon: "fas fa-handshake",
+      icon: "fas fa-rocket",
       color: "#0f596d",
     },
     {
@@ -23,15 +23,15 @@ const WhyChooseLDB = () => {
       icon: "fas fa-lightbulb",
       color: "#2a9bb3",
     },
-  ];
-
-  const rightItems = [
     {
       id: 4,
       title: "Caring for Human Spectrum",
       icon: "fas fa-heart",
       color: "#3bb8d4",
     },
+  ];
+
+  const rightItems = [
     {
       id: 5,
       title: "Joy & Vitality",
@@ -41,7 +41,7 @@ const WhyChooseLDB = () => {
     {
       id: 6,
       title: "Unwavering Commitment",
-      icon: "fas fa-anchor",
+      icon: "fas fa-shield-alt",
       color: "#0f596d",
     },
     {
@@ -50,10 +50,16 @@ const WhyChooseLDB = () => {
       icon: "fas fa-globe",
       color: "#1a7a8f",
     },
+    {
+      id: 8,
+      title: "Proven Excellence",
+      icon: "fas fa-star",
+      color: "#2a9bb3",
+    },
   ];
 
   return (
-    <section className="why-choose-section">
+    <section id="why-choose" className="why-choose-section">
       <div className="container">
         <div className="row justify-content-center">
           <div className="col-lg-10">

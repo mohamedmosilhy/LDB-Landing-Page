@@ -81,7 +81,7 @@ const ClientLogos = () => {
   ];
 
   return (
-    <section className="client-logos-section">
+    <section id="clients" className="client-logos-section">
       <div className="container">
         <div className="row justify-content-center">
           <div className="col-lg-10">

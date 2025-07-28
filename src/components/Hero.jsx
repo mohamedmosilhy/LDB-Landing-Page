@@ -22,7 +22,7 @@ const Hero = () => {
   }, [currentIndex, fullText]);
 
   return (
-    <section className="hero-section">
+    <section id="hero" className="hero-section">
       <div className="hero-gradient">
         <div className="hero-overlay"></div>
 
