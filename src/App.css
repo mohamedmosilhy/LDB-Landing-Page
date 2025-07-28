@@ -37,7 +37,7 @@ body {
   top: 0;
   left: 0;
   right: 0;
-  z-index: 1000;
+  z-index: 9999998;
   padding: 1rem 0 0.5rem 0;
   background: transparent;
   backdrop-filter: none;
@@ -57,6 +57,8 @@ body {
   justify-content: space-between;
   align-items: center;
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  position: relative;
+  z-index: 9999999;
 }
 
 .navbar-brand {
@@ -123,18 +125,36 @@ body {
 
 .navbar-toggler {
   border: none;
-  padding: 0.25rem 0.5rem;
+  padding: 0.5rem;
   background: rgba(255, 255, 255, 0.1);
   backdrop-filter: blur(10px);
   border-radius: 8px;
+  transition: all 0.3s ease;
+  position: relative;
+  z-index: 9999999;
 }
 
 .navbar-toggler:focus {
   box-shadow: none;
+  outline: none;
+}
+
+.navbar-toggler:hover {
+  background: rgba(255, 255, 255, 0.2);
+  transform: scale(1.05);
+}
+
+.navbar-toggler.active {
+  background: rgba(255, 255, 255, 0.3);
 }
 
 .navbar-toggler-icon {
   background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255, 255, 255, 0.9%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+  transition: all 0.3s ease;
+}
+
+.navbar-toggler.active .navbar-toggler-icon {
+  transform: rotate(90deg);
 }
 
 /* Hero Section */
@@ -464,6 +484,77 @@ body {
   .tagline-pill-container {
     margin-bottom: 2rem;
   }
+
+  /* Mobile navigation improvements */
+  .navbar-collapse {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(15, 89, 109, 0.98);
+    backdrop-filter: blur(20px);
+    padding: 120px 1rem 2rem;
+    transform: translateY(-100%);
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 999999;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    pointer-events: none;
+  }
+
+  .navbar-collapse.show {
+    transform: translateY(0);
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+  }
+
+  .navbar-collapse.show {
+    transform: translateY(0);
+    opacity: 1;
+    visibility: visible;
+  }
+
+  /* Backdrop overlay for mobile menu */
+  .navbar-collapse.show::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 99998;
+  }
+
+  .navbar-nav {
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    width: 100%;
+    max-width: 300px;
+  }
+
+  .navbar-nav .nav-link {
+    width: 100%;
+    text-align: center;
+    padding: 1rem 1.5rem !important;
+    border-radius: 12px;
+    margin: 0.5rem 0;
+    transition: all 0.3s ease;
+    font-size: 1.1rem;
+    font-weight: 600;
+  }
+
+  .navbar-nav .nav-link:hover {
+    background: rgba(255, 255, 255, 0.15);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  }
 }
 
 @media (max-width: 576px) {
@@ -491,24 +582,78 @@ body {
     margin-bottom: 2rem;
   }
 
-  .navbar-nav {
-    background: rgba(255, 255, 255, 0.95);
-    border-radius: 12px;
-    padding: 1rem;
-    margin-top: 1rem;
+  .logo-text {
+    font-size: 1.3rem;
+  }
+
+  .navbar {
+    margin: 0 0.25rem;
+    padding: 0.5rem 0.75rem;
+  }
+
+  /* Enhanced mobile navigation for small screens */
+  .navbar-collapse {
+    padding: 100px 0.75rem 2rem;
   }
 
   .navbar-nav .nav-link {
-    color: #0f596d !important;
-    text-align: center;
-    padding: 0.75rem !important;
-    border-radius: 8px;
+    padding: 0.8rem 1.2rem !important;
+    font-size: 1rem;
+  }
+
+  .navbar-nav .nav-link {
+    font-size: 0.9rem;
+    padding: 0.6rem 0.75rem !important;
+    margin: 0.2rem 0;
+  }
+
+  .navbar-toggler {
+    padding: 0.4rem;
+  }
+
+  .navbar-toggler-icon {
+    width: 1.2rem;
+    height: 1.2rem;
   }
 }
 
 /* Smooth scrolling */
 html {
   scroll-behavior: smooth;
+}
+
+/* Prevent horizontal scroll on mobile */
+body {
+  overflow-x: hidden;
+}
+
+/* Better touch targets for mobile */
+@media (max-width: 768px) {
+  .nav-link,
+  .btn,
+  .navbar-toggler {
+    min-height: 44px;
+    min-width: 44px;
+  }
+}
+
+/* Improved focus states for accessibility */
+.nav-link:focus,
+.btn:focus,
+.navbar-toggler:focus {
+  outline: 2px solid rgba(255, 255, 255, 0.5);
+  outline-offset: 2px;
+}
+
+/* Better mobile performance */
+@media (max-width: 768px) {
+  * {
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .navbar-collapse {
+    will-change: transform, opacity;
+  }
 }
 
 /* Card hover effects */
@@ -2111,6 +2256,7 @@ section {
   display: flex;
   flex-direction: column;
   gap: 20px;
+  width: 100%;
 }
 
 .input-wrapper {
@@ -2327,15 +2473,35 @@ section {
   .footer-info {
     flex-direction: column;
     text-align: center;
-    gap: 20px;
+    gap: 30px;
+    align-items: center;
+  }
+
+  .copyright {
+    order: 1;
+    width: 100%;
+  }
+
+  .company-info {
+    order: 2;
+    width: 100%;
   }
 
   .social-media {
+    order: 3;
     justify-content: center;
+    width: 100%;
   }
 
   .contact-details {
     align-items: center;
+    width: 100%;
+  }
+
+  .contact-details p {
+    justify-content: center;
+    text-align: center;
+    flex-wrap: wrap;
   }
 }
 
@@ -2359,18 +2525,34 @@ section {
     font-size: 1rem;
   }
 
+  .footer-info {
+    gap: 25px;
+  }
+
   .company-name {
     font-size: 1.1rem;
   }
 
   .contact-details p {
     font-size: 0.85rem;
+    flex-direction: column;
+    gap: 5px;
+    text-align: center;
+  }
+
+  .contact-details i {
+    margin-bottom: 5px;
   }
 
   .social-icon {
     width: 40px;
     height: 40px;
     font-size: 1.1rem;
+  }
+
+  .hero-card {
+    padding: 25px 15px;
+    margin: 0 10px;
   }
 }
 
@@ -2441,5 +2623,85 @@ section {
     width: 40px;
     height: 40px;
     font-size: 1rem;
+  }
+}
+
+/* Additional mobile improvements */
+@media (max-width: 480px) {
+  .hero-title {
+    font-size: 1.8rem;
+    line-height: 1.2;
+  }
+
+  .hero-subtitle {
+    font-size: 1rem;
+  }
+
+  .section-title {
+    font-size: 1.8rem;
+  }
+
+  .section-subtitle {
+    font-size: 0.9rem;
+  }
+
+  .navbar {
+    margin: 0 0.1rem;
+    padding: 0.4rem 0.5rem;
+  }
+
+  .logo-text {
+    font-size: 1.1rem;
+  }
+
+  .hero-content {
+    padding-top: 80px;
+  }
+
+  .hero-card {
+    padding: 20px 15px;
+    margin: 0 10px;
+  }
+
+  .footer-info {
+    flex-direction: column;
+    gap: 20px;
+    text-align: center;
+  }
+
+  .social-media {
+    justify-content: center;
+  }
+
+  .contact-details p {
+    font-size: 0.8rem;
+    line-height: 1.4;
+  }
+
+  .company-name {
+    font-size: 1rem;
+  }
+
+  .copyright p {
+    font-size: 0.8rem;
+  }
+}
+
+/* Landscape orientation improvements */
+@media (max-width: 768px) and (orientation: landscape) {
+  .hero-content {
+    padding-top: 60px;
+  }
+
+  .navbar-collapse {
+    max-height: 60vh;
+    overflow-y: auto;
+  }
+}
+
+/* High DPI displays */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  .navbar-toggler-icon {
+    background-size: 20px 20px;
   }
 }
