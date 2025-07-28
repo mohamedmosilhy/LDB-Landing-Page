@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import Header from "./Header";
 import hero1 from "../assets/hero-1.png";
 import hero2 from "../assets/hero-2.png";
@@ -8,28 +8,17 @@ import {
   useGSAPAnimation,
   useStaggerAnimation,
 } from "../hooks/useGSAPAnimation";
+import { useTypingAnimation } from "../hooks/useTypingAnimation";
+import { HERO_DATA, ANIMATION_CONFIG } from "../constants/data";
 
 const Hero = () => {
-  const [text, setText] = useState("");
-  const fullText =
-    "Redefining How Individuals, Communities, and Institutions Grow.";
-  const [currentIndex, setCurrentIndex] = useState(0);
-
+  const { text } = useTypingAnimation(HERO_DATA.title);
+  
   // GSAP Animation refs
-  const taglineRef = useGSAPAnimation("fadeInDown", 0.2);
-  const titleRef = useGSAPAnimation("fadeInUp", 0.5);
-  const ctaRef = useGSAPAnimation("fadeInUp", 0.8);
-  const imagesRef = useStaggerAnimation("scaleIn", 0.2, 1.0);
-
-  useEffect(() => {
-    if (currentIndex < fullText.length) {
-      const timeout = setTimeout(() => {
-        setText(fullText.slice(0, currentIndex + 1));
-        setCurrentIndex(currentIndex + 1);
-      }, 100);
-      return () => clearTimeout(timeout);
-    }
-  }, [currentIndex, fullText]);
+  const taglineRef = useGSAPAnimation(ANIMATION_CONFIG.hero.tagline.type, ANIMATION_CONFIG.hero.tagline.delay);
+  const titleRef = useGSAPAnimation(ANIMATION_CONFIG.hero.title.type, ANIMATION_CONFIG.hero.title.delay);
+  const ctaRef = useGSAPAnimation(ANIMATION_CONFIG.hero.cta.type, ANIMATION_CONFIG.hero.cta.delay);
+  const imagesRef = useStaggerAnimation(ANIMATION_CONFIG.hero.images.type, ANIMATION_CONFIG.hero.images.stagger, ANIMATION_CONFIG.hero.images.delay);
 
   return (
     <section id="hero" className="hero-section">
@@ -49,7 +38,7 @@ const Hero = () => {
                 <div className="hero-content">
                   <div className="tagline-pill-container" ref={taglineRef}>
                     <span className="tagline-pill">
-                      Your Trusted Partner in Learning Transformation
+                      {HERO_DATA.tagline}
                     </span>
                   </div>
 
@@ -59,7 +48,7 @@ const Hero = () => {
                   </h1>
 
                   <div className="hero-cta" ref={ctaRef}>
-                    <p className="cta-text">Start Your Journey With Us Now!</p>
+                    <p className="cta-text">{HERO_DATA.cta}</p>
                   </div>
                 </div>
               </div>

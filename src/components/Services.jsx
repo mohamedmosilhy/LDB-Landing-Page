@@ -3,97 +3,17 @@ import {
   useGSAPAnimation,
   useStaggerAnimation,
 } from "../hooks/useGSAPAnimation";
+import { SERVICES_DATA, ANIMATION_CONFIG } from "../constants/data";
 
 const Services = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
 
   // GSAP Animation refs
-  const headerRef = useGSAPAnimation("fadeInUp", 0.2);
-  const carouselRef = useStaggerAnimation("fadeInUp", 0.3, 0.5);
-  const indicatorsRef = useGSAPAnimation("fadeInUp", 1.0);
+  const headerRef = useGSAPAnimation(ANIMATION_CONFIG.services.header.type, ANIMATION_CONFIG.services.header.delay);
+  const carouselRef = useStaggerAnimation(ANIMATION_CONFIG.services.carousel.type, ANIMATION_CONFIG.services.carousel.stagger, ANIMATION_CONFIG.services.carousel.delay);
+  const indicatorsRef = useGSAPAnimation(ANIMATION_CONFIG.services.indicators.type, ANIMATION_CONFIG.services.indicators.delay);
 
-  const services = [
-    {
-      id: 1,
-      name: "Performance-Driven Coaching",
-      description:
-        "Transform individual and team performance through targeted coaching methodologies",
-      icon: "fas fa-chart-line",
-      color: "#0f596d",
-    },
-    {
-      id: 2,
-      name: "Innovation & Creativity Workshops",
-      description:
-        "Unlock creative potential through interactive workshops and design thinking",
-      icon: "fas fa-lightbulb",
-      color: "#1a7a8f",
-    },
-    {
-      id: 3,
-      name: "Strategic Learning Ecosystems",
-      description:
-        "Design comprehensive learning environments that drive organizational growth",
-      icon: "fas fa-network-wired",
-      color: "#2a9bb3",
-    },
-    {
-      id: 4,
-      name: "Future-Ready Skill Development",
-      description:
-        "Prepare teams for tomorrow's challenges with cutting-edge skill programs",
-      icon: "fas fa-rocket",
-      color: "#3bb8d4",
-    },
-    {
-      id: 5,
-      name: "Gamified Engagement Solutions",
-      description:
-        "Boost engagement and retention through innovative gamified learning experiences",
-      icon: "fas fa-gamepad",
-      color: "#4dd4f7",
-    },
-    {
-      id: 6,
-      name: "Experiential Learning Journeys",
-      description:
-        "Create immersive learning experiences that transform knowledge into action",
-      icon: "fas fa-compass",
-      color: "#0f596d",
-    },
-    {
-      id: 7,
-      name: "Global Implementation & Training",
-      description:
-        "Scale learning solutions across international markets and diverse cultures",
-      icon: "fas fa-globe",
-      color: "#1a7a8f",
-    },
-    {
-      id: 8,
-      name: "Digital Learning Platform Development",
-      description:
-        "Build custom digital learning platforms that revolutionize education delivery",
-      icon: "fas fa-laptop-code",
-      color: "#2a9bb3",
-    },
-    {
-      id: 9,
-      name: "Leadership Development Programs",
-      description:
-        "Cultivate next-generation leaders through comprehensive development programs",
-      icon: "fas fa-users-cog",
-      color: "#3bb8d4",
-    },
-    {
-      id: 10,
-      name: "Educational Consulting & Curriculum Design",
-      description:
-        "Design innovative curricula and educational strategies for modern learning",
-      icon: "fas fa-graduation-cap",
-      color: "#4dd4f7",
-    },
-  ];
+  const services = SERVICES_DATA;
 
   // Auto-rotate every 4 seconds
   useEffect(() => {

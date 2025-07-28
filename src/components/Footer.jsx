@@ -1,42 +1,38 @@
-import React, { useState } from "react";
-import { useGSAPAnimation, useStaggerAnimation } from "../hooks/useGSAPAnimation";
+import React from "react";
+import {
+  useGSAPAnimation,
+  useStaggerAnimation,
+} from "../hooks/useGSAPAnimation";
+import { useForm } from "../hooks/useForm";
+import { FOOTER_DATA, ANIMATION_CONFIG } from "../constants/data";
 
 const Footer = () => {
-  const [email, setEmail] = useState("");
-  const [message, setMessage] = useState("");
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [submitStatus, setSubmitStatus] = useState("");
+  const {
+    formData,
+    errors,
+    isSubmitting,
+    submitStatus,
+    handleChange,
+    handleSubmit,
+  } = useForm({
+    email: "",
+    message: "",
+  });
 
   // GSAP Animation refs
-  const heroCardRef = useGSAPAnimation('fadeInUp', 0.2);
-  const formRef = useGSAPAnimation('fadeInUp', 0.5);
-  const footerInfoRef = useStaggerAnimation('fadeInUp', 0.2, 0.8);
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setIsSubmitting(true);
-    setSubmitStatus("");
-
-    try {
-      // Create mailto link with email and message
-      const subject = "New Contact from LDB Landing Page";
-      const body = `Email: ${email}\n\nMessage:\n${message}`;
-      const mailtoLink = `mailto:mmosilhyofficial@gmail.com?subject=${encodeURIComponent(
-        subject
-      )}&body=${encodeURIComponent(body)}`;
-
-      // Open default email client
-      window.location.href = mailtoLink;
-
-      setSubmitStatus("success");
-      setEmail("");
-      setMessage("");
-    } catch (error) {
-      setSubmitStatus("error");
-    } finally {
-      setIsSubmitting(false);
-    }
-  };
+  const heroCardRef = useGSAPAnimation(
+    ANIMATION_CONFIG.footer.heroCard.type,
+    ANIMATION_CONFIG.footer.heroCard.delay
+  );
+  const formRef = useGSAPAnimation(
+    ANIMATION_CONFIG.footer.form.type,
+    ANIMATION_CONFIG.footer.form.delay
+  );
+  const footerInfoRef = useStaggerAnimation(
+    ANIMATION_CONFIG.footer.footerInfo.type,
+    ANIMATION_CONFIG.footer.footerInfo.stagger,
+    ANIMATION_CONFIG.footer.footerInfo.delay
+  );
 
   return (
     <section id="contact" className="footer-section">
@@ -47,36 +43,43 @@ const Footer = () => {
               <div className="footer-hero">
                 <div className="hero-card" ref={heroCardRef}>
                   <h2 className="hero-title">
-                    Join ambitious professionals and unlock your dream career
-                    today
+                    {FOOTER_DATA.hero.title}
                   </h2>
                   <p className="hero-subtitle">
-                    Unlock your true potential and discover a world of
-                    opportunities that align with your skills, interests, and
-                    aspirations
+                    {FOOTER_DATA.hero.subtitle}
                   </p>
 
-                  <form onSubmit={handleSubmit} className="contact-form" ref={formRef}>
+                  <form
+                    onSubmit={handleSubmit}
+                    className="contact-form"
+                    ref={formRef}
+                  >
                     <div className="form-group">
                       <div className="input-wrapper">
                         <i className="fas fa-envelope input-icon"></i>
                         <input
                           type="email"
+                          name="email"
                           placeholder="Your email address"
-                          value={email}
-                          onChange={(e) => setEmail(e.target.value)}
+                          value={formData.email}
+                          onChange={handleChange}
                           required
-                          className="email-input"
+                          className={`email-input ${errors.email ? 'error' : ''}`}
                         />
                       </div>
+                      {errors.email && <span className="error-text">{errors.email}</span>}
+                      
                       <textarea
+                        name="message"
                         placeholder="Your message..."
-                        value={message}
-                        onChange={(e) => setMessage(e.target.value)}
+                        value={formData.message}
+                        onChange={handleChange}
                         required
-                        className="message-input"
+                        className={`message-input ${errors.message ? 'error' : ''}`}
                         rows="4"
                       />
+                      {errors.message && <span className="error-text">{errors.message}</span>}
+                      
                       <button
                         type="submit"
                         className="join-btn"
@@ -120,42 +123,38 @@ const Footer = () => {
             <div className="footer-bottom">
               <div className="footer-info" ref={footerInfoRef}>
                 <div className="copyright" data-animate>
-                  <p>©2024 All rights reserved</p>
+                  <p>{FOOTER_DATA.copyright}</p>
                 </div>
 
                 <div className="company-info" data-animate>
-                  <h3 className="company-name">LDB Learning & Development</h3>
+                  <h3 className="company-name">{FOOTER_DATA.company.name}</h3>
                   <div className="contact-details">
                     <p>
-                      <i className="fas fa-map-marker-alt"></i> Corporate Head
-                      Office: 3787 Jerry Dove Drive, Florence, South Carolina,
-                      29501, United States
+                      <i className="fas fa-map-marker-alt"></i> {FOOTER_DATA.company.address}
                     </p>
                     <p>
-                      <i className="fas fa-phone"></i> Phone: 843-496-7759
+                      <i className="fas fa-phone"></i> Phone: {FOOTER_DATA.company.phone}
                     </p>
                     <p>
-                      <i className="fas fa-fax"></i> Fax: 02-222264303
+                      <i className="fas fa-fax"></i> Fax: {FOOTER_DATA.company.fax}
                     </p>
                     <p>
-                      <i className="fas fa-envelope"></i> Email: info@ldb.com
+                      <i className="fas fa-envelope"></i> Email: {FOOTER_DATA.company.email}
                     </p>
                   </div>
                 </div>
 
                 <div className="social-media" data-animate>
-                  <a href="#" className="social-icon" aria-label="Instagram">
-                    <i className="fab fa-instagram"></i>
-                  </a>
-                  <a href="#" className="social-icon" aria-label="Telegram">
-                    <i className="fab fa-telegram"></i>
-                  </a>
-                  <a href="#" className="social-icon" aria-label="TikTok">
-                    <i className="fab fa-tiktok"></i>
-                  </a>
-                  <a href="#" className="social-icon" aria-label="YouTube">
-                    <i className="fab fa-youtube"></i>
-                  </a>
+                  {FOOTER_DATA.socialMedia.map((social, index) => (
+                    <a 
+                      key={index}
+                      href={social.href} 
+                      className="social-icon" 
+                      aria-label={social.name}
+                    >
+                      <i className={social.icon}></i>
+                    </a>
+                  ))}
                 </div>
               </div>
             </div>
