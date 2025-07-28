@@ -1,4 +1,8 @@
 import React from "react";
+import {
+  useGSAPAnimation,
+  useStaggerAnimation,
+} from "../hooks/useGSAPAnimation";
 
 // Import all logo images
 import logo1 from "../assets/logos/logo-2URJx6kB_400x400.jpeg";
@@ -40,6 +44,10 @@ import logo36 from "../assets/logos/شركة-جاسكو.jpg";
 import logo37 from "../assets/logos/نماء.webp";
 
 const ClientLogos = () => {
+  // GSAP Animation refs
+  const headerRef = useGSAPAnimation("fadeInUp", 0.2);
+  const logosRef = useStaggerAnimation("scaleIn", 0.05, 0.5);
+
   const logos = [
     logo1,
     logo2,
@@ -85,7 +93,7 @@ const ClientLogos = () => {
       <div className="container">
         <div className="row justify-content-center">
           <div className="col-lg-10">
-            <div className="section-header text-center">
+            <div className="section-header text-center" ref={headerRef}>
               <h2 className="section-title">
                 We are happy to work with incredible clients
               </h2>
@@ -102,11 +110,12 @@ const ClientLogos = () => {
 
         <div className="row justify-content-center">
           <div className="col-12">
-            <div className="logos-grid">
+            <div className="logos-grid" ref={logosRef}>
               {logos.map((logo, index) => (
                 <div
                   key={index}
                   className="logo-item"
+                  data-animate
                   style={{
                     "--animation-delay": `${index * 0.1}s`,
                   }}

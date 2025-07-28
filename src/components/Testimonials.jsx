@@ -1,8 +1,14 @@
 import React, { useState, useEffect } from "react";
+import { useGSAPAnimation } from "../hooks/useGSAPAnimation";
 
 const Testimonials = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isTransitioning, setIsTransitioning] = useState(false);
+
+  // GSAP Animation refs
+  const headerRef = useGSAPAnimation("fadeInUp", 0.2);
+  const carouselRef = useGSAPAnimation("fadeInUp", 0.5);
+  const navigationRef = useGSAPAnimation("fadeInUp", 0.8);
 
   const testimonials = [
     {
@@ -74,7 +80,7 @@ const Testimonials = () => {
       <div className="container">
         <div className="row">
           <div className="col-12">
-            <div className="testimonials-header">
+            <div className="testimonials-header" ref={headerRef}>
               <h2 className="section-title">What Our Clients Say</h2>
               <p className="section-subtitle">
                 Real feedback from organizations and individuals who have
@@ -86,7 +92,7 @@ const Testimonials = () => {
 
         <div className="row">
           <div className="col-12">
-            <div className="testimonials-carousel">
+            <div className="testimonials-carousel" ref={carouselRef}>
               <div
                 className={`testimonial-card ${
                   isTransitioning ? "transitioning" : "active"
@@ -120,7 +126,7 @@ const Testimonials = () => {
 
         <div className="row">
           <div className="col-12">
-            <div className="testimonials-navigation">
+            <div className="testimonials-navigation" ref={navigationRef}>
               <button
                 className={`nav-btn prev-btn ${
                   isTransitioning ? "disabled" : ""

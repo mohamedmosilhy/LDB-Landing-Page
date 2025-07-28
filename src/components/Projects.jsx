@@ -1,8 +1,16 @@
 import React, { useState, useEffect } from "react";
+import {
+  useGSAPAnimation,
+  useStaggerAnimation,
+} from "../hooks/useGSAPAnimation";
 
 const Projects = () => {
   const [isVisible, setIsVisible] = useState(false);
   const [animationKey, setAnimationKey] = useState(0);
+
+  // GSAP Animation refs
+  const headerRef = useGSAPAnimation("fadeInUp", 0.2);
+  const projectsRef = useStaggerAnimation("scaleIn", 0.2, 0.5);
 
   const projects = [
     {
@@ -63,7 +71,7 @@ const Projects = () => {
       <div className="container">
         <div className="row">
           <div className="col-12">
-            <div className="projects-header">
+            <div className="projects-header" ref={headerRef}>
               <h2 className="section-title">Our Projects</h2>
               <p className="section-subtitle">
                 Innovative solutions that transform learning and development
@@ -78,11 +86,13 @@ const Projects = () => {
             <div
               className={`projects-grid ${isVisible ? "visible" : ""}`}
               key={animationKey}
+              ref={projectsRef}
             >
               {projects.map((project, index) => (
                 <div
                   key={`${project.id}-${animationKey}`}
                   className="project-card"
+                  data-animate
                   style={{
                     "--animation-delay": `${index * 0.3}s`,
                     "--card-color": project.color,

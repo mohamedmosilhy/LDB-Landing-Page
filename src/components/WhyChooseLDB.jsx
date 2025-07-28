@@ -1,8 +1,19 @@
 import React, { useState } from "react";
 import whyChooseLDBImage from "../assets/whyChooseLDB-1.png";
+import {
+  useGSAPAnimation,
+  useStaggerAnimation,
+} from "../hooks/useGSAPAnimation";
 
 const WhyChooseLDB = () => {
   const [hoveredItem, setHoveredItem] = useState(null);
+
+  // GSAP Animation refs
+  const headerRef = useGSAPAnimation("fadeInUp", 0.2);
+  const leftCardsRef = useStaggerAnimation("fadeInLeft", 0.2, 0.5);
+  const centralImageRef = useGSAPAnimation("scaleIn", 0.8);
+  const rightCardsRef = useStaggerAnimation("fadeInRight", 0.2, 0.5);
+  const floatingElementsRef = useGSAPAnimation("fadeInUp", 1.2);
 
   const leftItems = [
     {
@@ -63,7 +74,7 @@ const WhyChooseLDB = () => {
       <div className="container">
         <div className="row justify-content-center">
           <div className="col-lg-10">
-            <div className="section-header text-center">
+            <div className="section-header text-center" ref={headerRef}>
               <h2 className="section-title">Why Choose LDB?</h2>
               <p className="section-subtitle">
                 Unlock your true potential and discover a world of opportunities
@@ -77,13 +88,14 @@ const WhyChooseLDB = () => {
           <div className="col-lg-12">
             <div className="three-column-layout">
               {/* Left Side Cards */}
-              <div className="left-cards">
+              <div className="left-cards" ref={leftCardsRef}>
                 {leftItems.map((item, index) => (
                   <div
                     key={item.id}
                     className={`side-card ${
                       hoveredItem === item.id ? "active" : ""
                     }`}
+                    data-animate
                     onMouseEnter={() => setHoveredItem(item.id)}
                     onMouseLeave={() => setHoveredItem(null)}
                     style={{
@@ -103,7 +115,7 @@ const WhyChooseLDB = () => {
               </div>
 
               {/* Central Image */}
-              <div className="central-image-area">
+              <div className="central-image-area" ref={centralImageRef}>
                 <div className="image-container">
                   <img
                     src={whyChooseLDBImage}
@@ -120,13 +132,14 @@ const WhyChooseLDB = () => {
               </div>
 
               {/* Right Side Cards */}
-              <div className="right-cards">
+              <div className="right-cards" ref={rightCardsRef}>
                 {rightItems.map((item, index) => (
                   <div
                     key={item.id}
                     className={`side-card ${
                       hoveredItem === item.id ? "active" : ""
                     }`}
+                    data-animate
                     onMouseEnter={() => setHoveredItem(item.id)}
                     onMouseLeave={() => setHoveredItem(null)}
                     style={{
@@ -147,7 +160,7 @@ const WhyChooseLDB = () => {
             </div>
 
             {/* Floating Elements */}
-            <div className="floating-elements">
+            <div className="floating-elements" ref={floatingElementsRef}>
               <div className="floating-circle circle-1"></div>
               <div className="floating-circle circle-2"></div>
               <div className="floating-circle circle-3"></div>

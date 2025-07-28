@@ -1,7 +1,16 @@
 import React, { useState, useEffect } from "react";
+import {
+  useGSAPAnimation,
+  useStaggerAnimation,
+} from "../hooks/useGSAPAnimation";
 
 const Services = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
+
+  // GSAP Animation refs
+  const headerRef = useGSAPAnimation("fadeInUp", 0.2);
+  const carouselRef = useStaggerAnimation("fadeInUp", 0.3, 0.5);
+  const indicatorsRef = useGSAPAnimation("fadeInUp", 1.0);
 
   const services = [
     {
@@ -109,7 +118,7 @@ const Services = () => {
       <div className="container">
         <div className="row">
           <div className="col-12">
-            <div className="services-header">
+            <div className="services-header" ref={headerRef}>
               <div className="header-content">
                 <h2 className="section-title">Our Services</h2>
                 <p className="section-subtitle">
@@ -123,9 +132,9 @@ const Services = () => {
 
         <div className="row">
           <div className="col-12">
-            <div className="services-carousel">
+            <div className="services-carousel" ref={carouselRef}>
               {getVisibleServices().map((service) => (
-                <div key={service.id} className="service-card">
+                <div key={service.id} className="service-card" data-animate>
                   <div className="card-image">
                     <div
                       className="image-placeholder"
@@ -155,7 +164,7 @@ const Services = () => {
 
         <div className="row">
           <div className="col-12">
-            <div className="services-indicators">
+            <div className="services-indicators" ref={indicatorsRef}>
               {Array.from(
                 { length: Math.ceil(services.length / 3) },
                 (_, i) => (

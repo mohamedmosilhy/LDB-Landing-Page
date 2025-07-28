@@ -1,10 +1,16 @@
 import React, { useState } from "react";
+import { useGSAPAnimation, useStaggerAnimation } from "../hooks/useGSAPAnimation";
 
 const Footer = () => {
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState("");
+
+  // GSAP Animation refs
+  const heroCardRef = useGSAPAnimation('fadeInUp', 0.2);
+  const formRef = useGSAPAnimation('fadeInUp', 0.5);
+  const footerInfoRef = useStaggerAnimation('fadeInUp', 0.2, 0.8);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -39,7 +45,7 @@ const Footer = () => {
           <div className="col-12">
             <div className="footer-content">
               <div className="footer-hero">
-                <div className="hero-card">
+                <div className="hero-card" ref={heroCardRef}>
                   <h2 className="hero-title">
                     Join ambitious professionals and unlock your dream career
                     today
@@ -50,7 +56,7 @@ const Footer = () => {
                     aspirations
                   </p>
 
-                  <form onSubmit={handleSubmit} className="contact-form">
+                  <form onSubmit={handleSubmit} className="contact-form" ref={formRef}>
                     <div className="form-group">
                       <div className="input-wrapper">
                         <i className="fas fa-envelope input-icon"></i>
@@ -112,12 +118,12 @@ const Footer = () => {
         <div className="row">
           <div className="col-12">
             <div className="footer-bottom">
-              <div className="footer-info">
-                <div className="copyright">
+              <div className="footer-info" ref={footerInfoRef}>
+                <div className="copyright" data-animate>
                   <p>©2024 All rights reserved</p>
                 </div>
 
-                <div className="company-info">
+                <div className="company-info" data-animate>
                   <h3 className="company-name">LDB Learning & Development</h3>
                   <div className="contact-details">
                     <p>
@@ -137,7 +143,7 @@ const Footer = () => {
                   </div>
                 </div>
 
-                <div className="social-media">
+                <div className="social-media" data-animate>
                   <a href="#" className="social-icon" aria-label="Instagram">
                     <i className="fab fa-instagram"></i>
                   </a>
