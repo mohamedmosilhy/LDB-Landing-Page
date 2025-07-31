@@ -1,7 +1,9 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
+import Header from "./components/Header";
 import Hero from "./components/Hero";
 import WhyChooseLDB from "./components/WhyChooseLDB";
+import CoreValues from "./components/CoreValues";
 import ClientLogos from "./components/ClientLogos";
 import Services from "./components/Services";
 import Projects from "./components/Projects";
@@ -12,8 +14,10 @@ import ScrollToTop from "./components/ScrollToTop";
 function App() {
   return (
     <div className="App">
+      <Header />
       <Hero />
       <WhyChooseLDB />
+      <CoreValues />
       <ClientLogos />
       <Services />
       <Projects />

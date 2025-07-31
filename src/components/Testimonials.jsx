@@ -1,42 +1,36 @@
 import React, { useState, useEffect } from "react";
 import { useGSAPAnimation } from "../hooks/useGSAPAnimation";
+import { TESTIMONIALS_DATA, ANIMATION_CONFIG } from "../constants/data";
 
+// =============================================================================
+// TESTIMONIALS COMPONENT
+// =============================================================================
 const Testimonials = () => {
+  // ===========================================================================
+  // STATE
+  // ===========================================================================
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isTransitioning, setIsTransitioning] = useState(false);
 
-  // GSAP Animation refs
-  const headerRef = useGSAPAnimation("fadeInUp", 0.2);
-  const carouselRef = useGSAPAnimation("fadeInUp", 0.5);
-  const navigationRef = useGSAPAnimation("fadeInUp", 0.8);
+  // ===========================================================================
+  // ANIMATION HOOKS
+  // ===========================================================================
+  const headerRef = useGSAPAnimation(
+    ANIMATION_CONFIG.testimonials.header.type,
+    ANIMATION_CONFIG.testimonials.header.delay
+  );
+  const carouselRef = useGSAPAnimation(
+    ANIMATION_CONFIG.testimonials.carousel.type,
+    ANIMATION_CONFIG.testimonials.carousel.delay
+  );
+  const navigationRef = useGSAPAnimation(
+    ANIMATION_CONFIG.testimonials.navigation.type,
+    ANIMATION_CONFIG.testimonials.navigation.delay
+  );
 
-  const testimonials = [
-    {
-      id: 1,
-      quote:
-        "Working with the LDB team was an exceptional experience by all measures. They didn't just provide a regular training program; they designed a comprehensive learning experience that transformed our team's thinking and working style. The results far exceeded our expectations, and we now have a more interactive, creative, and challenge-ready team.",
-      author: "Sarah Ahmed",
-      position: "HR Manager",
-      company: "Tech Innovation Company",
-    },
-    {
-      id: 2,
-      quote:
-        "LDB's training methodology is unique and innovative. They managed to turn a complex subject like project management into an enjoyable and interactive experience. Now our team is 70% more efficient in project management.",
-      author: "Mohammed Al-Khalidi",
-      position: "Operations Manager",
-      company: "",
-    },
-    {
-      id: 3,
-      quote:
-        "The youth empowerment program provided by LDB was a turning point in my career. I not only learned new skills but also discovered capabilities I never knew I had.",
-      author: "Fatima Al-Salmi",
-      position: "Entrepreneur",
-      company: "",
-    },
-  ];
-
+  // ===========================================================================
+  // AUTO-ROTATION EFFECT
+  // ===========================================================================
   useEffect(() => {
     const interval = setInterval(() => {
       if (!isTransitioning) {
@@ -46,11 +40,14 @@ const Testimonials = () => {
     return () => clearInterval(interval);
   }, [isTransitioning]);
 
+  // ===========================================================================
+  // NAVIGATION HANDLERS
+  // ===========================================================================
   const nextSlide = () => {
     if (isTransitioning) return;
     setIsTransitioning(true);
     setTimeout(() => {
-      setCurrentSlide((prev) => (prev + 1) % testimonials.length);
+      setCurrentSlide((prev) => (prev + 1) % TESTIMONIALS_DATA.length);
       setIsTransitioning(false);
     }, 300);
   };
@@ -60,7 +57,7 @@ const Testimonials = () => {
     setIsTransitioning(true);
     setTimeout(() => {
       setCurrentSlide(
-        (prev) => (prev - 1 + testimonials.length) % testimonials.length
+        (prev) => (prev - 1 + TESTIMONIALS_DATA.length) % TESTIMONIALS_DATA.length
       );
       setIsTransitioning(false);
     }, 300);
@@ -75,9 +72,61 @@ const Testimonials = () => {
     }, 300);
   };
 
+  // ===========================================================================
+  // RENDER TESTIMONIAL CARD
+  // ===========================================================================
+  const renderTestimonialCard = () => {
+    const testimonial = TESTIMONIALS_DATA[currentSlide];
+    
+    return (
+      <div
+        className={`testimonial-card ${
+          isTransitioning ? "transitioning" : "active"
+        }`}
+      >
+        <div className="quote-icon">
+          <i className="fas fa-quote-left"></i>
+        </div>
+        <div className="testimonial-content">
+          <p className="quote-text">{testimonial.quote}</p>
+          <div className="author-info">
+            <h4 className="author-name">{testimonial.author}</h4>
+            <p className="author-position">
+              {testimonial.position}
+              {testimonial.company && (
+                <span className="author-company">, {testimonial.company}</span>
+              )}
+            </p>
+          </div>
+        </div>
+      </div>
+    );
+  };
+
+  // ===========================================================================
+  // RENDER INDICATORS
+  // ===========================================================================
+  const renderIndicators = () => (
+    <div className="testimonials-indicators">
+      {TESTIMONIALS_DATA.map((_, index) => (
+        <button
+          key={index}
+          className={`indicator ${currentSlide === index ? "active" : ""}`}
+          onClick={() => goToSlide(index)}
+          aria-label={`Go to testimonial ${index + 1}`}
+          disabled={isTransitioning}
+        ></button>
+      ))}
+    </div>
+  );
+
+  // ===========================================================================
+  // RENDER
+  // ===========================================================================
   return (
     <section id="testimonials" className="testimonials-section">
       <div className="container">
+        {/* Section Header */}
         <div className="row">
           <div className="col-12">
             <div className="testimonials-header" ref={headerRef}>
@@ -90,40 +139,16 @@ const Testimonials = () => {
           </div>
         </div>
 
+        {/* Testimonial Carousel */}
         <div className="row">
           <div className="col-12">
             <div className="testimonials-carousel" ref={carouselRef}>
-              <div
-                className={`testimonial-card ${
-                  isTransitioning ? "transitioning" : "active"
-                }`}
-              >
-                <div className="quote-icon">
-                  <i className="fas fa-quote-left"></i>
-                </div>
-                <div className="testimonial-content">
-                  <p className="quote-text">
-                    {testimonials[currentSlide].quote}
-                  </p>
-                  <div className="author-info">
-                    <h4 className="author-name">
-                      {testimonials[currentSlide].author}
-                    </h4>
-                    <p className="author-position">
-                      {testimonials[currentSlide].position}
-                      {testimonials[currentSlide].company && (
-                        <span className="author-company">
-                          , {testimonials[currentSlide].company}
-                        </span>
-                      )}
-                    </p>
-                  </div>
-                </div>
-              </div>
+              {renderTestimonialCard()}
             </div>
           </div>
         </div>
 
+        {/* Navigation Controls */}
         <div className="row">
           <div className="col-12">
             <div className="testimonials-navigation" ref={navigationRef}>
@@ -136,19 +161,7 @@ const Testimonials = () => {
               >
                 <i className="fas fa-chevron-left"></i>
               </button>
-              <div className="testimonials-indicators">
-                {testimonials.map((_, index) => (
-                  <button
-                    key={index}
-                    className={`indicator ${
-                      currentSlide === index ? "active" : ""
-                    }`}
-                    onClick={() => goToSlide(index)}
-                    aria-label={`Go to testimonial ${index + 1}`}
-                    disabled={isTransitioning}
-                  ></button>
-                ))}
-              </div>
+              {renderIndicators()}
               <button
                 className={`nav-btn next-btn ${
                   isTransitioning ? "disabled" : ""

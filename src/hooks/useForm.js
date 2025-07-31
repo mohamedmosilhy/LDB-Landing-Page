@@ -1,14 +1,25 @@
 import { useState } from "react";
 import { validateForm, submitEmailForm } from "../utils/helpers";
 
+// =============================================================================
+// USE FORM HOOK
+// =============================================================================
 export const useForm = (initialState = {}) => {
+  // ===========================================================================
+  // STATE
+  // ===========================================================================
   const [formData, setFormData] = useState(initialState);
   const [errors, setErrors] = useState({});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState("");
 
+  // ===========================================================================
+  // EVENT HANDLERS
+  // ===========================================================================
   const handleChange = (e) => {
     const { name, value } = e.target;
+    
+    // Update form data
     setFormData((prev) => ({
       ...prev,
       [name]: value,
@@ -28,15 +39,15 @@ export const useForm = (initialState = {}) => {
     setIsSubmitting(true);
     setSubmitStatus("");
 
-    // Validate form
-    const validation = validateForm(formData);
-    if (!validation.isValid) {
-      setErrors(validation.errors);
-      setIsSubmitting(false);
-      return;
-    }
-
     try {
+      // Validate form
+      const validation = validateForm(formData);
+      if (!validation.isValid) {
+        setErrors(validation.errors);
+        return;
+      }
+
+      // Submit form
       const result = await submitEmailForm(formData.email, formData.message);
 
       if (result.success) {
@@ -47,12 +58,16 @@ export const useForm = (initialState = {}) => {
         setSubmitStatus("error");
       }
     } catch (error) {
+      console.error("Form submission error:", error);
       setSubmitStatus("error");
     } finally {
       setIsSubmitting(false);
     }
   };
 
+  // ===========================================================================
+  // UTILITY FUNCTIONS
+  // ===========================================================================
   const resetForm = () => {
     setFormData(initialState);
     setErrors({});
@@ -60,6 +75,13 @@ export const useForm = (initialState = {}) => {
     setIsSubmitting(false);
   };
 
+  const clearErrors = () => {
+    setErrors({});
+  };
+
+  // ===========================================================================
+  // RETURN
+  // ===========================================================================
   return {
     formData,
     errors,
@@ -68,5 +90,6 @@ export const useForm = (initialState = {}) => {
     handleChange,
     handleSubmit,
     resetForm,
+    clearErrors,
   };
 };

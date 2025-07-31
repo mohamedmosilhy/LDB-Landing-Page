@@ -5,6 +5,97 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 // Register ScrollTrigger plugin
 gsap.registerPlugin(ScrollTrigger);
 
+// =============================================================================
+// ANIMATION CONFIGURATIONS
+// =============================================================================
+const ANIMATION_CONFIGS = {
+  fadeInUp: {
+    initial: { opacity: 0, y: 50 },
+    animate: { opacity: 1, y: 0, duration: 0.8, ease: "power2.out" },
+  },
+  fadeInDown: {
+    initial: { opacity: 0, y: -50 },
+    animate: { opacity: 1, y: 0, duration: 0.8, ease: "power2.out" },
+  },
+  fadeInLeft: {
+    initial: { opacity: 0, x: -50 },
+    animate: { opacity: 1, x: 0, duration: 0.8, ease: "power2.out" },
+  },
+  fadeInRight: {
+    initial: { opacity: 0, x: 50 },
+    animate: { opacity: 1, x: 0, duration: 0.8, ease: "power2.out" },
+  },
+  scaleIn: {
+    initial: { opacity: 0, scale: 0.8 },
+    animate: { opacity: 1, scale: 1, duration: 0.8, ease: "back.out(1.7)" },
+  },
+  slideInUp: {
+    initial: { y: 100, opacity: 0 },
+    animate: { y: 0, opacity: 1, duration: 0.8, ease: "power2.out" },
+  },
+  slideInDown: {
+    initial: { y: -100, opacity: 0 },
+    animate: { y: 0, opacity: 1, duration: 0.8, ease: "power2.out" },
+  },
+  slideInLeft: {
+    initial: { x: -100, opacity: 0 },
+    animate: { x: 0, opacity: 1, duration: 0.8, ease: "power2.out" },
+  },
+  slideInRight: {
+    initial: { x: 100, opacity: 0 },
+    animate: { x: 0, opacity: 1, duration: 0.8, ease: "power2.out" },
+  },
+  rotateIn: {
+    initial: { opacity: 0, rotation: -180, scale: 0.3 },
+    animate: {
+      opacity: 1,
+      rotation: 0,
+      scale: 1,
+      duration: 1,
+      ease: "back.out(1.7)",
+    },
+  },
+  bounceIn: {
+    initial: { opacity: 0, scale: 0.3 },
+    animate: { opacity: 1, scale: 1, duration: 1, ease: "bounce.out" },
+  },
+  flipInX: {
+    initial: { opacity: 0, rotationX: 90 },
+    animate: { opacity: 1, rotationX: 0, duration: 0.8, ease: "power2.out" },
+  },
+  flipInY: {
+    initial: { opacity: 0, rotationY: 90 },
+    animate: { opacity: 1, rotationY: 0, duration: 0.8, ease: "power2.out" },
+  },
+};
+
+// =============================================================================
+// HELPER FUNCTIONS
+// =============================================================================
+const setInitialState = (element, animationType) => {
+  const config = ANIMATION_CONFIGS[animationType] || ANIMATION_CONFIGS.fadeInUp;
+  gsap.set(element, config.initial);
+};
+
+const createAnimation = (element, animationType, delay) => {
+  const config = ANIMATION_CONFIGS[animationType] || ANIMATION_CONFIGS.fadeInUp;
+
+  return gsap
+    .timeline({
+      scrollTrigger: {
+        trigger: element,
+        start: "top 80%",
+        end: "bottom 20%",
+        toggleActions: "play none none restart",
+      },
+      delay: delay,
+    })
+    .to(element, config.animate);
+};
+
+// =============================================================================
+// USE GSAP ANIMATION HOOK
+// =============================================================================
 export const useGSAPAnimation = (animationType = "fadeInUp", delay = 0) => {
   const elementRef = useRef(null);
 
@@ -15,194 +106,25 @@ export const useGSAPAnimation = (animationType = "fadeInUp", delay = 0) => {
     // Kill any existing animations
     gsap.killTweensOf(element);
 
-    // Set initial state based on animation type
-    const setInitialState = () => {
-      switch (animationType) {
-        case "fadeInUp":
-          gsap.set(element, { opacity: 0, y: 50 });
-          break;
-        case "fadeInDown":
-          gsap.set(element, { opacity: 0, y: -50 });
-          break;
-        case "fadeInLeft":
-          gsap.set(element, { opacity: 0, x: -50 });
-          break;
-        case "fadeInRight":
-          gsap.set(element, { opacity: 0, x: 50 });
-          break;
-        case "scaleIn":
-          gsap.set(element, { opacity: 0, scale: 0.8 });
-          break;
-        case "slideInUp":
-          gsap.set(element, { y: 100, opacity: 0 });
-          break;
-        case "slideInDown":
-          gsap.set(element, { y: -100, opacity: 0 });
-          break;
-        case "slideInLeft":
-          gsap.set(element, { x: -100, opacity: 0 });
-          break;
-        case "slideInRight":
-          gsap.set(element, { x: 100, opacity: 0 });
-          break;
-        case "rotateIn":
-          gsap.set(element, { opacity: 0, rotation: -180, scale: 0.3 });
-          break;
-        case "bounceIn":
-          gsap.set(element, { opacity: 0, scale: 0.3 });
-          break;
-        case "flipInX":
-          gsap.set(element, { opacity: 0, rotationX: 90 });
-          break;
-        case "flipInY":
-          gsap.set(element, { opacity: 0, rotationY: 90 });
-          break;
-        default:
-          gsap.set(element, { opacity: 0, y: 30 });
-      }
-    };
+    // Set initial state
+    setInitialState(element, animationType);
 
-    // Create animation based on type
-    const createAnimation = () => {
-      const tl = gsap.timeline({
-        scrollTrigger: {
-          trigger: element,
-          start: "top 80%",
-          end: "bottom 20%",
-          toggleActions: "play none none reverse",
-        },
-        delay: delay,
-      });
-
-      switch (animationType) {
-        case "fadeInUp":
-          tl.to(element, {
-            opacity: 1,
-            y: 0,
-            duration: 0.8,
-            ease: "power2.out",
-          });
-          break;
-        case "fadeInDown":
-          tl.to(element, {
-            opacity: 1,
-            y: 0,
-            duration: 0.8,
-            ease: "power2.out",
-          });
-          break;
-        case "fadeInLeft":
-          tl.to(element, {
-            opacity: 1,
-            x: 0,
-            duration: 0.8,
-            ease: "power2.out",
-          });
-          break;
-        case "fadeInRight":
-          tl.to(element, {
-            opacity: 1,
-            x: 0,
-            duration: 0.8,
-            ease: "power2.out",
-          });
-          break;
-        case "scaleIn":
-          tl.to(element, {
-            opacity: 1,
-            scale: 1,
-            duration: 0.8,
-            ease: "back.out(1.7)",
-          });
-          break;
-        case "slideInUp":
-          tl.to(element, {
-            y: 0,
-            opacity: 1,
-            duration: 0.8,
-            ease: "power2.out",
-          });
-          break;
-        case "slideInDown":
-          tl.to(element, {
-            y: 0,
-            opacity: 1,
-            duration: 0.8,
-            ease: "power2.out",
-          });
-          break;
-        case "slideInLeft":
-          tl.to(element, {
-            x: 0,
-            opacity: 1,
-            duration: 0.8,
-            ease: "power2.out",
-          });
-          break;
-        case "slideInRight":
-          tl.to(element, {
-            x: 0,
-            opacity: 1,
-            duration: 0.8,
-            ease: "power2.out",
-          });
-          break;
-        case "rotateIn":
-          tl.to(element, {
-            opacity: 1,
-            rotation: 0,
-            scale: 1,
-            duration: 1,
-            ease: "back.out(1.7)",
-          });
-          break;
-        case "bounceIn":
-          tl.to(element, {
-            opacity: 1,
-            scale: 1,
-            duration: 1,
-            ease: "bounce.out",
-          });
-          break;
-        case "flipInX":
-          tl.to(element, {
-            opacity: 1,
-            rotationX: 0,
-            duration: 0.8,
-            ease: "power2.out",
-          });
-          break;
-        case "flipInY":
-          tl.to(element, {
-            opacity: 1,
-            rotationY: 0,
-            duration: 0.8,
-            ease: "power2.out",
-          });
-          break;
-        default:
-          tl.to(element, {
-            opacity: 1,
-            y: 0,
-            duration: 0.8,
-            ease: "power2.out",
-          });
-      }
-    };
-
-    setInitialState();
-    createAnimation();
+    // Create and start animation
+    const animation = createAnimation(element, animationType, delay);
 
     // Cleanup function
     return () => {
-      ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
+      animation.kill();
+      gsap.killTweensOf(element);
     };
   }, [animationType, delay]);
 
   return elementRef;
 };
 
-// Stagger animation for multiple elements
+// =============================================================================
+// USE STAGGER ANIMATION HOOK
+// =============================================================================
 export const useStaggerAnimation = (
   animationType = "fadeInUp",
   stagger = 0.1,
@@ -220,99 +142,34 @@ export const useStaggerAnimation = (
     // Kill any existing animations
     gsap.killTweensOf(elements);
 
-    // Set initial state for all elements
+    // Set initial states
     elements.forEach((element) => {
-      switch (animationType) {
-        case "fadeInUp":
-          gsap.set(element, { opacity: 0, y: 50 });
-          break;
-        case "fadeInDown":
-          gsap.set(element, { opacity: 0, y: -50 });
-          break;
-        case "fadeInLeft":
-          gsap.set(element, { opacity: 0, x: -50 });
-          break;
-        case "fadeInRight":
-          gsap.set(element, { opacity: 0, x: 50 });
-          break;
-        case "scaleIn":
-          gsap.set(element, { opacity: 0, scale: 0.8 });
-          break;
-        default:
-          gsap.set(element, { opacity: 0, y: 30 });
-      }
+      setInitialState(element, animationType);
     });
 
     // Create stagger animation
-    const tl = gsap.timeline({
-      scrollTrigger: {
-        trigger: container,
-        start: "top 80%",
-        end: "bottom 20%",
-        toggleActions: "play none none reverse",
-      },
-      delay: delay,
-    });
+    const config =
+      ANIMATION_CONFIGS[animationType] || ANIMATION_CONFIGS.fadeInUp;
 
-    switch (animationType) {
-      case "fadeInUp":
-        tl.to(elements, {
-          opacity: 1,
-          y: 0,
-          duration: 0.8,
-          ease: "power2.out",
-          stagger: stagger,
-        });
-        break;
-      case "fadeInDown":
-        tl.to(elements, {
-          opacity: 1,
-          y: 0,
-          duration: 0.8,
-          ease: "power2.out",
-          stagger: stagger,
-        });
-        break;
-      case "fadeInLeft":
-        tl.to(elements, {
-          opacity: 1,
-          x: 0,
-          duration: 0.8,
-          ease: "power2.out",
-          stagger: stagger,
-        });
-        break;
-      case "fadeInRight":
-        tl.to(elements, {
-          opacity: 1,
-          x: 0,
-          duration: 0.8,
-          ease: "power2.out",
-          stagger: stagger,
-        });
-        break;
-      case "scaleIn":
-        tl.to(elements, {
-          opacity: 1,
-          scale: 1,
-          duration: 0.8,
-          ease: "back.out(1.7)",
-          stagger: stagger,
-        });
-        break;
-      default:
-        tl.to(elements, {
-          opacity: 1,
-          y: 0,
-          duration: 0.8,
-          ease: "power2.out",
-          stagger: stagger,
-        });
-    }
+    const animation = gsap
+      .timeline({
+        scrollTrigger: {
+          trigger: container,
+          start: "top 80%",
+          end: "bottom 20%",
+          toggleActions: "play none none restart",
+        },
+        delay: delay,
+      })
+      .to(elements, {
+        ...config.animate,
+        stagger: stagger,
+      });
 
     // Cleanup function
     return () => {
-      ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
+      animation.kill();
+      gsap.killTweensOf(elements);
     };
   }, [animationType, stagger, delay]);
 

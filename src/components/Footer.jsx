@@ -6,7 +6,13 @@ import {
 import { useForm } from "../hooks/useForm";
 import { FOOTER_DATA, ANIMATION_CONFIG } from "../constants/data";
 
+// =============================================================================
+// FOOTER COMPONENT
+// =============================================================================
 const Footer = () => {
+  // ===========================================================================
+  // FORM HOOK
+  // ===========================================================================
   const {
     formData,
     errors,
@@ -15,11 +21,15 @@ const Footer = () => {
     handleChange,
     handleSubmit,
   } = useForm({
+    name: "",
     email: "",
+    phone: "",
     message: "",
   });
 
-  // GSAP Animation refs
+  // ===========================================================================
+  // ANIMATION HOOKS
+  // ===========================================================================
   const heroCardRef = useGSAPAnimation(
     ANIMATION_CONFIG.footer.heroCard.type,
     ANIMATION_CONFIG.footer.heroCard.delay
@@ -34,40 +44,83 @@ const Footer = () => {
     ANIMATION_CONFIG.footer.footerInfo.delay
   );
 
+  // ===========================================================================
+  // RENDER FORM FIELD
+  // ===========================================================================
+  const renderFormField = (fieldName, placeholder, icon, type = "text") => (
+    <div className="input-wrapper">
+      <i className={`fas ${icon} input-icon`}></i>
+      <input
+        type={type}
+        name={fieldName}
+        placeholder={placeholder}
+        value={formData[fieldName]}
+        onChange={handleChange}
+        required
+        className={`${fieldName}-input ${errors[fieldName] ? "error" : ""}`}
+      />
+      {errors[fieldName] && <span className="error-text">{errors[fieldName]}</span>}
+    </div>
+  );
+
+  // ===========================================================================
+  // RENDER CONTACT INFO
+  // ===========================================================================
+  const renderContactInfo = () => (
+    <div className="contact-details">
+      <p>
+        <i className="fas fa-map-marker-alt"></i> {FOOTER_DATA.company.address}
+      </p>
+      <p>
+        <i className="fas fa-phone"></i> {FOOTER_DATA.company.phone}
+      </p>
+      <p>
+        <i className="fas fa-envelope"></i> {FOOTER_DATA.company.email}
+      </p>
+    </div>
+  );
+
+  // ===========================================================================
+  // RENDER SOCIAL MEDIA
+  // ===========================================================================
+  const renderSocialMedia = () => (
+    <div className="social-media" data-animate>
+      {FOOTER_DATA.socialMedia.map((social, index) => (
+        <a
+          key={index}
+          href={social.href}
+          className="social-icon"
+          aria-label={social.name}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <i className={social.icon}></i>
+        </a>
+      ))}
+    </div>
+  );
+
+  // ===========================================================================
+  // RENDER
+  // ===========================================================================
   return (
     <section id="contact" className="footer-section">
       <div className="container">
+        {/* Hero Card with Contact Form */}
         <div className="row">
           <div className="col-12">
             <div className="footer-content">
               <div className="footer-hero">
                 <div className="hero-card" ref={heroCardRef}>
-                  <h2 className="hero-title">
-                    {FOOTER_DATA.hero.title}
-                  </h2>
-                  <p className="hero-subtitle">
-                    {FOOTER_DATA.hero.subtitle}
-                  </p>
+                  <h2 className="hero-title">{FOOTER_DATA.hero.title}</h2>
+                  <p className="hero-subtitle">{FOOTER_DATA.hero.subtitle}</p>
 
-                  <form
-                    onSubmit={handleSubmit}
-                    className="contact-form"
-                    ref={formRef}
-                  >
+                  {/* Contact Form */}
+                  <form onSubmit={handleSubmit} className="contact-form" ref={formRef}>
                     <div className="form-group">
-                      <div className="input-wrapper">
-                        <i className="fas fa-envelope input-icon"></i>
-                        <input
-                          type="email"
-                          name="email"
-                          placeholder="Your email address"
-                          value={formData.email}
-                          onChange={handleChange}
-                          required
-                          className={`email-input ${errors.email ? 'error' : ''}`}
-                        />
-                      </div>
-                      {errors.email && <span className="error-text">{errors.email}</span>}
+                      {renderFormField("name", "Your name", "fa-user")}
+                      {renderFormField("email", "Your email address", "fa-envelope", "email")}
+                      {renderFormField("phone", "Your phone number", "fa-phone", "tel")}
                       
                       <textarea
                         name="message"
@@ -75,7 +128,7 @@ const Footer = () => {
                         value={formData.message}
                         onChange={handleChange}
                         required
-                        className={`message-input ${errors.message ? 'error' : ''}`}
+                        className={`message-input ${errors.message ? "error" : ""}`}
                         rows="4"
                       />
                       {errors.message && <span className="error-text">{errors.message}</span>}
@@ -87,8 +140,7 @@ const Footer = () => {
                       >
                         {isSubmitting ? (
                           <span>
-                            <i className="fas fa-spinner fa-spin"></i>{" "}
-                            Sending...
+                            <i className="fas fa-spinner fa-spin"></i> Sending...
                           </span>
                         ) : (
                           <span>
@@ -98,6 +150,7 @@ const Footer = () => {
                       </button>
                     </div>
 
+                    {/* Form Status Messages */}
                     {submitStatus === "success" && (
                       <div className="success-message">
                         <i className="fas fa-check-circle"></i>
@@ -118,44 +171,24 @@ const Footer = () => {
           </div>
         </div>
 
+        {/* Footer Information */}
         <div className="row">
           <div className="col-12">
             <div className="footer-bottom">
               <div className="footer-info" ref={footerInfoRef}>
+                {/* Copyright */}
                 <div className="copyright" data-animate>
                   <p>{FOOTER_DATA.copyright}</p>
                 </div>
 
+                {/* Company Information */}
                 <div className="company-info" data-animate>
                   <h3 className="company-name">{FOOTER_DATA.company.name}</h3>
-                  <div className="contact-details">
-                    <p>
-                      <i className="fas fa-map-marker-alt"></i> {FOOTER_DATA.company.address}
-                    </p>
-                    <p>
-                      <i className="fas fa-phone"></i> Phone: {FOOTER_DATA.company.phone}
-                    </p>
-                    <p>
-                      <i className="fas fa-fax"></i> Fax: {FOOTER_DATA.company.fax}
-                    </p>
-                    <p>
-                      <i className="fas fa-envelope"></i> Email: {FOOTER_DATA.company.email}
-                    </p>
-                  </div>
+                  {renderContactInfo()}
                 </div>
 
-                <div className="social-media" data-animate>
-                  {FOOTER_DATA.socialMedia.map((social, index) => (
-                    <a 
-                      key={index}
-                      href={social.href} 
-                      className="social-icon" 
-                      aria-label={social.name}
-                    >
-                      <i className={social.icon}></i>
-                    </a>
-                  ))}
-                </div>
+                {/* Social Media */}
+                {renderSocialMedia()}
               </div>
             </div>
           </div>

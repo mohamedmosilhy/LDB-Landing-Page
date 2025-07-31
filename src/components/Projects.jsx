@@ -3,56 +3,42 @@ import {
   useGSAPAnimation,
   useStaggerAnimation,
 } from "../hooks/useGSAPAnimation";
+import { PROJECTS_DATA, ANIMATION_CONFIG } from "../constants/data";
 
+// =============================================================================
+// PROJECTS COMPONENT
+// =============================================================================
 const Projects = () => {
+  // ===========================================================================
+  // STATE
+  // ===========================================================================
   const [isVisible, setIsVisible] = useState(false);
-  const [animationKey, setAnimationKey] = useState(0);
 
-  // GSAP Animation refs
-  const headerRef = useGSAPAnimation("fadeInUp", 0.2);
-  const projectsRef = useStaggerAnimation("scaleIn", 0.2, 0.5);
+  // ===========================================================================
+  // ANIMATION HOOKS
+  // ===========================================================================
+  const headerRef = useGSAPAnimation(
+    ANIMATION_CONFIG.projects.header.type,
+    ANIMATION_CONFIG.projects.header.delay
+  );
+  const projectsRef = useStaggerAnimation(
+    ANIMATION_CONFIG.projects.cards.type,
+    ANIMATION_CONFIG.projects.cards.stagger,
+    ANIMATION_CONFIG.projects.cards.delay
+  );
 
-  const projects = [
-    {
-      id: 1,
-      title: "ZAT",
-      icon: "fas fa-chart-line",
-      color: "#0f596d",
-    },
-    {
-      id: 2,
-      title: "Gamification Product",
-      icon: "fas fa-gamepad",
-      color: "#1a7a8f",
-    },
-    {
-      id: 3,
-      title: "LIFTS",
-      icon: "fas fa-users-cog",
-      color: "#2a9bb3",
-    },
-    {
-      id: 4,
-      title: "Organizational Developmental Assessment",
-      icon: "fas fa-building",
-      color: "#3bb8d4",
-    },
-  ];
-
+  // ===========================================================================
+  // INTERSECTION OBSERVER
+  // ===========================================================================
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
-          // Reset animation state
+          // Always restart animation when entering the section
           setIsVisible(false);
-          setAnimationKey((prev) => prev + 1);
-
-          // Trigger animation after a brief delay
           setTimeout(() => {
             setIsVisible(true);
-          }, 100);
-        } else {
-          setIsVisible(false);
+          }, 50);
         }
       },
       { threshold: 0.3 }
@@ -66,9 +52,46 @@ const Projects = () => {
     return () => observer.disconnect();
   }, []);
 
+  // ===========================================================================
+  // RENDER PROJECT CARD
+  // ===========================================================================
+  const renderProjectCard = (project, index) => (
+    <div
+      key={project.id}
+      className="project-card"
+      data-animate
+      style={{
+        "--animation-delay": `${index * 0.1}s`,
+        "--card-color": project.color,
+      }}
+    >
+      <div className="card-header">
+        <div className="card-title">
+          <i className={project.icon}></i>
+          <h3>{project.title}</h3>
+        </div>
+      </div>
+
+      <div className="card-background"></div>
+      <div className="floating-elements">
+        <div className="floating-star star-1"></div>
+        <div className="floating-star star-2"></div>
+        <div className="floating-star star-3"></div>
+        <div className="floating-star star-4"></div>
+        <div className="floating-star star-5"></div>
+        <div className="floating-dot"></div>
+        <div className="floating-line"></div>
+      </div>
+    </div>
+  );
+
+  // ===========================================================================
+  // RENDER
+  // ===========================================================================
   return (
     <section id="projects" className="projects-section">
       <div className="container">
+        {/* Section Header */}
         <div className="row">
           <div className="col-12">
             <div className="projects-header" ref={headerRef}>
@@ -81,37 +104,14 @@ const Projects = () => {
           </div>
         </div>
 
+        {/* Projects Grid */}
         <div className="row">
           <div className="col-12">
             <div
               className={`projects-grid ${isVisible ? "visible" : ""}`}
-              key={animationKey}
               ref={projectsRef}
             >
-              {projects.map((project, index) => (
-                <div
-                  key={`${project.id}-${animationKey}`}
-                  className="project-card"
-                  data-animate
-                  style={{
-                    "--animation-delay": `${index * 0.3}s`,
-                    "--card-color": project.color,
-                  }}
-                >
-                  <div className="card-header">
-                    <div className="card-title">
-                      <i className={project.icon}></i>
-                      <h3>{project.title}</h3>
-                    </div>
-                  </div>
-
-                  <div className="card-background"></div>
-                  <div className="floating-elements">
-                    <div className="floating-dot"></div>
-                    <div className="floating-line"></div>
-                  </div>
-                </div>
-              ))}
+              {PROJECTS_DATA.map(renderProjectCard)}
             </div>
           </div>
         </div>

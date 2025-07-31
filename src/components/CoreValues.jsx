@@ -1,77 +1,60 @@
 import React, { useState } from "react";
+import whyChooseLDBImage from "../assets/whyChooseLDB-1.png";
 import {
   useGSAPAnimation,
   useStaggerAnimation,
 } from "../hooks/useGSAPAnimation";
 
-const WhyChooseLDB = () => {
+const CoreValues = () => {
   const [hoveredItem, setHoveredItem] = useState(null);
 
   // GSAP Animation refs
-  const headerRef = useGSAPAnimation("fadeInUp", 0.1);
-  const leftCardsRef = useStaggerAnimation("fadeInLeft", 0.1, 0.2);
-  const centralAreaRef = useGSAPAnimation("scaleIn", 0.3);
-  const rightCardsRef = useStaggerAnimation("fadeInRight", 0.1, 0.2);
-  const floatingElementsRef = useGSAPAnimation("fadeInUp", 0.4);
+  const headerRef = useGSAPAnimation("fadeInUp", 0.2);
+  const leftCardsRef = useStaggerAnimation("fadeInLeft", 0.2, 0.5);
+  const centralImageRef = useGSAPAnimation("scaleIn", 0.8);
+  const rightCardsRef = useStaggerAnimation("fadeInRight", 0.2, 0.5);
+  const floatingElementsRef = useGSAPAnimation("fadeInUp", 1.2);
 
   const leftItems = [
     {
       id: 1,
-      title: "Innovative Learning Solutions",
-      icon: "fas fa-lightbulb",
+      title: "Excellence Proven by Results",
+      icon: "fas fa-trophy",
       color: "#0f596d",
-      size: "large",
     },
     {
       id: 2,
-      title: "Expert Team",
-      icon: "fas fa-users",
+      title: "Fair Promise Over Delivery",
+      icon: "fas fa-rocket",
       color: "#1a7a8f",
-      size: "medium",
-    },
-    {
-      id: 3,
-      title: "Proven Results",
-      icon: "fas fa-chart-line",
-      color: "#2a9bb3",
-      size: "small",
     },
   ];
 
   const rightItems = [
     {
+      id: 3,
+      title: "Joy & Vitality",
+      icon: "fas fa-smile",
+      color: "#2a9bb3",
+    },
+    {
       id: 4,
-      title: "Global Reach",
-      icon: "fas fa-globe",
-      color: "#3bb8d4",
-      size: "small",
-    },
-    {
-      id: 5,
-      title: "Custom Approach",
-      icon: "fas fa-cogs",
-      color: "#4cc5e5",
-      size: "medium",
-    },
-    {
-      id: 6,
-      title: "Quality Assurance",
+      title: "Unwavering Commitment",
       icon: "fas fa-shield-alt",
-      color: "#5dd2f6",
-      size: "large",
+      color: "#3bb8d4",
     },
   ];
 
   return (
-    <section id="why-choose" className="why-choose-section">
+    <section id="core-values" className="core-values-section">
       <div className="container">
         <div className="row justify-content-center">
           <div className="col-lg-10">
             <div className="section-header text-center" ref={headerRef}>
-              <h2 className="section-title">Why Choose LDB?</h2>
+              <h2 className="section-title">Our Core Values</h2>
               <p className="section-subtitle">
-                Discover what makes us the preferred choice for learning and
-                development solutions
+                The fundamental principles that guide our actions and shape our
+                culture, driving us to deliver exceptional learning experiences
               </p>
             </div>
           </div>
@@ -79,13 +62,13 @@ const WhyChooseLDB = () => {
 
         <div className="row justify-content-center">
           <div className="col-lg-12">
-            <div className="geometric-layout">
+            <div className="core-values-layout">
               {/* Left Side Cards */}
-              <div className="left-cards" ref={leftCardsRef}>
+              <div className="core-values-left-cards" ref={leftCardsRef}>
                 {leftItems.map((item, index) => (
                   <div
                     key={item.id}
-                    className={`geometric-card rectangle ${item.size} ${
+                    className={`core-values-card ${
                       hoveredItem === item.id ? "active" : ""
                     }`}
                     data-animate
@@ -96,39 +79,29 @@ const WhyChooseLDB = () => {
                       "--item-delay": `${index * 0.1}s`,
                     }}
                   >
-                    <div className="card-content">
-                      <div className="card-icon">
+                    <div className="core-values-card-content">
+                      <div className="core-values-card-icon">
                         <i className={item.icon}></i>
                       </div>
-                      <h4 className="card-title">{item.title}</h4>
+                      <h4 className="core-values-card-title">{item.title}</h4>
                     </div>
-                    <div className="geometric-border"></div>
                   </div>
                 ))}
               </div>
 
-              {/* Central Area - Enhanced Hub */}
-              <div className="central-hub" ref={centralAreaRef}>
-                <div className="hub-container">
-                  <div className="hub-circle">
-                    <div className="hub-content">
-                      <div className="hub-icon">
-                        <i className="fas fa-star"></i>
-                      </div>
-                      <h3>LDB</h3>
-                      <p>Excellence</p>
-                    </div>
-                  </div>
-                  <div className="hub-glow"></div>
+              {/* Central Image */}
+              <div className="core-values-central-image" ref={centralImageRef}>
+                <div className="core-values-image-container">
+                  <img src={whyChooseLDBImage} alt="LDB Core Values" />
                 </div>
               </div>
 
               {/* Right Side Cards */}
-              <div className="right-cards" ref={rightCardsRef}>
+              <div className="core-values-right-cards" ref={rightCardsRef}>
                 {rightItems.map((item, index) => (
                   <div
                     key={item.id}
-                    className={`geometric-card rectangle ${item.size} ${
+                    className={`core-values-card ${
                       hoveredItem === item.id ? "active" : ""
                     }`}
                     data-animate
@@ -139,13 +112,12 @@ const WhyChooseLDB = () => {
                       "--item-delay": `${index * 0.1}s`,
                     }}
                   >
-                    <div className="card-content">
-                      <div className="card-icon">
+                    <div className="core-values-card-content">
+                      <div className="core-values-card-icon">
                         <i className={item.icon}></i>
                       </div>
-                      <h4 className="card-title">{item.title}</h4>
+                      <h4 className="core-values-card-title">{item.title}</h4>
                     </div>
-                    <div className="geometric-border"></div>
                   </div>
                 ))}
               </div>
@@ -166,4 +138,4 @@ const WhyChooseLDB = () => {
   );
 };
 
-export default WhyChooseLDB;
+export default CoreValues;

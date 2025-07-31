@@ -1,48 +1,90 @@
 import { useCallback } from "react";
 
+// =============================================================================
+// USE SMOOTH SCROLL HOOK
+// =============================================================================
 export const useSmoothScroll = () => {
-  const scrollToSection = useCallback((sectionId, offset = 80) => {
-    const element = document.getElementById(sectionId);
-    if (element) {
-      const elementPosition = element.offsetTop - offset;
-      
-      // Smooth scroll to the element
-      window.scrollTo({
-        top: elementPosition,
-        behavior: "smooth",
+  // ===========================================================================
+  // HELPER FUNCTIONS
+  // ===========================================================================
+  const performScroll = (targetPosition) => {
+    try {
+      requestAnimationFrame(() => {
+        window.scrollTo({
+          top: targetPosition,
+          behavior: "smooth",
+        });
       });
+    } catch (error) {
+      console.error("Error performing scroll:", error);
+    }
+  };
+
+  const validateElement = (element, elementName) => {
+    if (!element) {
+      console.warn(`${elementName} not found`);
+      return false;
+    }
+    return true;
+  };
+
+  // ===========================================================================
+  // SCROLL FUNCTIONS
+  // ===========================================================================
+  const scrollToSection = useCallback((sectionId, offset = 80) => {
+    try {
+      const element = document.getElementById(sectionId);
       
-      // Ensure we're at the right position after scrolling
+      if (!validateElement(element, `Element with id "${sectionId}"`)) {
+        return;
+      }
+
+      // Wait for next tick to ensure DOM is ready
       setTimeout(() => {
-        const currentPosition = window.pageYOffset;
-        if (Math.abs(currentPosition - elementPosition) > 5) {
-          window.scrollTo({
-            top: elementPosition,
-            behavior: "smooth",
-          });
+        try {
+          const elementPosition = element.offsetTop - offset;
+          performScroll(elementPosition);
+
+          // Double-check scroll position after animation starts
+          setTimeout(() => {
+            const currentPosition = window.pageYOffset;
+            if (Math.abs(currentPosition - elementPosition) > 10) {
+              performScroll(elementPosition);
+            }
+          }, 300);
+        } catch (error) {
+          console.error("Error in scroll animation:", error);
         }
-      }, 500);
+      }, 50);
+    } catch (error) {
+      console.error("Error scrolling to section:", error);
     }
   }, []);
 
   const scrollToTop = useCallback(() => {
-    window.scrollTo({
-      top: 0,
-      behavior: "smooth",
-    });
-  }, []);
-
-  const scrollToElement = useCallback((element, offset = 80) => {
-    if (element) {
-      const elementPosition = element.offsetTop - offset;
-
-      window.scrollTo({
-        top: elementPosition,
-        behavior: "smooth",
-      });
+    try {
+      performScroll(0);
+    } catch (error) {
+      console.error("Error scrolling to top:", error);
     }
   }, []);
 
+  const scrollToElement = useCallback((element, offset = 80) => {
+    try {
+      if (!validateElement(element, "Element")) {
+        return;
+      }
+
+      const elementPosition = element.offsetTop - offset;
+      performScroll(elementPosition);
+    } catch (error) {
+      console.error("Error scrolling to element:", error);
+    }
+  }, []);
+
+  // ===========================================================================
+  // RETURN
+  // ===========================================================================
   return {
     scrollToSection,
     scrollToTop,
