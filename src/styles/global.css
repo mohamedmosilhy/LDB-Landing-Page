@@ -1,0 +1,300 @@
+/* Reset and full width styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Prevent browser zoom and text size adjustments */
+html {
+  -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  overflow-x: hidden;
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    sans-serif;
+  background-color: white;
+}
+
+#root {
+  width: 100%;
+  max-width: none;
+  margin: 0;
+  padding: 0;
+  background-color: white;
+}
+
+.App {
+  width: 100%;
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+  background-color: white;
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Prevent horizontal scroll on mobile */
+body {
+  overflow-x: hidden;
+}
+
+/* Better touch targets for mobile */
+@media (max-width: 768px) {
+  .nav-link,
+  .btn,
+  .navbar-toggler {
+    min-height: 44px;
+    min-width: 44px;
+  }
+}
+
+/* Improved focus states for accessibility */
+.nav-link:focus,
+.btn:focus,
+.navbar-toggler:focus {
+  outline: 2px solid rgba(255, 255, 255, 0.5);
+  outline-offset: 2px;
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .navbar-nav .nav-link {
+    border: 1px solid rgba(255, 255, 255, 0.8);
+  }
+
+  .navbar-toggler {
+    border: 2px solid rgba(255, 255, 255, 0.8);
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .navbar-nav .nav-link,
+  .navbar-toggler,
+  .navbar-collapse {
+    transition: none;
+  }
+
+  .navbar-nav .nav-link:hover {
+    transform: none;
+  }
+}
+
+/* Better mobile performance */
+@media (max-width: 768px) {
+  * {
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .navbar-collapse {
+    will-change: transform, opacity;
+  }
+
+  /* Improve backdrop filter performance */
+  .navbar,
+  .navbar-collapse {
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+  }
+
+  /* Optimize animations for mobile */
+  .navbar-nav .nav-link {
+    will-change: transform, opacity;
+  }
+}
+
+/* Cross-browser backdrop filter support */
+@supports not (backdrop-filter: blur(20px)) {
+  .navbar {
+    background: rgba(15, 89, 109, 0.95);
+  }
+
+  .navbar-collapse {
+    background: rgba(15, 89, 109, 0.98);
+  }
+
+  .navbar-toggler {
+    background: rgba(15, 89, 109, 0.9);
+  }
+}
+
+/* Fallback for older browsers */
+@supports not (backdrop-filter: blur(20px)) {
+  .navbar {
+    background: rgba(15, 89, 109, 0.95);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+  }
+
+  .navbar-collapse {
+    background: rgba(15, 89, 109, 0.98);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+  }
+
+  .navbar-toggler {
+    background: rgba(15, 89, 109, 0.9);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+  }
+}
+
+/* Card hover effects */
+.card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(15, 89, 109, 0.1);
+}
+
+/* Button hover effects */
+.btn {
+  transition: all 0.3s ease;
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+}
+
+/* Section spacing - Reduced gaps */
+section {
+  padding: 40px 0;
+  width: 100%;
+  background-color: white;
+}
+
+/* Responsive image */
+.img-fluid {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Custom shadows */
+.shadow {
+  box-shadow: 0 0.5rem 1rem rgba(15, 89, 109, 0.15) !important;
+}
+
+/* Gradient backgrounds */
+.bg-gradient-primary {
+  background: linear-gradient(90deg, #0f596d 0%, #1a7a8f 100%);
+}
+
+/* Text utilities */
+.text-gradient {
+  background: linear-gradient(90deg, #0f596d 0%, #1a7a8f 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Animation classes */
+.fade-in {
+  animation: fadeIn 1s ease-in;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Section header styles */
+.section-header {
+  position: relative;
+  z-index: 2;
+  margin-bottom: 80px;
+}
+
+.section-title {
+  font-size: 3rem;
+  font-weight: 800;
+  color: #2c3e50;
+  margin-bottom: 1.5rem;
+  font-family: "Inter", sans-serif;
+  text-align: center;
+}
+
+.section-subtitle {
+  font-size: 1.2rem;
+  color: #6c757d;
+  max-width: 700px;
+  margin: 0 auto;
+  line-height: 1.6;
+  text-align: center;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .section-title {
+    font-size: 2.5rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .section-title {
+    font-size: 2rem;
+  }
+
+  .section-subtitle {
+    font-size: 1rem;
+  }
+}
+
+/* Additional mobile improvements */
+@media (max-width: 480px) {
+  .section-title {
+    font-size: 1.8rem;
+    line-height: 1.2;
+  }
+
+  .section-subtitle {
+    font-size: 0.9rem;
+  }
+}
+
+/* Landscape orientation improvements */
+@media (max-width: 768px) and (orientation: landscape) {
+  .navbar-collapse {
+    max-height: 60vh;
+    overflow-y: auto;
+  }
+}
+
+/* High DPI displays */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  .navbar-toggler-icon {
+    background-size: 20px 20px;
+  }
+
+  /* Ensure consistent rendering on high DPI displays */
+  * {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* Adjust scaling for high DPI displays */
+  .hero-title,
+  .section-title,
+  .card-title,
+  .logo-text {
+    -webkit-text-rendering: optimizeLegibility;
+    text-rendering: optimizeLegibility;
+  }
+} 

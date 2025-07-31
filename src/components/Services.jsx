@@ -90,10 +90,13 @@ const Services = () => {
           <div className="col-12">
             <div className="services-header" ref={headerRef}>
               <div className="header-content">
-                <h2 className="section-title">Our Services</h2>
+                <h2 className="section-title">What Are Our Services?</h2>
                 <p className="section-subtitle">
-                  Comprehensive learning solutions designed to transform
-                  individuals, teams, and organizations
+                  At Learning Design Boutique (LDB), we offer a fully integrated
+                  suite of services designed to drive measurable transformation
+                  across individuals, teams, and institutions. Our services are
+                  anchored in research, powered by design, and delivered with
+                  precision.
                 </p>
               </div>
             </div>

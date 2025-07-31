@@ -17,73 +17,84 @@ export const HERO_DATA = {
 export const SERVICES_DATA = [
   {
     id: 1,
-    name: "Performance-Driven Coaching",
-    description: "Transform individual and team performance through targeted coaching methodologies",
-    icon: "fas fa-chart-line",
+    name: "Learning Design",
+    description:
+      "We are pioneers in learning architecture. Before we train, coach, or consult—we design the systems that make transformation possible.",
+    icon: "fas fa-pencil-ruler",
     color: "#0f596d",
+    features: [
+      "ADLX-based learning architecture",
+      "Educational psychology integration",
+      "Gamification strategy development",
+      "Customized, competency-based curricula",
+      "Bilingual and culturally contextualized content (AR/EN/FR)",
+    ],
+    methodology: "Design First, Transform Always",
   },
   {
     id: 2,
-    name: "Innovation & Creativity Workshops",
-    description: "Unlock creative potential through interactive workshops and design thinking",
-    icon: "fas fa-lightbulb",
+    name: "Training & Development Programs",
+    description:
+      "We deliver experiential, evidence-based training grounded in our VFC, ZAT, and LOA frameworks.",
+    icon: "fas fa-graduation-cap",
     color: "#1a7a8f",
+    features: [
+      "Leadership development & executive training",
+      "Functional expertise & digital agility programs",
+      "Soft skills, emotional intelligence, and resilience",
+      "KSAH-based reflection and progress tracking",
+      "World-class facilitators with global accreditations",
+    ],
+    methodology:
+      "VFC Competence Framework (Visionary – Functional – Cognitive)",
   },
   {
     id: 3,
-    name: "Strategic Learning Ecosystems",
-    description: "Design comprehensive learning environments that drive organizational growth",
-    icon: "fas fa-network-wired",
+    name: "Coaching & Mentoring",
+    description:
+      "We provide coaching solutions that unlock personal insight and professional growth—across youth, teams, and executives.",
+    icon: "fas fa-user-friends",
     color: "#2a9bb3",
+    features: [
+      "Executive coaching with leadership diagnostics",
+      "Performance coaching aligned with KPIs",
+      "Youth coaching for identity, purpose, and future readiness",
+      "Gallup, Enneagram, MBTI-integrated coaching models",
+      "KSAH-based progression and feedback",
+    ],
+    methodology: "ZAT Coaching × VFC Coaching × Psychoanalysis Typology",
   },
   {
     id: 4,
-    name: "Future-Ready Skill Development",
-    description: "Prepare teams for tomorrow's challenges with cutting-edge skill programs",
-    icon: "fas fa-rocket",
+    name: "Consulting & Organizational Transformation",
+    description:
+      "We build competence-based systems that rewire how organizations perform, grow, and lead.",
+    icon: "fas fa-building",
     color: "#3bb8d4",
+    features: [
+      "VFC/VCBOM implementation across 7 institutional zones",
+      "Competency mapping and strategic role design",
+      "Organizational diagnosis and structural alignment",
+      "Change management & performance management",
+      "Policy consulting and HR modernization for public sector",
+    ],
+    methodology: "From Competence Lists to Competence Systems",
   },
   {
     id: 5,
-    name: "Gamified Engagement Solutions",
-    description: "Boost engagement and retention through innovative gamified learning experiences",
-    icon: "fas fa-gamepad",
-    color: "#4dd4f7",
-  },
-  {
-    id: 6,
-    name: "Experiential Learning Journeys",
-    description: "Create immersive learning experiences that transform knowledge into action",
-    icon: "fas fa-compass",
-    color: "#0f596d",
-  },
-  {
-    id: 7,
-    name: "Global Implementation & Training",
-    description: "Scale learning solutions across international markets and diverse cultures",
-    icon: "fas fa-globe",
-    color: "#1a7a8f",
-  },
-  {
-    id: 8,
-    name: "Digital Learning Platform Development",
-    description: "Build custom digital learning platforms that revolutionize education delivery",
-    icon: "fas fa-laptop-code",
-    color: "#2a9bb3",
-  },
-  {
-    id: 9,
-    name: "Leadership Development Programs",
-    description: "Cultivate next-generation leaders through comprehensive development programs",
-    icon: "fas fa-users-cog",
-    color: "#3bb8d4",
-  },
-  {
-    id: 10,
-    name: "Educational Consulting & Curriculum Design",
-    description: "Design innovative curricula and educational strategies for modern learning",
-    icon: "fas fa-graduation-cap",
-    color: "#4dd4f7",
+    name: "Assessment & Diagnostics",
+    description:
+      "We don't guess—we measure. Our diagnostic tools identify gaps, define pathways, and track real development.",
+    icon: "fas fa-clipboard-check",
+    color: "#4cc5e5",
+    features: [
+      "ZAT gamified assessments for youth",
+      "VFC 360° role-based evaluation tools",
+      "KSAH progression models",
+      "On-the-job assessment & mentoring plans",
+      "Custom dashboards and AI-augmented analytics",
+    ],
+    methodology: "LIFTS Impact Evaluation Framework",
   },
 ];
 
@@ -93,7 +104,8 @@ export const SERVICES_DATA = [
 export const WHY_CHOOSE_LDB_DATA = {
   header: {
     title: "Why Choose LDB?",
-    subtitle: "Unlock your true potential and discover a world of opportunities that align with your skills, interests, and aspirations",
+    subtitle:
+      "Unlock your true potential and discover a world of opportunities that align with your skills, interests, and aspirations",
   },
   leftItems: [
     {
@@ -247,42 +259,48 @@ export const PROJECTS_DATA = [
 export const TESTIMONIALS_DATA = [
   {
     id: 1,
-    quote: "Working with the LDB team was an exceptional experience by all measures. They didn't just provide a regular training program; they designed a comprehensive learning experience that transformed our team's thinking and working style. The results far exceeded our expectations, and we now have a more interactive, creative, and challenge-ready team.",
+    quote:
+      "Working with the LDB team was an exceptional experience by all measures. They didn't just provide a regular training program; they designed a comprehensive learning experience that transformed our team's thinking and working style. The results far exceeded our expectations, and we now have a more interactive, creative, and challenge-ready team.",
     author: "Sarah Ahmed",
     position: "HR Manager",
     company: "Tech Innovation Company",
   },
   {
     id: 2,
-    quote: "LDB's training methodology is unique and innovative. They managed to turn a complex subject like project management into an enjoyable and interactive experience. Now our team is 70% more efficient in project management.",
+    quote:
+      "LDB's training methodology is unique and innovative. They managed to turn a complex subject like project management into an enjoyable and interactive experience. Now our team is 70% more efficient in project management.",
     author: "Mohammed Al-Khalidi",
     position: "Operations Manager",
     company: "",
   },
   {
     id: 3,
-    quote: "The youth empowerment program provided by LDB was a turning point in my career. I not only learned new skills but also discovered capabilities I never knew I had.",
+    quote:
+      "The youth empowerment program provided by LDB was a turning point in my career. I not only learned new skills but also discovered capabilities I never knew I had.",
     author: "Fatima Al-Salmi",
     position: "Entrepreneur",
     company: "",
   },
   {
     id: 4,
-    quote: "It was a truly transformational experience. For the first time, I felt my approach to learning was completely redefined. The program didn't just deliver information—it opened my eyes to the power of experiential learning. Every element was designed to immerse me deeply, connect theory with practice, and reshape the way I think about education and development. I walked away not only more skilled but genuinely inspired to continue growing.",
+    quote:
+      "It was a truly transformational experience. For the first time, I felt my approach to learning was completely redefined. The program didn't just deliver information—it opened my eyes to the power of experiential learning. Every element was designed to immerse me deeply, connect theory with practice, and reshape the way I think about education and development. I walked away not only more skilled but genuinely inspired to continue growing.",
     author: "Tariq Alzahrani",
     position: "Scientific Evaluation Expert",
     company: "",
   },
   {
     id: 5,
-    quote: "The gamified learning approach was beyond impressive. Right from the start, it captured our attention and kept us fully engaged. The activities were thoughtfully designed to encourage real participation, reflection, and meaningful application. It's not just learning—it's learning that sticks, because it's fun, interactive, and built around the learner's journey. The impact it had on me was immediate and long-lasting.",
+    quote:
+      "The gamified learning approach was beyond impressive. Right from the start, it captured our attention and kept us fully engaged. The activities were thoughtfully designed to encourage real participation, reflection, and meaningful application. It's not just learning—it's learning that sticks, because it's fun, interactive, and built around the learner's journey. The impact it had on me was immediate and long-lasting.",
     author: "Badr Al-Khanbashi",
     position: "Social Entrepreneur",
     company: "",
   },
   {
     id: 6,
-    quote: "It was the first time I joined a meeting where everyone at the table spoke a common language of growth, development, and real KPIs. The session was rich with insight and clarity—led by a team of knowledgeable experts and inspirational leaders who clearly knew how to drive transformation. What stood out the most was the ability to turn discussions into concrete actions and create a truly memorable and developmental experience for all participants.",
+    quote:
+      "It was the first time I joined a meeting where everyone at the table spoke a common language of growth, development, and real KPIs. The session was rich with insight and clarity—led by a team of knowledgeable experts and inspirational leaders who clearly knew how to drive transformation. What stood out the most was the ability to turn discussions into concrete actions and create a truly memorable and developmental experience for all participants.",
     author: "Moza Mohamed Al Darwish",
     position: "Performance Management Director",
     company: "",
@@ -305,8 +323,10 @@ export const CLIENT_LOGOS_DATA = {
 // =============================================================================
 export const FOOTER_DATA = {
   hero: {
-    title: "Join Leading Professionals in Advancing the Future of Learning and Development",
-    subtitle: "Unleash your full potential and engage in opportunities that align with your professional expertise, strategic vision, and commitment to impactful growth. Together, we can drive meaningful and measurable change.",
+    title:
+      "Join Leading Professionals in Advancing the Future of Learning and Development",
+    subtitle:
+      "Unleash your full potential and engage in opportunities that align with your professional expertise, strategic vision, and commitment to impactful growth. Together, we can drive meaningful and measurable change.",
   },
   company: {
     name: "LDB Learning & Development",

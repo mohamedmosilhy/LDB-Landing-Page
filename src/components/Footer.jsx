@@ -38,11 +38,6 @@ const Footer = () => {
     ANIMATION_CONFIG.footer.form.type,
     ANIMATION_CONFIG.footer.form.delay
   );
-  const footerInfoRef = useStaggerAnimation(
-    ANIMATION_CONFIG.footer.footerInfo.type,
-    ANIMATION_CONFIG.footer.footerInfo.stagger,
-    ANIMATION_CONFIG.footer.footerInfo.delay
-  );
 
   // ===========================================================================
   // RENDER FORM FIELD
@@ -59,7 +54,9 @@ const Footer = () => {
         required
         className={`${fieldName}-input ${errors[fieldName] ? "error" : ""}`}
       />
-      {errors[fieldName] && <span className="error-text">{errors[fieldName]}</span>}
+      {errors[fieldName] && (
+        <span className="error-text">{errors[fieldName]}</span>
+      )}
     </div>
   );
 
@@ -84,7 +81,7 @@ const Footer = () => {
   // RENDER SOCIAL MEDIA
   // ===========================================================================
   const renderSocialMedia = () => (
-    <div className="social-media" data-animate>
+    <div className="social-media">
       {FOOTER_DATA.socialMedia.map((social, index) => (
         <a
           key={index}
@@ -116,23 +113,41 @@ const Footer = () => {
                   <p className="hero-subtitle">{FOOTER_DATA.hero.subtitle}</p>
 
                   {/* Contact Form */}
-                  <form onSubmit={handleSubmit} className="contact-form" ref={formRef}>
+                  <form
+                    onSubmit={handleSubmit}
+                    className="contact-form"
+                    ref={formRef}
+                  >
                     <div className="form-group">
                       {renderFormField("name", "Your name", "fa-user")}
-                      {renderFormField("email", "Your email address", "fa-envelope", "email")}
-                      {renderFormField("phone", "Your phone number", "fa-phone", "tel")}
-                      
+                      {renderFormField(
+                        "email",
+                        "Your email address",
+                        "fa-envelope",
+                        "email"
+                      )}
+                      {renderFormField(
+                        "phone",
+                        "Your phone number",
+                        "fa-phone",
+                        "tel"
+                      )}
+
                       <textarea
                         name="message"
                         placeholder="Your message..."
                         value={formData.message}
                         onChange={handleChange}
                         required
-                        className={`message-input ${errors.message ? "error" : ""}`}
+                        className={`message-input ${
+                          errors.message ? "error" : ""
+                        }`}
                         rows="4"
                       />
-                      {errors.message && <span className="error-text">{errors.message}</span>}
-                      
+                      {errors.message && (
+                        <span className="error-text">{errors.message}</span>
+                      )}
+
                       <button
                         type="submit"
                         className="join-btn"
@@ -140,7 +155,8 @@ const Footer = () => {
                       >
                         {isSubmitting ? (
                           <span>
-                            <i className="fas fa-spinner fa-spin"></i> Sending...
+                            <i className="fas fa-spinner fa-spin"></i>{" "}
+                            Sending...
                           </span>
                         ) : (
                           <span>
@@ -175,14 +191,14 @@ const Footer = () => {
         <div className="row">
           <div className="col-12">
             <div className="footer-bottom">
-              <div className="footer-info" ref={footerInfoRef}>
+              <div className="footer-info">
                 {/* Copyright */}
-                <div className="copyright" data-animate>
+                <div className="copyright">
                   <p>{FOOTER_DATA.copyright}</p>
                 </div>
 
                 {/* Company Information */}
-                <div className="company-info" data-animate>
+                <div className="company-info">
                   <h3 className="company-name">{FOOTER_DATA.company.name}</h3>
                   {renderContactInfo()}
                 </div>

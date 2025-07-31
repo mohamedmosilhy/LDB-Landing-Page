@@ -16,10 +16,10 @@ const Header = () => {
   // NAVIGATION DATA
   // ===========================================================================
   const navItems = [
-    { id: "hero", label: "Home", href: "#hero" },
+    { id: "core-values", label: "Core Values", href: "#core-values" },
+    { id: "clients", label: "Partners", href: "#clients" },
     { id: "services", label: "Our Services", href: "#services" },
     { id: "projects", label: "Projects", href: "#projects" },
-    { id: "clients", label: "Partners", href: "#clients" },
     { id: "contact", label: "Contact Us", href: "#contact" },
   ];
 

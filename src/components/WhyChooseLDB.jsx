@@ -12,55 +12,50 @@ const WhyChooseLDB = () => {
   const leftCardsRef = useStaggerAnimation("fadeInLeft", 0.1, 0.2);
   const centralAreaRef = useGSAPAnimation("scaleIn", 0.3);
   const rightCardsRef = useStaggerAnimation("fadeInRight", 0.1, 0.2);
-  const floatingElementsRef = useGSAPAnimation("fadeInUp", 0.4);
+  const bottomCardRef = useGSAPAnimation("fadeInUp", 0.4);
+  const floatingElementsRef = useGSAPAnimation("fadeInUp", 0.5);
 
   const leftItems = [
     {
       id: 1,
-      title: "Innovative Learning Solutions",
+      title: "Research-Driven, Competency-Based Frameworks",
       icon: "fas fa-lightbulb",
       color: "#0f596d",
       size: "large",
     },
     {
       id: 2,
-      title: "Expert Team",
+      title: "Integrated, Interdisciplinary Methodology",
       icon: "fas fa-users",
       color: "#1a7a8f",
       size: "medium",
-    },
-    {
-      id: 3,
-      title: "Proven Results",
-      icon: "fas fa-chart-line",
-      color: "#2a9bb3",
-      size: "small",
     },
   ];
 
   const rightItems = [
     {
-      id: 4,
-      title: "Global Reach",
+      id: 3,
+      title: "Culturally Grounded, Globally Aligned",
       icon: "fas fa-globe",
-      color: "#3bb8d4",
+      color: "#2a9bb3",
       size: "small",
     },
     {
-      id: 5,
-      title: "Custom Approach",
-      icon: "fas fa-cogs",
-      color: "#4cc5e5",
+      id: 4,
+      title: "Measurable Impact and Systemic Change",
+      icon: "fas fa-chart-line",
+      color: "#3bb8d4",
       size: "medium",
     },
-    {
-      id: 6,
-      title: "Quality Assurance",
-      icon: "fas fa-shield-alt",
-      color: "#5dd2f6",
-      size: "large",
-    },
   ];
+
+  const bottomItem = {
+    id: 5,
+    title: "From Design to Delivery—One Seamless System",
+    icon: "fas fa-cogs",
+    color: "#4cc5e5",
+    size: "large",
+  };
 
   return (
     <section id="why-choose" className="why-choose-section">
@@ -70,8 +65,11 @@ const WhyChooseLDB = () => {
             <div className="section-header text-center" ref={headerRef}>
               <h2 className="section-title">Why Choose LDB?</h2>
               <p className="section-subtitle">
-                Discover what makes us the preferred choice for learning and
-                development solutions
+                At Learning Design Boutique (LDB), we don't just deliver
+                services—we architect transformation. What sets us apart is not
+                only what we do, but how and why we do it. Here's why LDB is the
+                trusted partner for future-focused organizations, governments,
+                and youth-focused institutions
               </p>
             </div>
           </div>
@@ -148,6 +146,29 @@ const WhyChooseLDB = () => {
                     <div className="geometric-border"></div>
                   </div>
                 ))}
+              </div>
+            </div>
+
+            {/* Bottom Center Card */}
+            <div className="bottom-card-container" ref={bottomCardRef}>
+              <div
+                className={`geometric-card rectangle ${bottomItem.size} ${
+                  hoveredItem === bottomItem.id ? "active" : ""
+                }`}
+                data-animate
+                onMouseEnter={() => setHoveredItem(bottomItem.id)}
+                onMouseLeave={() => setHoveredItem(null)}
+                style={{
+                  "--item-color": bottomItem.color,
+                }}
+              >
+                <div className="card-content">
+                  <div className="card-icon">
+                    <i className={bottomItem.icon}></i>
+                  </div>
+                  <h4 className="card-title">{bottomItem.title}</h4>
+                </div>
+                <div className="geometric-border"></div>
               </div>
             </div>
 

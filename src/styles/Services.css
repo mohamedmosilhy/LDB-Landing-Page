@@ -1,0 +1,441 @@
+/* Services Section */
+.services-section {
+  padding: 100px 0;
+  background: white;
+  position: relative;
+  overflow: hidden;
+}
+
+.services-section::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(
+      circle at 20% 20%,
+      rgba(15, 89, 109, 0.05) 0%,
+      transparent 50%
+    ),
+    radial-gradient(
+      circle at 80% 80%,
+      rgba(15, 89, 109, 0.05) 0%,
+      transparent 50%
+    );
+  z-index: 1;
+}
+
+.services-header {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 60px;
+  gap: 2rem;
+  text-align: center;
+}
+
+.header-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.services-section .section-title {
+  font-size: 3rem;
+  font-weight: 800;
+  color: #2c3e50;
+  margin-bottom: 1rem;
+  font-family: "Inter", sans-serif;
+}
+
+.services-section .section-subtitle {
+  font-size: 1.2rem;
+  color: #6c757d;
+  line-height: 1.6;
+  max-width: 600px;
+  text-align: center;
+}
+
+/* Services Grid Layout */
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 2rem 0;
+}
+
+/* Enhanced Service Card Hover Effects for Grid */
+.services-grid .service-card {
+  cursor: pointer !important;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  position: relative;
+  z-index: 1;
+}
+
+.services-grid .service-card:hover {
+  transform: translateY(-15px) scale(1.02) !important;
+  box-shadow: 0 25px 70px rgba(0, 0, 0, 0.2) !important;
+  z-index: 10;
+}
+
+.services-grid .service-card:hover .card-overlay {
+  opacity: 1 !important;
+  transform: scale(1.05) !important;
+}
+
+.services-grid .service-card:hover .image-placeholder i {
+  transform: scale(1.1) !important;
+  opacity: 1 !important;
+}
+
+.services-grid .service-card:hover .service-title {
+  color: #0f596d !important;
+}
+
+/* Ensure overlay is properly positioned */
+.services-grid .card-overlay {
+  transition: all 0.4s ease !important;
+  opacity: 0;
+  transform: scale(1);
+}
+
+/* Ensure icon transitions work */
+.services-grid .image-placeholder i {
+  transition: all 0.4s ease !important;
+}
+
+/* Override any conflicting styles */
+.services-grid .service-card,
+.services-grid .service-card:hover {
+  background: white !important;
+  border-radius: 20px !important;
+  overflow: hidden !important;
+}
+
+/* Services Grid Animation */
+.services-grid .service-card {
+  opacity: 0;
+  transform: translateY(50px);
+  transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Staggered entrance animation */
+.services-grid .service-card:nth-child(1) {
+  transition-delay: 0.1s;
+}
+
+.services-grid .service-card:nth-child(2) {
+  transition-delay: 0.2s;
+}
+
+.services-grid .service-card:nth-child(3) {
+  transition-delay: 0.3s;
+}
+
+.services-grid .service-card:nth-child(4) {
+  transition-delay: 0.4s;
+}
+
+.services-grid .service-card:nth-child(5) {
+  transition-delay: 0.5s;
+}
+
+.services-grid .service-card:nth-child(6) {
+  transition-delay: 0.6s;
+}
+
+/* Animation trigger class */
+.services-grid.animate .service-card {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Standard services grid layout */
+
+/* Center last row when odd number of items */
+.services-grid.last-row-centered {
+  justify-items: center;
+}
+
+.services-grid.last-row-centered .service-card:last-child {
+  grid-column: 1 / -1;
+  max-width: 400px;
+  margin: 0 auto;
+  justify-self: center;
+}
+
+/* Enhanced hover effects */
+.services-grid .service-card:hover {
+  transform: translateY(-15px) scale(1.05) !important;
+  box-shadow: 0 25px 70px rgba(0, 0, 0, 0.2) !important;
+  z-index: 10;
+}
+
+.services-grid .service-card:hover .card-overlay {
+  opacity: 1 !important;
+  transform: scale(1.05) !important;
+}
+
+.services-grid .service-card:hover .image-placeholder i {
+  transform: scale(1.2) !important;
+  opacity: 1 !important;
+}
+
+.services-grid .service-card:hover .service-title {
+  color: #0f596d !important;
+}
+
+/* Card overlay animation */
+.services-grid .card-overlay {
+  transition: all 0.4s ease !important;
+  opacity: 0;
+  transform: scale(1);
+}
+
+/* Icon animation */
+.services-grid .image-placeholder i {
+  transition: all 0.4s ease !important;
+}
+
+.services-grid .card-image {
+  position: relative !important;
+  height: 300px !important;
+  overflow: hidden !important;
+}
+
+.services-grid .image-placeholder {
+  width: 100% !important;
+  height: 100% !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  position: relative !important;
+}
+
+.services-grid .image-placeholder i {
+  font-size: 4rem !important;
+  color: white !important;
+  opacity: 0.9 !important;
+  transition: all 0.4s ease !important;
+}
+
+/* Navigation buttons removed - auto-rotation implemented */
+
+.services-carousel {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  margin-bottom: 40px;
+}
+
+.service-card {
+  flex: 1;
+  background: white;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.1);
+  transition: all 0.4s ease;
+  position: relative;
+  cursor: pointer;
+}
+
+.service-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+}
+
+.card-image {
+  position: relative;
+  height: 300px;
+  overflow: hidden;
+}
+
+.image-placeholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.image-placeholder i {
+  font-size: 4rem;
+  color: white;
+  opacity: 0.9;
+}
+
+.card-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(15, 89, 109, 0.9) 0%,
+    rgba(26, 122, 143, 0.9) 100%
+  );
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: all 0.4s ease;
+}
+
+.service-card:hover .card-overlay {
+  opacity: 1;
+}
+
+.overlay-content {
+  text-align: center;
+  color: white;
+  padding: 2rem;
+}
+
+.service-name {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  font-family: "Inter", sans-serif;
+}
+
+.service-description {
+  font-size: 0.9rem;
+  line-height: 1.5;
+  opacity: 0;
+  max-height: 0;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.service-card:hover .service-description {
+  opacity: 0.8;
+  max-height: 100px;
+  margin-top: 0.5rem;
+}
+
+.card-footer {
+  padding: 1.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: white;
+  gap: 1rem;
+}
+
+.service-info {
+  flex: 1;
+  text-align: center;
+}
+
+.service-title {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #2c3e50;
+  margin-bottom: 0.5rem;
+  font-family: "Inter", sans-serif;
+}
+
+/* Service brief removed - description now appears in overlay */
+
+/* Service details removed since we're not using click-to-expand anymore */
+
+.services-indicators {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-top: 2rem;
+}
+
+.indicator {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  border: none;
+  background: #e9ecef;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.indicator.active {
+  background: linear-gradient(135deg, #0f596d 0%, #1a7a8f 100%);
+  transform: scale(1.2);
+}
+
+.indicator:hover {
+  background: #0f596d;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .services-section {
+    padding: 60px 0;
+  }
+
+  .services-header {
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .services-section .section-title {
+    font-size: 2.5rem;
+  }
+
+  .services-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .service-card {
+    max-width: 400px;
+    margin: 0 auto;
+  }
+
+  .card-image {
+    height: 250px;
+  }
+
+  .image-placeholder i {
+    font-size: 3rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .services-section .section-title {
+    font-size: 2rem;
+  }
+
+  .services-section .section-subtitle {
+    font-size: 1rem;
+  }
+
+  .navigation-buttons {
+    gap: 0.5rem;
+  }
+
+  .nav-btn {
+    width: 40px;
+    height: 40px;
+    font-size: 1rem;
+  }
+
+  .card-footer {
+    padding: 1rem;
+  }
+
+  .service-title {
+    font-size: 1.1rem;
+  }
+} 
