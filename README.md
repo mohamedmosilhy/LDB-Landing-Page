@@ -53,6 +53,16 @@ The website is automatically deployed to GitHub Pages whenever changes are pushe
 
 ### Manual Deployment
 
+#### Option 1: Using npm scripts (Recommended)
+```bash
+# Deploy with one command
+npm run deploy
+
+# Or specifically for GitHub Pages
+npm run deploy:gh-pages
+```
+
+#### Option 2: Manual steps
 1. Build the project:
 ```bash
 npm run build
@@ -114,6 +124,7 @@ The project is configured for GitHub Pages deployment with the base URL set to `
 
 ### GitHub Pages
 - **Source**: GitHub Actions (gh-pages branch)
+- **Deployment Branch**: gh-pages
 - **URL**: https://mohamedmosilhy.github.io/LDB-Landing-Page/
 
 ## 📱 Responsive Breakpoints
