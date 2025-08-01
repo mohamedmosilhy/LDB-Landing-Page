@@ -117,7 +117,7 @@ const WhyChooseLDB = () => {
       </div>
 
       {/* Custom CSS for animations */}
-      <style jsx>{`
+      <style jsx="true">{`
         @keyframes fade-in-up {
           from {
             opacity: 0;

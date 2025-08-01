@@ -30,17 +30,21 @@ const Footer = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    
+
     // Validate form data
-    if (!formData.name.trim() || !formData.email.trim() || !formData.message.trim()) {
-      setSubmitStatus('error');
+    if (
+      !formData.name.trim() ||
+      !formData.email.trim() ||
+      !formData.message.trim()
+    ) {
+      setSubmitStatus("error");
       setTimeout(() => setSubmitStatus(null), 3000);
       return;
     }
-    
+
     setIsSubmitting(true);
     setSubmitStatus(null);
-    
+
     // Method 1: Try direct form submission first
     try {
       // Create a temporary form element
@@ -49,53 +53,52 @@ const Footer = () => {
       tempForm.action = GOOGLE_FORM_CONFIG.formUrl;
       tempForm.target = "_blank";
       tempForm.style.display = "none";
-      
+
       // Add form fields
       const nameInput = document.createElement("input");
       nameInput.type = "hidden";
       nameInput.name = GOOGLE_FORM_CONFIG.fieldIds.name;
       nameInput.value = formData.name;
       tempForm.appendChild(nameInput);
-      
+
       const emailInput = document.createElement("input");
       emailInput.type = "hidden";
       emailInput.name = GOOGLE_FORM_CONFIG.fieldIds.email;
       emailInput.value = formData.email;
       tempForm.appendChild(emailInput);
-      
+
       const messageInput = document.createElement("input");
       messageInput.type = "hidden";
       messageInput.name = GOOGLE_FORM_CONFIG.fieldIds.message;
       messageInput.value = formData.message;
       tempForm.appendChild(messageInput);
-      
+
       // Submit the form
       document.body.appendChild(tempForm);
       tempForm.submit();
-      
+
       // Clean up
       setTimeout(() => {
         document.body.removeChild(tempForm);
       }, 1000);
-      
+
       // Show success message
       setIsSubmitting(false);
-      setSubmitStatus('success');
-      
+      setSubmitStatus("success");
+
       // Reset form
       setFormData({
         name: "",
         email: "",
         message: "",
       });
-      
+
       // Clear success message after 5 seconds
       setTimeout(() => setSubmitStatus(null), 5000);
-      
     } catch (error) {
       console.error("Form submission error:", error);
       setIsSubmitting(false);
-      setSubmitStatus('error');
+      setSubmitStatus("error");
       setTimeout(() => setSubmitStatus(null), 5000);
     }
   };
@@ -189,22 +192,22 @@ const Footer = () => {
                     type="submit"
                     disabled={isSubmitting}
                     className={`w-full px-8 py-4 bg-gradient-to-r from-white/20 to-white/10 backdrop-blur-sm rounded-2xl border border-white/30 text-white font-semibold transition-all duration-300 ${
-                      isSubmitting 
-                        ? 'opacity-50 cursor-not-allowed' 
-                        : 'hover:from-white/30 hover:to-white/20 hover:border-white/40 hover:scale-105 hover:shadow-xl'
+                      isSubmitting
+                        ? "opacity-50 cursor-not-allowed"
+                        : "hover:from-white/30 hover:to-white/20 hover:border-white/40 hover:scale-105 hover:shadow-xl"
                     }`}
                   >
-                    {isSubmitting ? 'Sending...' : 'Send Message'}
+                    {isSubmitting ? "Sending..." : "Send Message"}
                   </button>
-                  
+
                   {/* Status Messages */}
-                  {submitStatus === 'success' && (
+                  {submitStatus === "success" && (
                     <div className="mt-4 p-4 bg-green-500/20 border border-green-500/30 rounded-2xl text-green-300 text-center">
                       {GOOGLE_FORM_CONFIG.messages.success}
                     </div>
                   )}
-                  
-                  {submitStatus === 'error' && (
+
+                  {submitStatus === "error" && (
                     <div className="mt-4 p-4 bg-red-500/20 border border-red-500/30 rounded-2xl text-red-300 text-center">
                       {GOOGLE_FORM_CONFIG.messages.error}
                     </div>
@@ -213,7 +216,7 @@ const Footer = () => {
               </div>
             </div>
 
-            {/* Company Info & Social */}
+            {/* Company Info and Social */}
             <div className="space-y-8">
               {/* Company Information */}
               <div className="bg-white/10 backdrop-blur-xl rounded-3xl p-8 shadow-2xl border border-white/20">

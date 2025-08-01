@@ -110,17 +110,17 @@ const ClientLogos = () => {
   const renderLogo = (logo, index) => (
     <div
       key={index}
-      className="group relative overflow-hidden bg-white/95 backdrop-blur-xl rounded-2xl p-6 shadow-xl border border-white/60 hover:shadow-2xl transition-all duration-500 hover:scale-105 hover:-translate-y-2"
+      className="group relative overflow-hidden bg-white/95 backdrop-blur-xl rounded-2xl p-6 shadow-xl border border-white/60 hover:shadow-2xl transition-all duration-500 hover:scale-105 hover:-translate-y-2 w-32 h-32 flex-shrink-0"
     >
       {/* Gradient Border Effect */}
       <div className="absolute inset-0 bg-gradient-to-r from-[#0f596d] via-[#2a9bb3] to-[#4dd4f7] rounded-2xl opacity-0 group-hover:opacity-20 transition-opacity duration-500"></div>
 
       {/* Logo Container */}
-      <div className="relative z-10 flex items-center justify-center h-20 w-full">
+      <div className="relative z-10 flex items-center justify-center h-full w-full">
         <img
           src={logo.src}
           alt={logo.alt}
-          className="max-h-16 max-w-full object-contain filter grayscale group-hover:grayscale-0 transition-all duration-500 group-hover:scale-110 drop-shadow-sm group-hover:drop-shadow-lg"
+          className="max-h-20 max-w-20 object-contain filter grayscale group-hover:grayscale-0 transition-all duration-500 group-hover:scale-110 drop-shadow-sm group-hover:drop-shadow-lg"
           loading="lazy"
           onError={(e) => {
             console.warn(`Failed to load logo: ${logo.alt}`);
@@ -169,7 +169,7 @@ const ClientLogos = () => {
         </div>
 
         {/* Logos Grid */}
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-6 sm:gap-8">
+        <div className="flex flex-wrap justify-center gap-6 sm:gap-8">
           {clientLogos.map(renderLogo)}
         </div>
 

@@ -6,7 +6,7 @@ import { PROJECTS_DATA } from "../constants/data";
 // =============================================================================
 const Projects = () => {
   // ===========================================================================
-  // STATE & REFS
+  // STATE and REFS
   // ===========================================================================
   const [isVisible, setIsVisible] = useState(false);
   const projectsGridRef = useRef(null);
@@ -67,7 +67,13 @@ const Projects = () => {
 
         {/* Project Title */}
         <h3 className="fancy-heading-large text-[#1a202c] group-hover:text-[#0f596d] transition-colors duration-500 flex-1">
-          {project.title}
+          {project.title === "3F Model Owner for Learning Experience Design" ? (
+            <span className="align-baseline">
+              3F Model Owner for Learning Experience Design
+            </span>
+          ) : (
+            project.title
+          )}
         </h3>
       </div>
 

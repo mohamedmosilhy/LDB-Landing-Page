@@ -6,7 +6,7 @@ import { SERVICES_DATA } from "../constants/data";
 // =============================================================================
 const Services = () => {
   // ===========================================================================
-  // STATE & REFS
+  // STATE and REFS
   // ===========================================================================
   const [isVisible, setIsVisible] = useState(false);
   const [activeService, setActiveService] = useState(null);
@@ -47,7 +47,7 @@ const Services = () => {
   const renderServiceCard = (service, index) => (
     <div
       key={service.id}
-      className={`group relative overflow-hidden bg-white/95 backdrop-blur-xl rounded-3xl p-8 shadow-2xl border border-white/60 hover:shadow-3xl transition-all duration-700 hover:scale-105 hover:-translate-y-4 cursor-pointer ${
+      className={`group relative overflow-hidden bg-white/95 backdrop-blur-xl rounded-3xl p-8 shadow-2xl border border-white/60 hover:shadow-3xl transition-all duration-700 hover:scale-105 hover:-translate-y-4 cursor-pointer w-96 flex-shrink-0 ${
         activeService === service.id ? "ring-4 ring-[#0f596d]/30" : ""
       }`}
       onClick={() =>
@@ -173,15 +173,15 @@ const Services = () => {
 
         {/* Services Grid */}
         <div
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-10 relative"
+          className="flex flex-wrap justify-center gap-8 lg:gap-10 relative"
           ref={servicesGridRef}
         >
           {/* Background Grid Pattern */}
-          <div className="absolute inset-0 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-10 pointer-events-none opacity-5">
+          <div className="absolute inset-0 flex flex-wrap justify-center gap-8 lg:gap-10 pointer-events-none opacity-5">
             {[...Array(6)].map((_, i) => (
               <div
                 key={i}
-                className="w-full h-64 bg-gradient-to-br from-[#0f596d] to-[#4dd4f7] rounded-3xl blur-sm"
+                className="w-80 h-64 bg-gradient-to-br from-[#0f596d] to-[#4dd4f7] rounded-3xl blur-sm"
               ></div>
             ))}
           </div>

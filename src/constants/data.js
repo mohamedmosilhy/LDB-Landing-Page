@@ -33,14 +33,14 @@ export const SERVICES_DATA = [
   },
   {
     id: 2,
-    name: "Training & Development Programs",
+    name: "Training and Development Programs",
     description:
       "We deliver experiential, evidence-based training grounded in our VFC, ZAT, and LOA frameworks.",
     icon: "fas fa-graduation-cap",
     color: "#1a7a8f",
     features: [
-      "Leadership development & executive training",
-      "Functional expertise & digital agility programs",
+      "Leadership development and executive training",
+      "Functional expertise and digital agility programs",
       "Soft skills, emotional intelligence, and resilience",
       "KSAH-based reflection and progress tracking",
       "World-class facilitators with global accreditations",
@@ -50,7 +50,7 @@ export const SERVICES_DATA = [
   },
   {
     id: 3,
-    name: "Coaching & Mentoring",
+    name: "Coaching and Mentoring",
     description:
       "We provide coaching solutions that unlock personal insight and professional growth—across youth, teams, and executives.",
     icon: "fas fa-user-friends",
@@ -66,7 +66,7 @@ export const SERVICES_DATA = [
   },
   {
     id: 4,
-    name: "Consulting & Organizational Transformation",
+    name: "Consulting and Organizational Transformation",
     description:
       "We build competence-based systems that rewire how organizations perform, grow, and lead.",
     icon: "fas fa-building",
@@ -75,14 +75,14 @@ export const SERVICES_DATA = [
       "VFC/VCBOM implementation across 7 institutional zones",
       "Competency mapping and strategic role design",
       "Organizational diagnosis and structural alignment",
-      "Change management & performance management",
+      "Change management and performance management",
       "Policy consulting and HR modernization for public sector",
     ],
     methodology: "From Competence Lists to Competence Systems",
   },
   {
     id: 5,
-    name: "Assessment & Diagnostics",
+    name: "Assessment and Diagnostics",
     description:
       "We don't guess—we measure. Our diagnostic tools identify gaps, define pathways, and track real development.",
     icon: "fas fa-clipboard-check",
@@ -91,7 +91,7 @@ export const SERVICES_DATA = [
       "ZAT gamified assessments for youth",
       "VFC 360° role-based evaluation tools",
       "KSAH progression models",
-      "On-the-job assessment & mentoring plans",
+      "On-the-job assessment and mentoring plans",
       "Custom dashboards and AI-augmented analytics",
     ],
     methodology: "LIFTS Impact Evaluation Framework",
@@ -136,7 +136,7 @@ export const WHY_CHOOSE_LDB_DATA = {
   rightItems: [
     {
       id: 4,
-      title: "Joy & Vitality",
+      title: "Joy and Vitality",
       icon: "fas fa-smile",
       color: "#4dd4f7",
       size: "small",
@@ -189,7 +189,7 @@ export const CORE_VALUES_DATA = {
     },
     {
       id: 3,
-      title: "Joy & Vitality",
+      title: "Joy and Vitality",
       icon: "fas fa-smile",
       color: "#2a9bb3",
     },
@@ -236,7 +236,7 @@ export const PROJECTS_DATA = [
   },
   {
     id: 5,
-    title: "Gamified Assessment for Selection, Development & Hiring",
+    title: "Gamified Assessment for Selection, Development and Hiring",
     icon: "fas fa-clipboard-check",
     color: "#4cc5e5",
   },
@@ -331,7 +331,7 @@ export const FOOTER_DATA = {
       "Unleash your full potential and engage in opportunities that align with your professional expertise, strategic vision, and commitment to impactful growth. Together, we can drive meaningful and measurable change.",
   },
   company: {
-    name: "LDB Learning & Development",
+    name: "LDB Learning and Development",
     address: "Muscat, Bawshar, Oman | Cairo, Egypt | Tucson, AZ, USA",
     phone: "+968 7609 9366",
     email: "m.haymna@ldb-corp.com",
