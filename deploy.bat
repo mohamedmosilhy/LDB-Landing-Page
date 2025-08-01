@@ -14,7 +14,7 @@ if %ERRORLEVEL% EQU 0 (
     git commit -m "Deploy to GitHub Pages - %date% %time%"
     
     echo 🚀 Pushing to gh-pages branch...
-    git push origin gh-pages
+    git push origin gh-pages --force
     
     echo.
     echo 🎉 Deployment successful!
