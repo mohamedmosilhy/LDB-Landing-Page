@@ -1,5 +1,10 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { CLIENT_LOGOS_DATA } from "../constants/data";
+
+// Register ScrollTrigger plugin
+gsap.registerPlugin(ScrollTrigger);
 
 // Import all logos from assets
 import americanChamberLogo from "../assets/logos/american-chamber-logo.png";
@@ -51,6 +56,111 @@ import psxLogo2 from "../assets/logos/logo-PSX_20240218_173046.png";
 // CLIENT LOGOS COMPONENT
 // =============================================================================
 const ClientLogos = () => {
+  const clientLogosRef = useRef(null);
+
+  useEffect(() => {
+    const clientLogosSection = clientLogosRef.current;
+    if (!clientLogosSection) return;
+
+    // Create the main timeline
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: clientLogosSection,
+        start: "top 80%",
+        end: "bottom 20%",
+        toggleActions: "play none none reverse",
+      },
+    });
+
+    // Animate section title
+    tl.fromTo(
+      clientLogosSection.querySelector(".section-title"),
+      { y: 30, opacity: 0, scale: 0.95 },
+      { y: 0, opacity: 1, scale: 1, duration: 0.5, ease: "back.out(1.4)" }
+    )
+
+      // Animate section subtitle
+      .fromTo(
+        clientLogosSection.querySelector(".section-subtitle"),
+        { y: 20, opacity: 0 },
+        { y: 0, opacity: 1, duration: 0.4, ease: "power2.out" }
+      )
+
+      // Animate logos with wave effect
+      .fromTo(
+        clientLogosSection.querySelectorAll(".client-logo"),
+        {
+          y: 40,
+          opacity: 0,
+          scale: 0.7,
+          rotation: -10,
+        },
+        {
+          y: 0,
+          opacity: 1,
+          scale: 1,
+          rotation: 0,
+          duration: 0.6,
+          stagger: 0.05,
+          ease: "elastic.out(1, 0.3)",
+        }
+      );
+
+    // Add hover animations for logos
+    const logoElements = clientLogosSection.querySelectorAll(".client-logo");
+    logoElements.forEach((logo) => {
+      logo.addEventListener("mouseenter", () => {
+        gsap.to(logo, {
+          scale: 1.1,
+          y: -5,
+          rotation: 5,
+          duration: 0.3,
+          ease: "power2.out",
+        });
+      });
+
+      logo.addEventListener("mouseleave", () => {
+        gsap.to(logo, {
+          scale: 1,
+          y: 0,
+          rotation: 0,
+          duration: 0.3,
+          ease: "power2.out",
+        });
+      });
+    });
+
+    // Add floating animation to decorative elements
+    const floatingElements =
+      clientLogosSection.querySelectorAll(".floating-element");
+    floatingElements.forEach((element, index) => {
+      gsap.to(element, {
+        y: -8,
+        duration: 2 + index * 0.2,
+        ease: "power1.inOut",
+        yoyo: true,
+        repeat: -1,
+        delay: index * 0.1,
+      });
+    });
+
+    // Add continuous rotation to some elements
+    const rotatingElements =
+      clientLogosSection.querySelectorAll(".rotating-element");
+    rotatingElements.forEach((element, index) => {
+      gsap.to(element, {
+        rotation: 360,
+        duration: 15 + index * 3,
+        ease: "none",
+        repeat: -1,
+      });
+    });
+
+    // Cleanup function
+    return () => {
+      ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
+    };
+  }, []);
   // ===========================================================================
   // CLIENT LOGOS DATA - Using imported logos from assets
   // ===========================================================================
@@ -110,7 +220,7 @@ const ClientLogos = () => {
   const renderLogo = (logo, index) => (
     <div
       key={index}
-      className="group relative overflow-hidden bg-white/95 backdrop-blur-xl rounded-2xl p-6 shadow-xl border border-white/60 hover:shadow-2xl transition-all duration-500 hover:scale-105 hover:-translate-y-2 w-32 h-32 flex-shrink-0"
+      className="client-logo group relative overflow-hidden bg-white/95 backdrop-blur-xl rounded-2xl p-6 shadow-xl border border-white/60 hover:shadow-2xl transition-all duration-500 hover:scale-105 hover:-translate-y-2 w-32 h-32 flex-shrink-0"
     >
       {/* Gradient Border Effect */}
       <div className="absolute inset-0 bg-gradient-to-r from-[#0f596d] via-[#2a9bb3] to-[#4dd4f7] rounded-2xl opacity-0 group-hover:opacity-20 transition-opacity duration-500"></div>
@@ -142,6 +252,7 @@ const ClientLogos = () => {
   // ===========================================================================
   return (
     <section
+      ref={clientLogosRef}
       id="clients"
       className="py-12 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-gray-50 via-white to-gray-50 relative overflow-hidden"
     >
@@ -160,10 +271,10 @@ const ClientLogos = () => {
       <div className="max-w-7xl mx-auto relative z-10">
         {/* Section Header */}
         <div className="text-center mb-12">
-          <h2 className="fancy-title-large text-3xl sm:text-4xl lg:text-5xl bg-gradient-to-r from-[#0f596d] via-[#2a9bb3] to-[#4dd4f7] bg-clip-text text-transparent mb-6">
+          <h2 className="section-title fancy-title-large text-3xl sm:text-4xl lg:text-5xl bg-gradient-to-r from-[#0f596d] via-[#2a9bb3] to-[#4dd4f7] bg-clip-text text-transparent mb-6">
             {CLIENT_LOGOS_DATA.header.title}
           </h2>
-          <p className="fancy-subtitle-large text-base sm:text-lg text-[#2d3748] max-w-4xl mx-auto">
+          <p className="section-subtitle fancy-subtitle-large text-base sm:text-lg text-[#2d3748] max-w-4xl mx-auto">
             {CLIENT_LOGOS_DATA.header.subtitle}
           </p>
         </div>
@@ -174,12 +285,16 @@ const ClientLogos = () => {
         </div>
 
         {/* Enhanced Floating Decorative Elements */}
-        <div className="absolute top-20 left-10 w-4 h-4 bg-[#0f596d]/30 rounded-full animate-pulse"></div>
-        <div className="absolute top-40 right-20 w-6 h-6 bg-[#2a9bb3]/40 rounded-full animate-pulse delay-1000"></div>
-        <div className="absolute bottom-40 left-20 w-3 h-3 bg-[#4dd4f7]/50 rounded-full animate-pulse delay-2000"></div>
-        <div className="absolute bottom-20 right-10 w-5 h-5 bg-[#1a7a8f]/35 rounded-full animate-pulse delay-1500"></div>
-        <div className="absolute top-1/3 left-1/4 w-2 h-2 bg-[#3bb8d4]/45 rounded-full animate-pulse delay-500"></div>
-        <div className="absolute bottom-1/3 right-1/4 w-3 h-3 bg-[#0f596d]/25 rounded-full animate-pulse delay-3000"></div>
+        <div className="floating-element absolute top-20 left-10 w-4 h-4 bg-[#0f596d]/30 rounded-full"></div>
+        <div className="floating-element absolute top-40 right-20 w-6 h-6 bg-[#2a9bb3]/40 rounded-full"></div>
+        <div className="floating-element absolute bottom-40 left-20 w-3 h-3 bg-[#4dd4f7]/50 rounded-full"></div>
+        <div className="floating-element absolute bottom-20 right-10 w-5 h-5 bg-[#1a7a8f]/35 rounded-full"></div>
+        <div className="floating-element absolute top-1/3 left-1/4 w-2 h-2 bg-[#3bb8d4]/45 rounded-full"></div>
+        <div className="floating-element absolute bottom-1/3 right-1/4 w-3 h-3 bg-[#0f596d]/25 rounded-full"></div>
+
+        {/* Rotating decorative elements */}
+        <div className="rotating-element absolute top-1/4 right-1/4 w-8 h-8 border border-[#0f596d]/20 rounded-full"></div>
+        <div className="rotating-element absolute bottom-1/4 left-1/4 w-6 h-6 border border-[#2a9bb3]/20 rounded-full"></div>
       </div>
     </section>
   );

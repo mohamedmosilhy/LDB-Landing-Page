@@ -1,5 +1,10 @@
 import React, { useState, useEffect, useRef } from "react";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { SERVICES_DATA } from "../constants/data";
+
+// Register ScrollTrigger plugin
+gsap.registerPlugin(ScrollTrigger);
 
 // =============================================================================
 // SERVICES COMPONENT
@@ -13,31 +18,113 @@ const Services = () => {
   const servicesGridRef = useRef(null);
 
   // ===========================================================================
-  // INTERSECTION OBSERVER
+  // GSAP ANIMATIONS
   // ===========================================================================
   useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true);
-        } else {
-          setIsVisible(false);
-        }
+    const servicesSection = servicesGridRef.current;
+    if (!servicesSection) return;
+
+    // Create the main timeline
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: servicesSection,
+        start: "top 80%",
+        end: "bottom 20%",
+        toggleActions: "play none none reverse",
       },
-      {
-        threshold: 0.3,
-        rootMargin: "0px 0px -100px 0px",
-      }
-    );
+    });
 
-    if (servicesGridRef.current) {
-      observer.observe(servicesGridRef.current);
-    }
+    // Animate section title with text reveal
+    tl.fromTo(
+      servicesSection.querySelector(".section-title"),
+      { y: 30, opacity: 0, scale: 0.95 },
+      { y: 0, opacity: 1, scale: 1, duration: 0.5, ease: "back.out(1.4)" }
+    )
 
+      // Animate section description
+      .fromTo(
+        servicesSection.querySelector(".section-description"),
+        { y: 20, opacity: 0 },
+        { y: 0, opacity: 1, duration: 0.4, ease: "power2.out" }
+      )
+
+      // Animate service cards with 3D flip effect
+      .fromTo(
+        servicesSection.querySelectorAll(".service-card"),
+        {
+          y: 60,
+          opacity: 0,
+          rotationY: 30,
+          scale: 0.9,
+          transformOrigin: "center center",
+        },
+        {
+          y: 0,
+          opacity: 1,
+          rotationY: 0,
+          scale: 1,
+          duration: 0.7,
+          stagger: 0.08,
+          ease: "back.out(1.4)",
+        }
+      );
+
+    // Add hover animations for service cards
+    const serviceCards = servicesSection.querySelectorAll(".service-card");
+    serviceCards.forEach((card) => {
+      card.addEventListener("mouseenter", () => {
+        gsap.to(card, {
+          scale: 1.05,
+          y: -10,
+          rotationY: 5,
+          duration: 0.3,
+          ease: "power2.out",
+        });
+      });
+
+      card.addEventListener("mouseleave", () => {
+        gsap.to(card, {
+          scale: 1,
+          y: 0,
+          rotationY: 0,
+          duration: 0.3,
+          ease: "power2.out",
+        });
+      });
+    });
+
+    // Add floating animation to decorative elements
+    const floatingElements =
+      servicesSection.querySelectorAll(".floating-element");
+    floatingElements.forEach((element, index) => {
+      gsap.to(element, {
+        y: -10,
+        duration: 2.5 + index * 0.3,
+        ease: "power1.inOut",
+        yoyo: true,
+        repeat: -1,
+        delay: index * 0.15,
+      });
+    });
+
+    // Add parallax effect to background elements
+    const parallaxElements = servicesSection.querySelectorAll(".parallax-bg");
+    parallaxElements.forEach((element, index) => {
+      gsap.to(element, {
+        yPercent: -40 - index * 15,
+        ease: "none",
+        scrollTrigger: {
+          trigger: servicesSection,
+          start: "top bottom",
+          end: "bottom top",
+          scrub: true,
+        },
+      });
+    });
+
+    // Cleanup function
     return () => {
-      if (servicesGridRef.current) {
-        observer.unobserve(servicesGridRef.current);
-      }
+      ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
     };
   }, []);
 
@@ -47,7 +134,7 @@ const Services = () => {
   const renderServiceCard = (service, index) => (
     <div
       key={service.id}
-      className={`group relative overflow-hidden bg-white/95 backdrop-blur-xl rounded-3xl p-8 shadow-2xl border border-white/60 hover:shadow-3xl transition-all duration-700 hover:scale-105 hover:-translate-y-4 cursor-pointer w-96 flex-shrink-0 ${
+      className={`service-card group relative overflow-hidden bg-white/95 backdrop-blur-xl rounded-3xl p-8 shadow-2xl border border-white/60 hover:shadow-3xl transition-all duration-700 hover:scale-105 hover:-translate-y-4 cursor-pointer w-96 flex-shrink-0 ${
         activeService === service.id ? "ring-4 ring-[#0f596d]/30" : ""
       }`}
       onClick={() =>
@@ -160,10 +247,10 @@ const Services = () => {
       <div className="max-w-7xl mx-auto relative z-10">
         {/* Section Header */}
         <div className="text-center mb-20">
-          <h2 className="fancy-title-large text-3xl sm:text-4xl lg:text-5xl bg-gradient-to-r from-[#0f596d] via-[#2a9bb3] to-[#4dd4f7] bg-clip-text text-transparent mb-6">
+          <h2 className="section-title fancy-title-large text-3xl sm:text-4xl lg:text-5xl bg-gradient-to-r from-[#0f596d] via-[#2a9bb3] to-[#4dd4f7] bg-clip-text text-transparent mb-6">
             What Are Our Services?
           </h2>
-          <p className="fancy-subtitle-large text-base sm:text-lg text-[#2d3748] max-w-4xl mx-auto leading-relaxed">
+          <p className="section-description fancy-subtitle-large text-base sm:text-lg text-[#2d3748] max-w-4xl mx-auto leading-relaxed">
             At Learning Design Boutique (LDB), we offer a fully integrated suite
             of services designed to drive measurable transformation across
             individuals, teams, and institutions. Our services are anchored in
@@ -192,12 +279,12 @@ const Services = () => {
         </div>
 
         {/* Enhanced Floating Decorative Elements */}
-        <div className="absolute top-20 left-10 w-4 h-4 bg-[#0f596d]/30 rounded-full animate-pulse"></div>
-        <div className="absolute top-40 right-20 w-6 h-6 bg-[#2a9bb3]/40 rounded-full animate-pulse delay-1000"></div>
-        <div className="absolute bottom-40 left-20 w-3 h-3 bg-[#4dd4f7]/50 rounded-full animate-pulse delay-2000"></div>
-        <div className="absolute bottom-20 right-10 w-5 h-5 bg-[#1a7a8f]/35 rounded-full animate-pulse delay-1500"></div>
-        <div className="absolute top-1/3 left-1/4 w-2 h-2 bg-[#3bb8d4]/45 rounded-full animate-pulse delay-500"></div>
-        <div className="absolute bottom-1/3 right-1/4 w-3 h-3 bg-[#0f596d]/25 rounded-full animate-pulse delay-3000"></div>
+        <div className="floating-element absolute top-20 left-10 w-4 h-4 bg-[#0f596d]/30 rounded-full"></div>
+        <div className="floating-element absolute top-40 right-20 w-6 h-6 bg-[#2a9bb3]/40 rounded-full"></div>
+        <div className="floating-element absolute bottom-40 left-20 w-3 h-3 bg-[#4dd4f7]/50 rounded-full"></div>
+        <div className="floating-element absolute bottom-20 right-10 w-5 h-5 bg-[#1a7a8f]/35 rounded-full"></div>
+        <div className="floating-element absolute top-1/3 left-1/4 w-2 h-2 bg-[#3bb8d4]/45 rounded-full"></div>
+        <div className="floating-element absolute bottom-1/3 right-1/4 w-3 h-3 bg-[#0f596d]/25 rounded-full"></div>
       </div>
     </section>
   );
