@@ -1,15 +1,3 @@
-import "bootstrap/dist/css/bootstrap.min.css";
-import "./styles/global.css";
-import "./styles/Header.css";
-import "./styles/Hero.css";
-import "./styles/WhyChooseLDB.css";
-import "./styles/CoreValues.css";
-import "./styles/ClientLogos.css";
-import "./styles/Services.css";
-import "./styles/Projects.css";
-import "./styles/Testimonials.css";
-import "./styles/Footer.css";
-import "./styles/ScrollToTop.css";
 import Header from "./components/Header";
 import Hero from "./components/Hero";
 import WhyChooseLDB from "./components/WhyChooseLDB";

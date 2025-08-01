@@ -3,44 +3,9 @@ import hero1 from "../assets/hero-1.png";
 import hero2 from "../assets/hero-2.png";
 import hero3 from "../assets/hero-3.png";
 import hero4 from "../assets/hero-4.png";
-import {
-  useGSAPAnimation,
-  useStaggerAnimation,
-} from "../hooks/useGSAPAnimation";
-import { useTypingAnimation } from "../hooks/useTypingAnimation";
-import { HERO_DATA, ANIMATION_CONFIG } from "../constants/data";
+import { HERO_DATA } from "../constants/data";
 
-// =============================================================================
-// HERO COMPONENT
-// =============================================================================
 const Hero = () => {
-  // ===========================================================================
-  // HOOKS & ANIMATIONS
-  // ===========================================================================
-  const { text } = useTypingAnimation(HERO_DATA.title);
-
-  // GSAP Animation refs
-  const taglineRef = useGSAPAnimation(
-    ANIMATION_CONFIG.hero.tagline.type,
-    ANIMATION_CONFIG.hero.tagline.delay
-  );
-  const titleRef = useGSAPAnimation(
-    ANIMATION_CONFIG.hero.title.type,
-    ANIMATION_CONFIG.hero.title.delay
-  );
-  const ctaRef = useGSAPAnimation(
-    ANIMATION_CONFIG.hero.cta.type,
-    ANIMATION_CONFIG.hero.cta.delay
-  );
-  const imagesRef = useStaggerAnimation(
-    ANIMATION_CONFIG.hero.images.type,
-    ANIMATION_CONFIG.hero.images.stagger,
-    ANIMATION_CONFIG.hero.images.delay
-  );
-
-  // ===========================================================================
-  // HERO IMAGES DATA
-  // ===========================================================================
   const heroImages = [
     {
       src: hero1,
@@ -60,69 +25,60 @@ const Hero = () => {
     },
   ];
 
-  // ===========================================================================
-  // RENDER
-  // ===========================================================================
   return (
-    <section id="hero" className="hero-section">
-      <div className="hero-gradient">
-        <div className="hero-overlay"></div>
+    <section
+      id="hero"
+      className="relative min-h-screen flex flex-col justify-center items-center px-6 pt-20 pb-16"
+    >
+      {/* Top Section - Spacer for fixed header */}
+      <div className="h-16"></div>
 
-        {/* Top Section - Spacer for fixed header */}
-        <div className="hero-top">
-          {/* Header is now rendered in App.jsx */}
-        </div>
-
-        {/* Middle Section - Text Content */}
-        <div className="hero-middle">
-          <div className="container">
-            <div className="row justify-content-center">
-              <div className="col-lg-10 col-xl-8">
-                <div className="hero-content">
-                  {/* Tagline */}
-                  <div className="tagline-pill-container" ref={taglineRef}>
-                    <span className="tagline-pill">{HERO_DATA.tagline}</span>
-                  </div>
-
-                  {/* Main Title with Typing Animation */}
-                  <h1 className="hero-title" ref={titleRef}>
-                    <span className="typing-text">{text}</span>
-                    <span className="cursor">|</span>
-                  </h1>
-
-                  {/* Call to Action */}
-                  <div className="hero-cta" ref={ctaRef}>
-                    <p className="cta-text">{HERO_DATA.cta}</p>
-                  </div>
-                </div>
-              </div>
-            </div>
+      {/* Middle Section - Text Content */}
+      <div className="flex-1 flex flex-col justify-center items-center text-center max-w-6xl mx-auto relative z-10">
+        {/* Tagline Pill */}
+        <div className="mb-8">
+          <div className="inline-flex items-center bg-white/95 backdrop-blur-md rounded-full px-8 py-4 shadow-lg border border-white/30">
+            <span className="mr-3 text-xl">🎓</span>
+            <span className="fancy-subtitle-large text-[#2d3748] text-sm">
+              {HERO_DATA.tagline}
+            </span>
           </div>
         </div>
 
-        {/* Bottom Section - Hero Images */}
-        <div className="hero-bottom">
-          <div className="container">
-            <div className="row justify-content-center">
-              <div className="col-12">
-                <div className="hero-images" ref={imagesRef}>
-                  <div className="row g-4 justify-content-center">
-                    {heroImages.map((image, index) => (
-                      <div key={index} className="col-6 col-md-3">
-                        <div className="hero-image-container" data-animate>
-                          <img
-                            src={image.src}
-                            alt={image.alt}
-                            className="hero-image"
-                          />
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                </div>
+        {/* Main Title */}
+        <div className="mb-8">
+          <h1 className="fancy-title-large text-3xl sm:text-4xl lg:text-5xl leading-tight max-w-6xl text-[#2d3748]">
+            <span className="inline-block">
+              {HERO_DATA.title}
+              <span className="inline-block w-2 h-16 bg-[#2d3748] ml-3 animate-pulse"></span>
+            </span>
+          </h1>
+        </div>
+
+        {/* Call to Action */}
+        <div className="mb-12">
+          <p className="fancy-heading-large text-lg sm:text-xl text-white hover:text-white/90 transition-colors duration-300 cursor-pointer">
+            {HERO_DATA.cta}
+          </p>
+        </div>
+      </div>
+
+      {/* Bottom Section - Hero Images */}
+      <div className="w-full max-w-6xl mx-auto px-6">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
+          {heroImages.map((image, index) => (
+            <div key={index} className="group">
+              <div className="relative overflow-hidden rounded-3xl shadow-2xl bg-white/10 backdrop-blur-sm border border-white/20 transition-all duration-500 group-hover:scale-105 group-hover:shadow-3xl">
+                <img
+                  src={image.src}
+                  alt={image.alt}
+                  className="w-full h-48 md:h-64 object-cover transition-transform duration-500 group-hover:scale-110"
+                  loading="lazy"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
               </div>
             </div>
-          </div>
+          ))}
         </div>
       </div>
     </section>

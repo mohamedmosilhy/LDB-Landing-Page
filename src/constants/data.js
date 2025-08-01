@@ -171,7 +171,8 @@ export const WHY_CHOOSE_LDB_DATA = {
 export const CORE_VALUES_DATA = {
   header: {
     title: "Our Core Values",
-    subtitle: "The principles that guide our mission and drive our success",
+    subtitle:
+      "The fundamental principles that guide our actions and shape our culture, driving us to deliver exceptional learning experiences",
   },
   values: [
     {
@@ -313,7 +314,8 @@ export const TESTIMONIALS_DATA = [
 export const CLIENT_LOGOS_DATA = {
   header: {
     title: "We are happy to work with incredible clients",
-    subtitle: "Trusted by leading organizations worldwide",
+    subtitle:
+      "Over years of work, we have been honored to collaborate with a diverse group of distinguished clients from various sectors. Each partnership represents a unique success story and a mutual learning experience that enriches our expertise and develops our capabilities.",
   },
   // Logo imports will be handled in the component
 };
@@ -342,52 +344,4 @@ export const FOOTER_DATA = {
     },
   ],
   copyright: "©2025 All rights reserved",
-};
-
-// =============================================================================
-// ANIMATION CONFIGURATION
-// =============================================================================
-export const ANIMATION_CONFIG = {
-  hero: {
-    tagline: { type: "fadeInDown", delay: 0.1 },
-    title: { type: "fadeInUp", delay: 0.2 },
-    cta: { type: "fadeInUp", delay: 0.3 },
-    images: { type: "scaleIn", stagger: 0.1, delay: 0.4 },
-  },
-  services: {
-    header: { type: "fadeInUp", delay: 0.1 },
-    grid: { type: "fadeInUp", stagger: 0.1, delay: 0.2 },
-  },
-  whyChooseLDB: {
-    header: { type: "fadeInUp", delay: 0.1 },
-    leftCards: { type: "fadeInLeft", stagger: 0.1, delay: 0.2 },
-    centralImage: { type: "scaleIn", delay: 0.3 },
-    rightCards: { type: "fadeInRight", stagger: 0.1, delay: 0.2 },
-    floatingElements: { type: "fadeInUp", delay: 0.4 },
-  },
-  coreValues: {
-    header: { type: "fadeInUp", delay: 0.1 },
-    leftCards: { type: "fadeInLeft", stagger: 0.1, delay: 0.2 },
-    centralImage: { type: "scaleIn", delay: 0.3 },
-    rightCards: { type: "fadeInRight", stagger: 0.1, delay: 0.2 },
-    floatingElements: { type: "fadeInUp", delay: 0.4 },
-  },
-  clientLogos: {
-    header: { type: "fadeInUp", delay: 0.1 },
-    logos: { type: "scaleIn", stagger: 0.02, delay: 0.2 },
-  },
-  projects: {
-    header: { type: "fadeInUp", delay: 0.1 },
-    cards: { type: "scaleIn", stagger: 0.1, delay: 0.2 },
-  },
-  testimonials: {
-    header: { type: "fadeInUp", delay: 0.1 },
-    carousel: { type: "fadeInUp", delay: 0.2 },
-    navigation: { type: "fadeInUp", delay: 0.3 },
-  },
-  footer: {
-    heroCard: { type: "fadeInUp", delay: 0.1 },
-    form: { type: "fadeInUp", delay: 0.2 },
-    footerInfo: { type: "fadeInUp", stagger: 0.1, delay: 0.3 },
-  },
 };

@@ -1,368 +1,185 @@
 import React from "react";
-import {
-  useGSAPAnimation,
-  useStaggerAnimation,
-} from "../hooks/useGSAPAnimation";
+import { CLIENT_LOGOS_DATA } from "../constants/data";
 
-// Import all logo images
-import logo1 from "../assets/logos/logo-2URJx6kB_400x400.jpeg";
-import logo2 from "../assets/logos/logo-629e96e4-7346-44dd-bc7c-683663d16501.png";
-import logo3 from "../assets/logos/logo-98569_Logo_Eng_JPGfront.jpg";
-import logo4 from "../assets/logos/logo-channels4_profile.jpg";
-import logo5 from "../assets/logos/logo-download-3-2.jpg";
-import logo6 from "../assets/logos/logo-EKyymsNXsAUzJCT.png";
-import logo7 from "../assets/logos/logo-engage_total_hr_solution_logo.jpeg";
-import logo8 from "../assets/logos/logo-epromlogo-scaled.gif";
-import logo9 from "../assets/logos/logo-ExxonMobil-Logo.png";
-import logo10 from "../assets/logos/logo-giz.png";
-import logo11 from "../assets/logos/logo-harouge-logo-en.png";
-import logo12 from "../assets/logos/logo-hayah-international-academy2-1.jpg";
-import logo13 from "../assets/logos/logo-ImageHandler.png";
-import logo14 from "../assets/logos/logo-images-1.png";
-import logo15 from "../assets/logos/logo-images-2.png";
-import logo16 from "../assets/logos/logo-images-3.png";
-import logo17 from "../assets/logos/logo-images-4.png";
-import logo18 from "../assets/logos/logo-images-5.png";
-import logo19 from "../assets/logos/logo-images-6.png";
-import logo20 from "../assets/logos/logo-images-7.png";
-import logo21 from "../assets/logos/logo-images-8.png";
-import logo22 from "../assets/logos/logo-images-9.jpeg";
-import logo23 from "../assets/logos/logo-images-10.jpeg";
-import logo24 from "../assets/logos/logo-kisspng-logo-istikbal.png";
-import logo25 from "../assets/logos/logo-Logo-v3-No-Background.png";
-import logo26 from "../assets/logos/logo-loreal-paris-vector-logo.png";
-import logo27 from "../assets/logos/logo-MSA.png";
-import logo28 from "../assets/logos/logo-MTN_Logo.svg.png";
-import logo29 from "../assets/logos/logo-OracleRedwood2.webp";
-import logo30 from "../assets/logos/logo-Photos-56-380x280.jpg";
-import logo31 from "../assets/logos/logo-PSX_20220208_124911.jpg";
-import logo32 from "../assets/logos/logo-PSX_20240218_173046.png";
-import logo33 from "../assets/logos/logo-raya-logo-en.png";
-import logo34 from "../assets/logos/logo-unicef-logo-whiteonblue.jpg";
-import logo35 from "../assets/logos/logo-USAID-Logo.png";
-import logo36 from "../assets/logos/شركة-جاسكو.jpg";
-import logo37 from "../assets/logos/نماء.webp";
-
-// Import new downloaded logos
+// Import all logos from assets
+import americanChamberLogo from "../assets/logos/american-chamber-logo.png";
 import bmwLogo from "../assets/logos/bmw-logo.png";
-import vodafoneLogo from "../assets/logos/vodafone-logo.png";
-import pepsicoLogo from "../assets/logos/pepsico-logo.png";
 import etisalatLogo from "../assets/logos/etisalat-logo.svg";
 import kraftHeinzLogo from "../assets/logos/kraft-heinz-logo.png";
+import pepsicoLogo from "../assets/logos/pepsico-logo.png";
+import vodafoneLogo from "../assets/logos/vodafone-logo.png";
+import gascoLogo from "../assets/logos/شركة-جاسكو.jpg";
+import namaaLogo from "../assets/logos/نماء.webp";
+import unicefLogo from "../assets/logos/logo-unicef-logo-whiteonblue.jpg";
+import usaidLogo from "../assets/logos/logo-USAID-Logo.png";
+import gizLogo from "../assets/logos/logo-giz.png";
+import harougeLogo from "../assets/logos/logo-harouge-logo-en.png";
+import hayahLogo from "../assets/logos/logo-hayah-international-academy2-1.jpg";
+import rayaLogo from "../assets/logos/logo-raya-logo-en.png";
+import lorealLogo from "../assets/logos/logo-loreal-paris-vector-logo.png";
+import msaLogo from "../assets/logos/logo-MSA.png";
+import mtnLogo from "../assets/logos/logo-MTN_Logo.svg.png";
+import oracleLogo from "../assets/logos/logo-OracleRedwood2.webp";
+import exxonLogo from "../assets/logos/logo-ExxonMobil-Logo.png";
+import logo98569 from "../assets/logos/logo-98569_Logo_Eng_JPGfront.jpg";
+import logo629e96e4 from "../assets/logos/logo-629e96e4-7346-44dd-bc7c-683663d16501.png";
+import logo2URJx6kB from "../assets/logos/logo-2URJx6kB_400x400.jpeg";
+import logo28262d299f40f007f3e359c3c7053fad from "../assets/logos/28262d299f40f007f3e359c3c7053fad.jpg";
+import logoKisspng from "../assets/logos/logo-kisspng-logo-istikbal.png";
+import logoV3 from "../assets/logos/logo-Logo-v3-No-Background.png";
+import engageLogo from "../assets/logos/logo-engage_total_hr_solution_logo.jpeg";
+import epromLogo from "../assets/logos/logo-epromlogo-scaled.gif";
+import logoEKyymsNXsAUzJCT from "../assets/logos/logo-EKyymsNXsAUzJCT.png";
+import imageHandlerLogo from "../assets/logos/logo-ImageHandler.png";
+import logoImages1 from "../assets/logos/logo-images-1.png";
+import logoImages2 from "../assets/logos/logo-images-2.png";
+import logoImages3 from "../assets/logos/logo-images-3.png";
+import logoImages4 from "../assets/logos/logo-images-4.png";
+import logoImages5 from "../assets/logos/logo-images-5.png";
+import logoImages6 from "../assets/logos/logo-images-6.png";
+import logoImages7 from "../assets/logos/logo-images-7.png";
+import logoImages8 from "../assets/logos/logo-images-8.png";
+import logoImages9 from "../assets/logos/logo-images-9.jpeg";
+import logoImages10 from "../assets/logos/logo-images-10.jpeg";
+import channels4Logo from "../assets/logos/logo-channels4_profile.jpg";
+import downloadLogo from "../assets/logos/logo-download-3-2.jpg";
+import photosLogo from "../assets/logos/logo-Photos-56-380x280.jpg";
+import psxLogo1 from "../assets/logos/logo-PSX_20220208_124911.jpg";
+import psxLogo2 from "../assets/logos/logo-PSX_20240218_173046.png";
 
+// =============================================================================
+// CLIENT LOGOS COMPONENT
+// =============================================================================
 const ClientLogos = () => {
-  // GSAP Animation refs
-  const headerRef = useGSAPAnimation("fadeInUp", 0.2);
-  const logosRef = useStaggerAnimation("scaleIn", 0.05, 0.5);
-
-  // All logos organized by importance - important ones first
-  const allLogos = [
-    // First row - Most important (new additions)
+  // ===========================================================================
+  // CLIENT LOGOS DATA - Using imported logos from assets
+  // ===========================================================================
+  const clientLogos = [
+    { src: bmwLogo, alt: "BMW Logo" },
+    { src: vodafoneLogo, alt: "Vodafone Logo" },
+    { src: pepsicoLogo, alt: "PepsiCo Logo" },
+    { src: etisalatLogo, alt: "Etisalat UAE Logo" },
+    { src: kraftHeinzLogo, alt: "Kraft Heinz Logo" },
+    { src: oracleLogo, alt: "Oracle Logo" },
+    { src: usaidLogo, alt: "USAID Logo" },
+    { src: rayaLogo, alt: "RAYA Logo" },
+    { src: unicefLogo, alt: "UNICEF Logo" },
+    { src: americanChamberLogo, alt: "American Chamber Logo" },
+    { src: gascoLogo, alt: "Gasco Logo" },
+    { src: namaaLogo, alt: "Namaa Logo" },
+    { src: gizLogo, alt: "GIZ Logo" },
+    { src: harougeLogo, alt: "Harouge Logo" },
+    { src: hayahLogo, alt: "Hayah International Academy Logo" },
+    { src: lorealLogo, alt: "L'Oreal Logo" },
+    { src: msaLogo, alt: "MSA Logo" },
+    { src: mtnLogo, alt: "MTN Logo" },
+    { src: exxonLogo, alt: "ExxonMobil Logo" },
+    { src: logo98569, alt: "Logo 98569" },
+    { src: logo629e96e4, alt: "Logo 629e96e4" },
+    { src: logo2URJx6kB, alt: "Logo 2URJx6kB" },
     {
-      src: bmwLogo,
-      alt: "BMW",
-      name: "BMW",
-      priority: "high",
+      src: logo28262d299f40f007f3e359c3c7053fad,
+      alt: "Logo 28262d299f40f007f3e359c3c7053fad",
     },
-    {
-      src: vodafoneLogo,
-      alt: "Vodafone",
-      name: "Vodafone",
-      priority: "high",
-    },
-    {
-      src: pepsicoLogo,
-      alt: "PepsiCo",
-      name: "PepsiCo",
-      priority: "high",
-    },
-    {
-      src: etisalatLogo,
-      alt: "Etisalat UAE",
-      name: "Etisalat UAE",
-      priority: "high",
-    },
-    // Second row - Important existing
-    {
-      src: logo35, // USAID
-      alt: "USAID",
-      name: "USAID",
-      priority: "high",
-    },
-    {
-      src: logo33, // RAYA
-      alt: "RAYA",
-      name: "RAYA",
-      priority: "high",
-    },
-    {
-      src: logo34, // UNICEF
-      alt: "UNICEF",
-      name: "UNICEF",
-      priority: "high",
-    },
-    {
-      src: logo29, // Oracle
-      alt: "Oracle",
-      name: "Oracle",
-      priority: "high",
-    },
-    {
-      src: kraftHeinzLogo,
-      alt: "Kraft Heinz",
-      name: "Kraft Heinz",
-      priority: "high",
-    },
-    {
-      src: logo5,
-      alt: "American Chamber of Commerce",
-      name: "American Chamber of Commerce",
-      priority: "high",
-    },
-    // Remaining logos
-    {
-      src: logo1,
-      alt: "Client Logo 1",
-      name: "Client 1",
-      priority: "normal",
-    },
-    {
-      src: logo2,
-      alt: "Client Logo 2",
-      name: "Client 2",
-      priority: "normal",
-    },
-    {
-      src: logo3,
-      alt: "Client Logo 3",
-      name: "Client 3",
-      priority: "normal",
-    },
-    {
-      src: logo4,
-      alt: "Client Logo 4",
-      name: "Client 4",
-      priority: "normal",
-    },
-    {
-      src: logo6,
-      alt: "Client Logo 6",
-      name: "Client 6",
-      priority: "normal",
-    },
-    {
-      src: logo7,
-      alt: "Client Logo 7",
-      name: "Client 7",
-      priority: "normal",
-    },
-    {
-      src: logo8,
-      alt: "Client Logo 8",
-      name: "Client 8",
-      priority: "normal",
-    },
-    {
-      src: logo9,
-      alt: "Client Logo 9",
-      name: "Client 9",
-      priority: "normal",
-    },
-    {
-      src: logo10,
-      alt: "Client Logo 10",
-      name: "Client 10",
-      priority: "normal",
-    },
-    {
-      src: logo11,
-      alt: "Client Logo 11",
-      name: "Client 11",
-      priority: "normal",
-    },
-    {
-      src: logo12,
-      alt: "Client Logo 12",
-      name: "Client 12",
-      priority: "normal",
-    },
-    {
-      src: logo13,
-      alt: "Client Logo 13",
-      name: "Client 13",
-      priority: "normal",
-    },
-    {
-      src: logo14,
-      alt: "Client Logo 14",
-      name: "Client 14",
-      priority: "normal",
-    },
-    {
-      src: logo15,
-      alt: "Client Logo 15",
-      name: "Client 15",
-      priority: "normal",
-    },
-    {
-      src: logo16,
-      alt: "Client Logo 16",
-      name: "Client 16",
-      priority: "normal",
-    },
-    {
-      src: logo17,
-      alt: "Client Logo 17",
-      name: "Client 17",
-      priority: "normal",
-    },
-    {
-      src: logo18,
-      alt: "Client Logo 18",
-      name: "Client 18",
-      priority: "normal",
-    },
-    {
-      src: logo19,
-      alt: "Client Logo 19",
-      name: "Client 19",
-      priority: "normal",
-    },
-    {
-      src: logo20,
-      alt: "Client Logo 20",
-      name: "Client 20",
-      priority: "normal",
-    },
-    {
-      src: logo21,
-      alt: "Client Logo 21",
-      name: "Client 21",
-      priority: "normal",
-    },
-    {
-      src: logo22,
-      alt: "Client Logo 22",
-      name: "Client 22",
-      priority: "normal",
-    },
-    {
-      src: logo23,
-      alt: "Client Logo 23",
-      name: "Client 23",
-      priority: "normal",
-    },
-    {
-      src: logo24,
-      alt: "Client Logo 24",
-      name: "Client 24",
-      priority: "normal",
-    },
-    {
-      src: logo25,
-      alt: "Client Logo 25",
-      name: "Client 25",
-      priority: "normal",
-    },
-    {
-      src: logo26,
-      alt: "Client Logo 26",
-      name: "Client 26",
-      priority: "normal",
-    },
-    {
-      src: logo27,
-      alt: "Client Logo 27",
-      name: "Client 27",
-      priority: "normal",
-    },
-    {
-      src: logo28,
-      alt: "Client Logo 28",
-      name: "Client 28",
-      priority: "normal",
-    },
-    {
-      src: logo30,
-      alt: "Client Logo 30",
-      name: "Client 30",
-      priority: "normal",
-    },
-    {
-      src: logo31,
-      alt: "Client Logo 31",
-      name: "Client 31",
-      priority: "normal",
-    },
-    {
-      src: logo32,
-      alt: "Client Logo 32",
-      name: "Client 32",
-      priority: "normal",
-    },
-    {
-      src: logo36,
-      alt: "Client Logo 36",
-      name: "Client 36",
-      priority: "normal",
-    },
-    {
-      src: logo37,
-      alt: "Client Logo 37",
-      name: "Client 37",
-      priority: "normal",
-    },
+    { src: logoKisspng, alt: "Kisspng Logo" },
+    { src: logoV3, alt: "Logo V3" },
+    { src: engageLogo, alt: "Engage Total HR Solution Logo" },
+    { src: epromLogo, alt: "Eprom Logo" },
+    { src: logoEKyymsNXsAUzJCT, alt: "Logo EKyymsNXsAUzJCT" },
+    { src: imageHandlerLogo, alt: "Image Handler Logo" },
+    { src: logoImages1, alt: "Logo Images 1" },
+    { src: logoImages2, alt: "Logo Images 2" },
+    { src: logoImages3, alt: "Logo Images 3" },
+    { src: logoImages4, alt: "Logo Images 4" },
+    { src: logoImages5, alt: "Logo Images 5" },
+    { src: logoImages6, alt: "Logo Images 6" },
+    { src: logoImages7, alt: "Logo Images 7" },
+    { src: logoImages8, alt: "Logo Images 8" },
+    { src: logoImages9, alt: "Logo Images 9" },
+    { src: logoImages10, alt: "Logo Images 10" },
+    { src: channels4Logo, alt: "Channels 4 Logo" },
+    { src: downloadLogo, alt: "Download Logo" },
+    { src: photosLogo, alt: "Photos Logo" },
+    { src: psxLogo1, alt: "PSX Logo 1" },
+    { src: psxLogo2, alt: "PSX Logo 2" },
   ];
 
+  // ===========================================================================
+  // RENDER LOGO
+  // ===========================================================================
+  const renderLogo = (logo, index) => (
+    <div
+      key={index}
+      className="group relative overflow-hidden bg-white/95 backdrop-blur-xl rounded-2xl p-6 shadow-xl border border-white/60 hover:shadow-2xl transition-all duration-500 hover:scale-105 hover:-translate-y-2"
+    >
+      {/* Gradient Border Effect */}
+      <div className="absolute inset-0 bg-gradient-to-r from-[#0f596d] via-[#2a9bb3] to-[#4dd4f7] rounded-2xl opacity-0 group-hover:opacity-20 transition-opacity duration-500"></div>
+
+      {/* Logo Container */}
+      <div className="relative z-10 flex items-center justify-center h-20 w-full">
+        <img
+          src={logo.src}
+          alt={logo.alt}
+          className="max-h-16 max-w-full object-contain filter grayscale group-hover:grayscale-0 transition-all duration-500 group-hover:scale-110 drop-shadow-sm group-hover:drop-shadow-lg"
+          loading="lazy"
+          onError={(e) => {
+            console.warn(`Failed to load logo: ${logo.alt}`);
+            e.target.style.display = "none";
+          }}
+        />
+      </div>
+
+      {/* Hover Effect Overlay */}
+      <div className="absolute inset-0 bg-gradient-to-br from-[#0f596d]/5 to-[#4dd4f7]/5 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+
+      {/* Shimmer Effect */}
+      <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000"></div>
+    </div>
+  );
+
+  // ===========================================================================
+  // RENDER
+  // ===========================================================================
   return (
-    <section id="clients" className="client-logos-section">
-      <div className="container">
-        <div className="row justify-content-center">
-          <div className="col-lg-10">
-            <div className="section-header text-center" ref={headerRef}>
-              <h2 className="section-title">
-                We are happy to work with incredible clients
-              </h2>
-              <p className="section-subtitle">
-                Over years of work, we have been honored to collaborate with a
-                diverse group of distinguished clients from various sectors.
-                Each partnership represents a unique success story and a mutual
-                learning experience that enriches our expertise and develops our
-                capabilities.
-              </p>
-            </div>
-          </div>
+    <section
+      id="clients"
+      className="py-12 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-gray-50 via-white to-gray-50 relative overflow-hidden"
+    >
+      {/* Background Decorative Elements */}
+      <div className="absolute inset-0 overflow-hidden">
+        <div className="absolute -top-40 -right-40 w-80 h-80 bg-gradient-to-br from-[#0f596d]/10 to-[#4dd4f7]/10 rounded-full blur-3xl"></div>
+        <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-gradient-to-tr from-[#2a9bb3]/10 to-[#3bb8d4]/10 rounded-full blur-3xl"></div>
+        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-gradient-to-r from-[#1a7a8f]/5 to-[#4dd4f7]/5 rounded-full blur-3xl"></div>
+
+        {/* Additional decorative elements */}
+        <div className="absolute top-20 left-20 w-32 h-32 bg-gradient-to-br from-blue-200/30 to-indigo-200/30 rounded-full blur-2xl animate-pulse"></div>
+        <div className="absolute bottom-32 right-32 w-24 h-24 bg-gradient-to-tr from-purple-200/40 to-blue-200/40 rounded-full blur-xl animate-pulse delay-1000"></div>
+        <div className="absolute top-1/3 right-1/4 w-16 h-16 bg-gradient-to-br from-indigo-200/50 to-purple-200/50 rounded-full blur-lg animate-pulse delay-2000"></div>
+      </div>
+
+      <div className="max-w-7xl mx-auto relative z-10">
+        {/* Section Header */}
+        <div className="text-center mb-12">
+          <h2 className="fancy-title-large text-3xl sm:text-4xl lg:text-5xl bg-gradient-to-r from-[#0f596d] via-[#2a9bb3] to-[#4dd4f7] bg-clip-text text-transparent mb-6">
+            {CLIENT_LOGOS_DATA.header.title}
+          </h2>
+          <p className="fancy-subtitle-large text-base sm:text-lg text-[#2d3748] max-w-4xl mx-auto">
+            {CLIENT_LOGOS_DATA.header.subtitle}
+          </p>
         </div>
 
-        <div className="row justify-content-center">
-          <div className="col-12">
-            <div className="logos-grid unified-grid" ref={logosRef}>
-              {allLogos.map((logo, index) => (
-                <div
-                  key={index}
-                  className={`logo-item ${
-                    logo.priority === "high"
-                      ? "priority-high"
-                      : "priority-normal"
-                  }`}
-                  data-animate
-                  style={{
-                    "--animation-delay": `${index * 0.1}s`,
-                  }}
-                >
-                  <div className="logo-container">
-                    <img
-                      src={logo.src}
-                      alt={logo.alt}
-                      className="logo-image"
-                      title={logo.name}
-                    />
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
+        {/* Logos Grid */}
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-6 sm:gap-8">
+          {clientLogos.map(renderLogo)}
         </div>
+
+        {/* Enhanced Floating Decorative Elements */}
+        <div className="absolute top-20 left-10 w-4 h-4 bg-[#0f596d]/30 rounded-full animate-pulse"></div>
+        <div className="absolute top-40 right-20 w-6 h-6 bg-[#2a9bb3]/40 rounded-full animate-pulse delay-1000"></div>
+        <div className="absolute bottom-40 left-20 w-3 h-3 bg-[#4dd4f7]/50 rounded-full animate-pulse delay-2000"></div>
+        <div className="absolute bottom-20 right-10 w-5 h-5 bg-[#1a7a8f]/35 rounded-full animate-pulse delay-1500"></div>
+        <div className="absolute top-1/3 left-1/4 w-2 h-2 bg-[#3bb8d4]/45 rounded-full animate-pulse delay-500"></div>
+        <div className="absolute bottom-1/3 right-1/4 w-3 h-3 bg-[#0f596d]/25 rounded-full animate-pulse delay-3000"></div>
       </div>
     </section>
   );
