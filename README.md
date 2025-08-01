@@ -49,13 +49,13 @@ npm run build
 
 ### Automatic Deployment (Recommended)
 
-The website is automatically deployed to GitHub Pages whenever changes are pushed to the `main` branch. The deployment is handled by GitHub Actions.
+The website is automatically deployed to GitHub Pages whenever changes are pushed to the `main` branch. The deployment is handled by GitHub Actions, which builds the project and pushes the `dist` folder to the `gh-pages` branch.
 
 ### Manual Deployment
 
 #### Option 1: Using npm scripts (Recommended)
 ```bash
-# Deploy with one command
+# Deploy with one command - pushes dist folder to gh-pages branch
 npm run deploy
 
 # Or specifically for GitHub Pages
@@ -75,7 +75,7 @@ git commit -m "Update website"
 git push origin main
 ```
 
-3. The GitHub Actions workflow will automatically deploy to GitHub Pages.
+3. The GitHub Actions workflow will automatically build and deploy to the gh-pages branch.
 
 ## 📁 Project Structure
 

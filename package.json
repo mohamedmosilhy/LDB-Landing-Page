@@ -8,8 +8,8 @@
     "build": "vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "deploy": "npm run build && git add dist -f && git commit -m \"Deploy to GitHub Pages\" && git push origin main",
-    "deploy:gh-pages": "npm run build && git add dist -f && git commit -m \"Deploy to GitHub Pages\" && git push origin main",
+    "deploy": "npm run build && git add dist -f && git commit -m \"Deploy to GitHub Pages\" && git push origin gh-pages",
+    "deploy:gh-pages": "npm run build && git add dist -f && git commit -m \"Deploy to GitHub Pages\" && git push origin gh-pages",
     "predeploy": "npm run build"
   },
   "dependencies": {
