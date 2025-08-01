@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Google Form Test</title>
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                max-width: 600px;
+                margin: 50px auto;
+                padding: 20px;
+            }
+
+            .form-group {
+                margin-bottom: 15px;
+            }
+
+            label {
+                display: block;
+                margin-bottom: 5px;
+                font-weight: bold;
+            }
+
+            input,
+            textarea {
+                width: 100%;
+                padding: 10px;
+                border: 1px solid #ddd;
+                border-radius: 4px;
+                box-sizing: border-box;
+            }
+
+            button {
+                background: #007bff;
+                color: white;
+                padding: 10px 20px;
+                border: none;
+                border-radius: 4px;
+                cursor: pointer;
+            }
+
+            button:hover {
+                background: #0056b3;
+            }
+
+            .status {
+                margin-top: 20px;
+                padding: 10px;
+                border-radius: 4px;
+            }
+
+            .success {
+                background: #d4edda;
+                color: #155724;
+                border: 1px solid #c3e6cb;
+            }
+        </style>
+    </head>
+
+    <body>
+        <h1>Google Form Test</h1>
+        <p>Testing with correct entry IDs: entry.678716437, entry.1114581651, entry.881982342</p>
+
+        <form id="testForm">
+            <div class="form-group">
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" required>
+            </div>
+
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+
+            <div class="form-group">
+                <label for="message">Message:</label>
+                <textarea id="message" name="message" rows="4" required></textarea>
+            </div>
+
+            <button type="submit">Test Submit</button>
+        </form>
+
+        <div id="status"></div>
+
+        <script>
+            document.getElementById('testForm').addEventListener('submit', function (e) {
+                e.preventDefault();
+
+                const formData = new FormData();
+                formData.append('entry.678716437', document.getElementById('name').value);
+                formData.append('entry.1114581651', document.getElementById('email').value);
+                formData.append('entry.881982342', document.getElementById('message').value);
+
+                // Create hidden iframe for submission
+                const iframe = document.createElement('iframe');
+                iframe.style.display = 'none';
+                iframe.name = 'google-form-submit';
+                document.body.appendChild(iframe);
+
+                // Create form and submit
+                const form = document.createElement('form');
+                form.method = 'POST';
+                form.action = 'https://docs.google.com/forms/d/e/1FAIpQLSeAElA2xOzaOMtsMEaZ3ZMDqE3c52bG93QAsMTAh5YdVuyHDA/formResponse';
+                form.target = iframe.name;
+
+                // Add form fields
+                formData.forEach((value, key) => {
+                    const input = document.createElement('input');
+                    input.type = 'hidden';
+                    input.name = key;
+                    input.value = value;
+                    form.appendChild(input);
+                });
+
+                // Submit form
+                document.body.appendChild(form);
+                form.submit();
+
+                // Show success message
+                setTimeout(() => {
+                    document.body.removeChild(form);
+                    document.body.removeChild(iframe);
+
+                    const status = document.getElementById('status');
+                    status.innerHTML = '<div class="success">Form submitted successfully! Check your Google Form responses.</div>';
+
+                    // Reset form
+                    document.getElementById('testForm').reset();
+                }, 1000);
+            });
+        </script>
+    </body>
+
+</html>
