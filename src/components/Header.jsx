@@ -105,7 +105,7 @@ const Header = () => {
                 <a
                   key={item.id}
                   href={item.href}
-                  className="relative fancy-subtitle-large text-white text-xs lg:text-xs transition-all duration-300 hover:scale-105 group"
+                  className="relative fancy-subtitle-large text-white text-xs lg:text-xs transition-all duration-200 hover:scale-105 group"
                   onClick={(e) => {
                     e.preventDefault();
                     handleNavClick(item.id);
@@ -116,16 +116,16 @@ const Header = () => {
                     {item.label}
                   </span>
                   {/* Hover underline effect - Desktop only */}
-                  <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-white transition-all duration-300 group-hover:w-full group-hover:shadow-lg"></span>
+                  <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-white transition-all duration-200 group-hover:w-full group-hover:shadow-lg"></span>
                   {/* Hover glow effect - Desktop only */}
-                  <span className="absolute inset-0 bg-white/10 rounded-lg opacity-0 group-hover:opacity-100 transition-all duration-300 -z-10 scale-110 group-hover:scale-125"></span>
+                  <span className="absolute inset-0 bg-white/10 rounded-lg opacity-0 group-hover:opacity-100 transition-all duration-200 -z-10 scale-110 group-hover:scale-125"></span>
                 </a>
               ))}
             </div>
 
             {/* Menu Toggle Button - Visible on medium and small screens */}
             <button
-              className="xl:hidden p-3 sm:p-4 rounded-xl hover:bg-white/20 transition-all duration-300 hover:scale-105"
+                              className="xl:hidden p-3 sm:p-4 rounded-xl hover:bg-white/20 transition-all duration-200 hover:scale-105"
               onClick={toggleMenu}
               aria-label="Toggle navigation menu"
               aria-expanded={isMenuOpen}

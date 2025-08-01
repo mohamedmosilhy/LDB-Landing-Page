@@ -25,8 +25,8 @@ const Hero = () => {
         opacity: 1,
         scale: 1,
         rotation: 0,
-        duration: 0.6,
-        ease: "back.out(1.4)",
+        duration: 0.4,
+        ease: "back.out(1.2)",
       }
     )
 
@@ -34,7 +34,7 @@ const Hero = () => {
       .fromTo(
         hero.querySelector(".hero-title"),
         { y: 20, opacity: 0 },
-        { y: 0, opacity: 1, duration: 0.3, ease: "power2.out" }
+        { y: 0, opacity: 1, duration: 0.2, ease: "power2.out" }
       )
       .call(() => {
         // Typewriter effect for the title
@@ -56,10 +56,10 @@ const Hero = () => {
           setTimeout(() => {
             gsap.to(charSpan, {
               opacity: 1,
-              duration: 0.1,
+              duration: 0.05,
               ease: "power2.out",
             });
-          }, index * 80); // 80ms delay between each character
+          }, index * 50); // 50ms delay between each character
         });
       })
 
@@ -67,7 +67,7 @@ const Hero = () => {
       .fromTo(
         hero.querySelector(".hero-cta"),
         { y: 15, opacity: 0, scale: 0.95 },
-        { y: 0, opacity: 1, scale: 1, duration: 0.4, ease: "power2.out" }
+        { y: 0, opacity: 1, scale: 1, duration: 0.3, ease: "power2.out" }
       )
 
       // Animate hero images with stagger and 3D effect
@@ -86,9 +86,9 @@ const Hero = () => {
           scale: 1,
           rotationY: 0,
           rotationX: 0,
-          duration: 0.7,
-          stagger: 0.08,
-          ease: "back.out(1.4)",
+          duration: 0.5,
+          stagger: 0.05,
+          ease: "back.out(1.2)",
         }
       );
 
@@ -97,11 +97,11 @@ const Hero = () => {
     floatingElements.forEach((element, index) => {
       gsap.to(element, {
         y: -15,
-        duration: 2 + index * 0.3,
+        duration: 1.5 + index * 0.2,
         ease: "power1.inOut",
         yoyo: true,
         repeat: -1,
-        delay: index * 0.1,
+        delay: index * 0.05,
       });
     });
 
@@ -125,7 +125,7 @@ const Hero = () => {
     rotatingElements.forEach((element, index) => {
       gsap.to(element, {
         rotation: 360,
-        duration: 20 + index * 5,
+        duration: 15 + index * 3,
         ease: "none",
         repeat: -1,
       });

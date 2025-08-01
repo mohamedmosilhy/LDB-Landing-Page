@@ -13,7 +13,6 @@ const Services = () => {
   // ===========================================================================
   // STATE and REFS
   // ===========================================================================
-  const [isVisible, setIsVisible] = useState(false);
   const [activeService, setActiveService] = useState(null);
   const servicesGridRef = useRef(null);
 
@@ -38,14 +37,14 @@ const Services = () => {
     tl.fromTo(
       servicesSection.querySelector(".section-title"),
       { y: 30, opacity: 0, scale: 0.95 },
-      { y: 0, opacity: 1, scale: 1, duration: 0.5, ease: "back.out(1.4)" }
+      { y: 0, opacity: 1, scale: 1, duration: 0.3, ease: "back.out(1.2)" }
     )
 
       // Animate section description
       .fromTo(
         servicesSection.querySelector(".section-description"),
         { y: 20, opacity: 0 },
-        { y: 0, opacity: 1, duration: 0.4, ease: "power2.out" }
+        { y: 0, opacity: 1, duration: 0.25, ease: "power2.out" }
       )
 
       // Animate service cards with 3D flip effect
@@ -63,9 +62,9 @@ const Services = () => {
           opacity: 1,
           rotationY: 0,
           scale: 1,
-          duration: 0.7,
-          stagger: 0.08,
-          ease: "back.out(1.4)",
+          duration: 0.5,
+          stagger: 0.05,
+          ease: "back.out(1.2)",
         }
       );
 
@@ -77,7 +76,7 @@ const Services = () => {
           scale: 1.05,
           y: -10,
           rotationY: 5,
-          duration: 0.3,
+          duration: 0.2,
           ease: "power2.out",
         });
       });
@@ -87,7 +86,7 @@ const Services = () => {
           scale: 1,
           y: 0,
           rotationY: 0,
-          duration: 0.3,
+          duration: 0.2,
           ease: "power2.out",
         });
       });
@@ -99,11 +98,11 @@ const Services = () => {
     floatingElements.forEach((element, index) => {
       gsap.to(element, {
         y: -10,
-        duration: 2.5 + index * 0.3,
+        duration: 1.8 + index * 0.2,
         ease: "power1.inOut",
         yoyo: true,
         repeat: -1,
-        delay: index * 0.15,
+        delay: index * 0.08,
       });
     });
 
@@ -134,18 +133,15 @@ const Services = () => {
   const renderServiceCard = (service, index) => (
     <div
       key={service.id}
-      className={`service-card group relative overflow-hidden bg-white/95 backdrop-blur-xl rounded-3xl p-8 shadow-2xl border border-white/60 hover:shadow-3xl transition-all duration-700 hover:scale-105 hover:-translate-y-4 cursor-pointer w-96 flex-shrink-0 ${
+      className={`service-card group relative overflow-hidden bg-white/95 backdrop-blur-xl rounded-3xl p-8 shadow-2xl border border-white/60 hover:shadow-3xl transition-all duration-400 hover:scale-105 hover:-translate-y-4 cursor-pointer w-96 flex-shrink-0 ${
         activeService === service.id ? "ring-4 ring-[#0f596d]/30" : ""
       }`}
       onClick={() =>
         setActiveService(activeService === service.id ? null : service.id)
       }
       style={{
-        animationDelay: `${index * 150}ms`,
-        transform: isVisible
-          ? "translateY(0) opacity(1)"
-          : "translateY(50px) opacity(0)",
-        transition: "all 0.8s cubic-bezier(0.4, 0, 0.2, 1)",
+        animationDelay: `${index * 100}ms`,
+        transition: "all 0.5s cubic-bezier(0.4, 0, 0.2, 1)",
       }}
     >
       {/* Gradient Border Effect */}

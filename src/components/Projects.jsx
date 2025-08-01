@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { PROJECTS_DATA } from "../constants/data";
@@ -13,7 +13,6 @@ const Projects = () => {
   // ===========================================================================
   // STATE and REFS
   // ===========================================================================
-  const [isVisible, setIsVisible] = useState(false);
   const projectsGridRef = useRef(null);
 
   // ===========================================================================
@@ -37,14 +36,14 @@ const Projects = () => {
     tl.fromTo(
       projectsSection.querySelector(".section-title"),
       { y: 30, opacity: 0, scale: 0.95 },
-      { y: 0, opacity: 1, scale: 1, duration: 0.5, ease: "back.out(1.4)" }
+      { y: 0, opacity: 1, scale: 1, duration: 0.3, ease: "back.out(1.2)" }
     )
 
       // Animate section subtitle
       .fromTo(
         projectsSection.querySelector(".section-subtitle"),
         { y: 20, opacity: 0 },
-        { y: 0, opacity: 1, duration: 0.4, ease: "power2.out" }
+        { y: 0, opacity: 1, duration: 0.25, ease: "power2.out" }
       )
 
       // Animate project cards with flip effect
@@ -61,9 +60,9 @@ const Projects = () => {
           opacity: 1,
           rotationY: 0,
           scale: 1,
-          duration: 0.7,
-          stagger: 0.1,
-          ease: "back.out(1.4)",
+          duration: 0.5,
+          stagger: 0.06,
+          ease: "back.out(1.2)",
         }
       );
 
@@ -75,7 +74,7 @@ const Projects = () => {
           scale: 1.05,
           y: -5,
           rotationY: 5,
-          duration: 0.3,
+          duration: 0.2,
           ease: "power2.out",
         });
       });
@@ -85,7 +84,7 @@ const Projects = () => {
           scale: 1,
           y: 0,
           rotationY: 0,
-          duration: 0.3,
+          duration: 0.2,
           ease: "power2.out",
         });
       });
@@ -94,14 +93,14 @@ const Projects = () => {
     // Add floating animation to decorative elements
     const floatingElements =
       projectsSection.querySelectorAll(".floating-element");
-    floatingElements.forEach((element, index) => {
+    floatingElements.forEach((element, _index) => {
       gsap.to(element, {
         y: -10,
-        duration: 2.5 + index * 0.3,
+        duration: 1.8 + _index * 0.2,
         ease: "power1.inOut",
         yoyo: true,
         repeat: -1,
-        delay: index * 0.15,
+        delay: _index * 0.08,
       });
     });
 
@@ -122,7 +121,7 @@ const Projects = () => {
 
     // Add twinkling animation to stars
     const stars = projectsSection.querySelectorAll(".star");
-    stars.forEach((star, index) => {
+    stars.forEach((star) => {
       gsap.to(star, {
         opacity: 0.2,
         duration: 2 + Math.random() * 2,
@@ -142,7 +141,7 @@ const Projects = () => {
   // ===========================================================================
   // RENDER PROJECT CARD
   // ===========================================================================
-  const renderProjectCard = (project, index) => (
+  const renderProjectCard = (project) => (
     <div
       key={project.id}
       className="project-card group relative overflow-hidden bg-white/95 backdrop-blur-xl rounded-2xl p-6 shadow-xl border border-white/60 hover:shadow-2xl transition-all duration-500 hover:scale-105 hover:-translate-y-2 cursor-pointer"

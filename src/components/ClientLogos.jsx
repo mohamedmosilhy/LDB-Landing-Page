@@ -76,14 +76,14 @@ const ClientLogos = () => {
     tl.fromTo(
       clientLogosSection.querySelector(".section-title"),
       { y: 30, opacity: 0, scale: 0.95 },
-      { y: 0, opacity: 1, scale: 1, duration: 0.5, ease: "back.out(1.4)" }
+      { y: 0, opacity: 1, scale: 1, duration: 0.3, ease: "back.out(1.2)" }
     )
 
       // Animate section subtitle
       .fromTo(
         clientLogosSection.querySelector(".section-subtitle"),
         { y: 20, opacity: 0 },
-        { y: 0, opacity: 1, duration: 0.4, ease: "power2.out" }
+        { y: 0, opacity: 1, duration: 0.25, ease: "power2.out" }
       )
 
       // Animate logos with wave effect
@@ -100,8 +100,8 @@ const ClientLogos = () => {
           opacity: 1,
           scale: 1,
           rotation: 0,
-          duration: 0.6,
-          stagger: 0.05,
+          duration: 0.4,
+          stagger: 0.03,
           ease: "elastic.out(1, 0.3)",
         }
       );
@@ -114,7 +114,7 @@ const ClientLogos = () => {
           scale: 1.1,
           y: -5,
           rotation: 5,
-          duration: 0.3,
+          duration: 0.2,
           ease: "power2.out",
         });
       });
@@ -124,7 +124,7 @@ const ClientLogos = () => {
           scale: 1,
           y: 0,
           rotation: 0,
-          duration: 0.3,
+          duration: 0.2,
           ease: "power2.out",
         });
       });

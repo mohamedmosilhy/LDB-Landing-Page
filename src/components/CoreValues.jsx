@@ -31,14 +31,14 @@ const CoreValues = () => {
     tl.fromTo(
       coreValuesSection.querySelector(".section-title"),
       { y: 30, opacity: 0, scale: 0.95 },
-      { y: 0, opacity: 1, scale: 1, duration: 0.5, ease: "back.out(1.4)" }
+      { y: 0, opacity: 1, scale: 1, duration: 0.3, ease: "back.out(1.2)" }
     )
 
       // Animate section subtitle
       .fromTo(
         coreValuesSection.querySelector(".section-subtitle"),
         { y: 20, opacity: 0 },
-        { y: 0, opacity: 1, duration: 0.4, ease: "power2.out" }
+        { y: 0, opacity: 1, duration: 0.25, ease: "power2.out" }
       )
 
       // Animate central image with morphing effect
@@ -55,8 +55,8 @@ const CoreValues = () => {
           opacity: 1,
           scale: 1,
           rotationX: 0,
-          duration: 0.7,
-          ease: "back.out(1.4)",
+          duration: 0.5,
+          ease: "back.out(1.2)",
         }
       )
 
@@ -74,8 +74,8 @@ const CoreValues = () => {
           opacity: 1,
           scale: 1,
           rotation: 0,
-          duration: 0.6,
-          stagger: 0.1,
+          duration: 0.4,
+          stagger: 0.06,
           ease: "bounce.out",
         }
       );
@@ -88,7 +88,7 @@ const CoreValues = () => {
           scale: 1.05,
           y: -5,
           rotationY: 5,
-          duration: 0.3,
+          duration: 0.2,
           ease: "power2.out",
         });
       });
@@ -98,7 +98,7 @@ const CoreValues = () => {
           scale: 1,
           y: 0,
           rotationY: 0,
-          duration: 0.3,
+          duration: 0.2,
           ease: "power2.out",
         });
       });
@@ -110,11 +110,11 @@ const CoreValues = () => {
     floatingElements.forEach((element, index) => {
       gsap.to(element, {
         y: -10,
-        duration: 2.5 + index * 0.3,
+        duration: 1.8 + index * 0.2,
         ease: "power1.inOut",
         yoyo: true,
         repeat: -1,
-        delay: index * 0.15,
+        delay: index * 0.08,
       });
     });
 

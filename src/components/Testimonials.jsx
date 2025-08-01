@@ -14,7 +14,6 @@ const Testimonials = () => {
   // STATE and REFS
   // ===========================================================================
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [isVisible, setIsVisible] = useState(false);
   const testimonialsRef = useRef(null);
 
   // ===========================================================================
@@ -25,7 +24,7 @@ const Testimonials = () => {
       setCurrentIndex((prevIndex) =>
         prevIndex === TESTIMONIALS_DATA.length - 1 ? 0 : prevIndex + 1
       );
-    }, 8000); // 8 seconds per testimonial for faster cycling
+    }, 5000); // 5 seconds per testimonial for faster cycling
 
     return () => clearInterval(interval);
   }, []);
@@ -51,14 +50,14 @@ const Testimonials = () => {
     tl.fromTo(
       testimonialsSection.querySelector(".section-title"),
       { y: 30, opacity: 0, scale: 0.95 },
-      { y: 0, opacity: 1, scale: 1, duration: 0.5, ease: "back.out(1.4)" }
+      { y: 0, opacity: 1, scale: 1, duration: 0.3, ease: "back.out(1.2)" }
     )
 
       // Animate section subtitle
       .fromTo(
         testimonialsSection.querySelector(".section-subtitle"),
         { y: 20, opacity: 0 },
-        { y: 0, opacity: 1, duration: 0.4, ease: "power2.out" }
+        { y: 0, opacity: 1, duration: 0.25, ease: "power2.out" }
       );
 
     // Note: Testimonial cards are handled by the carousel functionality
@@ -72,11 +71,11 @@ const Testimonials = () => {
     floatingElements.forEach((element, index) => {
       gsap.to(element, {
         y: -8,
-        duration: 2 + index * 0.2,
+        duration: 1.5 + index * 0.15,
         ease: "power1.inOut",
         yoyo: true,
         repeat: -1,
-        delay: index * 0.1,
+        delay: index * 0.05,
       });
     });
 
@@ -149,7 +148,7 @@ const Testimonials = () => {
   const renderTestimonial = (testimonial, index) => (
     <div
       key={index}
-      className={`testimonial-card transition-all duration-700 ease-in-out ${
+      className={`testimonial-card transition-all duration-400 ease-in-out ${
         index === currentIndex
           ? "opacity-100 transform translate-x-0 scale-100 relative"
           : "opacity-0 transform translate-x-full scale-95 absolute inset-0 pointer-events-none"
@@ -246,13 +245,6 @@ const Testimonials = () => {
 
         {/* Testimonials Carousel */}
         <div className="relative">
-          {/* Testimonial Counter */}
-          <div className="text-center mb-4">
-            <span className="text-sm text-[#0f596d] font-medium">
-              Testimonial {currentIndex + 1} of {TESTIMONIALS_DATA.length}
-            </span>
-          </div>
-
           {/* Testimonial Container */}
           <div className="relative min-h-[400px] sm:min-h-[350px] md:min-h-[300px] lg:min-h-[250px] mb-8 sm:mb-10 lg:mb-12">
             {TESTIMONIALS_DATA.map((testimonial, index) =>
