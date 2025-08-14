@@ -34,22 +34,32 @@ const Services = () => {
     });
 
     // Animate section title with text reveal
-    tl.fromTo(
-      servicesSection.querySelector(".section-title"),
-      { y: 30, opacity: 0, scale: 0.95 },
-      { y: 0, opacity: 1, scale: 1, duration: 0.3, ease: "back.out(1.2)" }
-    )
+    const sectionTitle = servicesSection.querySelector(".section-title");
+    if (sectionTitle) {
+      tl.fromTo(
+        sectionTitle,
+        { y: 30, opacity: 0, scale: 0.95 },
+        { y: 0, opacity: 1, scale: 1, duration: 0.3, ease: "back.out(1.2)" }
+      );
+    }
 
-      // Animate section description
-      .fromTo(
-        servicesSection.querySelector(".section-description"),
+    // Animate section description
+    const sectionDescription = servicesSection.querySelector(
+      ".section-description"
+    );
+    if (sectionDescription) {
+      tl.fromTo(
+        sectionDescription,
         { y: 20, opacity: 0 },
         { y: 0, opacity: 1, duration: 0.25, ease: "power2.out" }
-      )
+      );
+    }
 
-      // Animate service cards with 3D flip effect
-      .fromTo(
-        servicesSection.querySelectorAll(".service-card"),
+    // Animate service cards with 3D flip effect
+    const serviceCards = servicesSection.querySelectorAll(".service-card");
+    if (serviceCards.length > 0) {
+      tl.fromTo(
+        serviceCards,
         {
           y: 60,
           opacity: 0,
@@ -67,58 +77,66 @@ const Services = () => {
           ease: "back.out(1.2)",
         }
       );
+    }
 
     // Add hover animations for service cards
-    const serviceCards = servicesSection.querySelectorAll(".service-card");
-    serviceCards.forEach((card) => {
-      card.addEventListener("mouseenter", () => {
-        gsap.to(card, {
-          scale: 1.05,
-          y: -10,
-          rotationY: 5,
-          duration: 0.2,
-          ease: "power2.out",
+    const serviceCardsForHover =
+      servicesSection.querySelectorAll(".service-card");
+    serviceCardsForHover.forEach((card) => {
+      if (card) {
+        card.addEventListener("mouseenter", () => {
+          gsap.to(card, {
+            scale: 1.05,
+            y: -10,
+            rotationY: 5,
+            duration: 0.2,
+            ease: "power2.out",
+          });
         });
-      });
 
-      card.addEventListener("mouseleave", () => {
-        gsap.to(card, {
-          scale: 1,
-          y: 0,
-          rotationY: 0,
-          duration: 0.2,
-          ease: "power2.out",
+        card.addEventListener("mouseleave", () => {
+          gsap.to(card, {
+            scale: 1,
+            y: 0,
+            rotationY: 0,
+            duration: 0.2,
+            ease: "power2.out",
+          });
         });
-      });
+      }
     });
 
     // Add floating animation to decorative elements
     const floatingElements =
       servicesSection.querySelectorAll(".floating-element");
     floatingElements.forEach((element, index) => {
-      gsap.to(element, {
-        y: -10,
-        duration: 1.8 + index * 0.2,
-        ease: "power1.inOut",
-        yoyo: true,
-        repeat: -1,
-        delay: index * 0.08,
-      });
+      if (element) {
+        gsap.to(element, {
+          y: -10,
+          duration: 1.8 + index * 0.2,
+          ease: "power1.inOut",
+          yoyo: true,
+          repeat: -1,
+          delay: index * 0.08,
+        });
+      }
     });
 
     // Add parallax effect to background elements
     const parallaxElements = servicesSection.querySelectorAll(".parallax-bg");
     parallaxElements.forEach((element, index) => {
-      gsap.to(element, {
-        yPercent: -40 - index * 15,
-        ease: "none",
-        scrollTrigger: {
-          trigger: servicesSection,
-          start: "top bottom",
-          end: "bottom top",
-          scrub: true,
-        },
-      });
+      if (element) {
+        gsap.to(element, {
+          yPercent: -40 - index * 15,
+          ease: "none",
+          scrollTrigger: {
+            trigger: servicesSection,
+            start: "top bottom",
+            end: "bottom top",
+            scrub: true,
+          },
+        });
+      }
     });
 
     // Cleanup function

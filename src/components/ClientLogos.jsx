@@ -18,7 +18,6 @@ import namaaLogo from "../assets/logos/نماء.webp";
 import unicefLogo from "../assets/logos/logo-unicef-logo-whiteonblue.jpg";
 import usaidLogo from "../assets/logos/logo-USAID-Logo.png";
 import gizLogo from "../assets/logos/logo-giz.png";
-import harougeLogo from "../assets/logos/logo-harouge-logo-en.png";
 import hayahLogo from "../assets/logos/logo-hayah-international-academy2-1.jpg";
 import rayaLogo from "../assets/logos/logo-raya-logo-en.png";
 import lorealLogo from "../assets/logos/logo-loreal-paris-vector-logo.png";
@@ -33,11 +32,7 @@ import logo28262d299f40f007f3e359c3c7053fad from "../assets/logos/28262d299f40f0
 import logoKisspng from "../assets/logos/logo-kisspng-logo-istikbal.png";
 import logoV3 from "../assets/logos/logo-Logo-v3-No-Background.png";
 import engageLogo from "../assets/logos/logo-engage_total_hr_solution_logo.jpeg";
-import epromLogo from "../assets/logos/logo-epromlogo-scaled.gif";
-import logoEKyymsNXsAUzJCT from "../assets/logos/logo-EKyymsNXsAUzJCT.png";
 import imageHandlerLogo from "../assets/logos/logo-ImageHandler.png";
-import logoImages1 from "../assets/logos/logo-images-1.png";
-import logoImages2 from "../assets/logos/logo-images-2.png";
 import logoImages3 from "../assets/logos/logo-images-3.png";
 import logoImages4 from "../assets/logos/logo-images-4.png";
 import logoImages5 from "../assets/logos/logo-images-5.png";
@@ -178,7 +173,6 @@ const ClientLogos = () => {
     { src: gascoLogo, alt: "Gasco Logo" },
     { src: namaaLogo, alt: "Namaa Logo" },
     { src: gizLogo, alt: "GIZ Logo" },
-    { src: harougeLogo, alt: "Harouge Logo" },
     { src: hayahLogo, alt: "Hayah International Academy Logo" },
     { src: lorealLogo, alt: "L'Oreal Logo" },
     { src: msaLogo, alt: "MSA Logo" },
@@ -194,11 +188,7 @@ const ClientLogos = () => {
     { src: logoKisspng, alt: "Kisspng Logo" },
     { src: logoV3, alt: "Logo V3" },
     { src: engageLogo, alt: "Engage Total HR Solution Logo" },
-    { src: epromLogo, alt: "Eprom Logo" },
-    { src: logoEKyymsNXsAUzJCT, alt: "Logo EKyymsNXsAUzJCT" },
     { src: imageHandlerLogo, alt: "Image Handler Logo" },
-    { src: logoImages1, alt: "Logo Images 1" },
-    { src: logoImages2, alt: "Logo Images 2" },
     { src: logoImages3, alt: "Logo Images 3" },
     { src: logoImages4, alt: "Logo Images 4" },
     { src: logoImages5, alt: "Logo Images 5" },

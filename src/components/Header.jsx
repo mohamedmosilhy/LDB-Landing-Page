@@ -125,7 +125,7 @@ const Header = () => {
 
             {/* Menu Toggle Button - Visible on medium and small screens */}
             <button
-                              className="xl:hidden p-3 sm:p-4 rounded-xl hover:bg-white/20 transition-all duration-200 hover:scale-105"
+              className="xl:hidden p-3 sm:p-4 rounded-xl hover:bg-white/20 transition-all duration-200 hover:scale-105"
               onClick={toggleMenu}
               aria-label="Toggle navigation menu"
               aria-expanded={isMenuOpen}

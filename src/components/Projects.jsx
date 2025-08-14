@@ -33,22 +33,30 @@ const Projects = () => {
     });
 
     // Animate section title
-    tl.fromTo(
-      projectsSection.querySelector(".section-title"),
-      { y: 30, opacity: 0, scale: 0.95 },
-      { y: 0, opacity: 1, scale: 1, duration: 0.3, ease: "back.out(1.2)" }
-    )
+    const sectionTitle = projectsSection.querySelector(".section-title");
+    if (sectionTitle) {
+      tl.fromTo(
+        sectionTitle,
+        { y: 30, opacity: 0, scale: 0.95 },
+        { y: 0, opacity: 1, scale: 1, duration: 0.3, ease: "back.out(1.2)" }
+      );
+    }
 
-      // Animate section subtitle
-      .fromTo(
-        projectsSection.querySelector(".section-subtitle"),
+    // Animate section subtitle
+    const sectionSubtitle = projectsSection.querySelector(".section-subtitle");
+    if (sectionSubtitle) {
+      tl.fromTo(
+        sectionSubtitle,
         { y: 20, opacity: 0 },
         { y: 0, opacity: 1, duration: 0.25, ease: "power2.out" }
-      )
+      );
+    }
 
-      // Animate project cards with flip effect
-      .fromTo(
-        projectsSection.querySelectorAll(".project-card"),
+    // Animate project cards with flip effect
+    const projectCards = projectsSection.querySelectorAll(".project-card");
+    if (projectCards.length > 0) {
+      tl.fromTo(
+        projectCards,
         {
           y: 60,
           opacity: 0,
@@ -65,71 +73,81 @@ const Projects = () => {
           ease: "back.out(1.2)",
         }
       );
+    }
 
     // Add hover animations for project cards
-    const projectCards = projectsSection.querySelectorAll(".project-card");
-    projectCards.forEach((card) => {
-      card.addEventListener("mouseenter", () => {
-        gsap.to(card, {
-          scale: 1.05,
-          y: -5,
-          rotationY: 5,
-          duration: 0.2,
-          ease: "power2.out",
+    const projectCardsForHover =
+      projectsSection.querySelectorAll(".project-card");
+    projectCardsForHover.forEach((card) => {
+      if (card) {
+        card.addEventListener("mouseenter", () => {
+          gsap.to(card, {
+            scale: 1.05,
+            y: -5,
+            rotationY: 5,
+            duration: 0.2,
+            ease: "power2.out",
+          });
         });
-      });
 
-      card.addEventListener("mouseleave", () => {
-        gsap.to(card, {
-          scale: 1,
-          y: 0,
-          rotationY: 0,
-          duration: 0.2,
-          ease: "power2.out",
+        card.addEventListener("mouseleave", () => {
+          gsap.to(card, {
+            scale: 1,
+            y: 0,
+            rotationY: 0,
+            duration: 0.2,
+            ease: "power2.out",
+          });
         });
-      });
+      }
     });
 
     // Add floating animation to decorative elements
     const floatingElements =
       projectsSection.querySelectorAll(".floating-element");
     floatingElements.forEach((element, _index) => {
-      gsap.to(element, {
-        y: -10,
-        duration: 1.8 + _index * 0.2,
-        ease: "power1.inOut",
-        yoyo: true,
-        repeat: -1,
-        delay: _index * 0.08,
-      });
+      if (element) {
+        gsap.to(element, {
+          y: -10,
+          duration: 1.8 + _index * 0.2,
+          ease: "power1.inOut",
+          yoyo: true,
+          repeat: -1,
+          delay: _index * 0.08,
+        });
+      }
     });
 
     // Add parallax effect to background elements
     const parallaxElements = projectsSection.querySelectorAll(".parallax-bg");
     parallaxElements.forEach((element, index) => {
-      gsap.to(element, {
-        yPercent: -40 - index * 15,
-        ease: "none",
-        scrollTrigger: {
-          trigger: projectsSection,
-          start: "top bottom",
-          end: "bottom top",
-          scrub: true,
-        },
-      });
+      if (element) {
+        gsap.to(element, {
+          yPercent: -40 - index * 15,
+          ease: "none",
+          scrollTrigger: {
+            trigger: projectsSection,
+            start: "top bottom",
+            end: "bottom top",
+            scrub: true,
+          },
+        });
+      }
     });
 
     // Add twinkling animation to stars
     const stars = projectsSection.querySelectorAll(".star");
     stars.forEach((star) => {
-      gsap.to(star, {
-        opacity: 0.2,
-        duration: 2 + Math.random() * 2,
-        ease: "power1.inOut",
-        yoyo: true,
-        repeat: -1,
-        delay: Math.random() * 3,
-      });
+      if (star) {
+        gsap.to(star, {
+          opacity: 0.2,
+          duration: 2 + Math.random() * 2,
+          ease: "power1.inOut",
+          yoyo: true,
+          repeat: -1,
+          delay: Math.random() * 3,
+        });
+      }
     });
 
     // Cleanup function
