@@ -25,7 +25,7 @@ export const SERVICES_DATA = [
     features: [
       "ADLX-based learning architecture",
       "Educational psychology integration",
-      "Gamification strategy development",
+      "GEAR MODEL strategy development",
       "Customized, competency-based curricula",
       "Bilingual and culturally contextualized content (AR/EN/FR)",
     ],
@@ -35,7 +35,7 @@ export const SERVICES_DATA = [
     id: 2,
     name: "Training and Development Programs",
     description:
-      "We deliver experiential, evidence-based training grounded in our VFC, ZAT, and LOA frameworks.",
+      "We deliver experiential, evidence-based training grounded in our ZAT and ZAT H GPT frameworks.",
     icon: "fas fa-graduation-cap",
     color: "#1a7a8f",
     features: [
@@ -46,7 +46,7 @@ export const SERVICES_DATA = [
       "World-class facilitators with global accreditations",
     ],
     methodology:
-      "VFC Competence Framework (Visionary – Functional – Cognitive)",
+      "ZAT H GPT (ZAT x Human Intelligence x Growth Structured Leadership x Professional Technical Mastery x Technology - Human Integration)",
   },
   {
     id: 3,
@@ -62,7 +62,7 @@ export const SERVICES_DATA = [
       "Gallup, Enneagram, MBTI-integrated coaching models",
       "KSAH-based progression and feedback",
     ],
-    methodology: "ZAT Coaching × VFC Coaching × Psychoanalysis Typology",
+    methodology: "ZAT Coaching × Organizational Psychoanalysis Development",
   },
   {
     id: 4,
@@ -72,7 +72,6 @@ export const SERVICES_DATA = [
     icon: "fas fa-building",
     color: "#3bb8d4",
     features: [
-      "VFC/VCBOM implementation across 7 institutional zones",
       "Competency mapping and strategic role design",
       "Organizational diagnosis and structural alignment",
       "Change management and performance management",
@@ -89,7 +88,7 @@ export const SERVICES_DATA = [
     color: "#4cc5e5",
     features: [
       "ZAT gamified assessments for youth",
-      "VFC 360° role-based evaluation tools",
+      "ZAT H GPT 360° role-based evaluation tools",
       "KSAH progression models",
       "On-the-job assessment and mentoring plans",
       "Custom dashboards and AI-augmented analytics",
@@ -218,36 +217,30 @@ export const PROJECTS_DATA = [
   },
   {
     id: 2,
-    title: "VFC Model for Organizational Development",
+    title: "ZAT H GPT for Organizational Development",
     icon: "fas fa-sitemap",
     color: "#1a7a8f",
   },
   {
     id: 3,
-    title: "VCBOM",
-    icon: "fas fa-cogs",
-    color: "#2a9bb3",
-  },
-  {
-    id: 4,
-    title: "Gamification Product",
+    title: "GEAR MODEL Product",
     icon: "fas fa-gamepad",
     color: "#3bb8d4",
   },
   {
-    id: 5,
+    id: 4,
     title: "Gamified Assessment for Selection, Development and Hiring",
     icon: "fas fa-clipboard-check",
     color: "#4cc5e5",
   },
   {
-    id: 6,
-    title: "Gamification for Mega Projects",
+    id: 5,
+    title: "GEAR MODEL for Mega Projects",
     icon: "fas fa-rocket",
     color: "#5dd2f6",
   },
   {
-    id: 7,
+    id: 6,
     title: "3F Model Owner for Learning Experience Design",
     icon: "fas fa-lightbulb",
     color: "#6edfff",

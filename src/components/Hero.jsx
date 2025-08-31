@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import hero1 from "../assets/hero-1.png";
+import hero1 from "../assets/hero-1.jpg";
 import hero2 from "../assets/hero-2.png";
 import hero3 from "../assets/hero-3.png";
 import hero4 from "../assets/hero-4.png";

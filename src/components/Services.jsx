@@ -215,7 +215,7 @@ const Services = () => {
         </div>
 
         {/* Methodology Badge */}
-        <div className="inline-flex items-center px-4 py-2 rounded-full bg-gradient-to-r from-[#0f596d]/10 to-[#4dd4f7]/10 border border-[#0f596d]/20 group-hover:border-[#0f596d]/40 transition-all duration-500">
+        <div className="inline-flex items-center px-4 py-2 rounded-full bg-gradient-to-r from-[#0f596d]/10 to-[#4dd4f7]/10 border border-[#0f596d]/20 group-hover:border-[#0f596d]/40 transition-all duration-500 text-center">
           <span className="fancy-subtitle text-xs text-[#0f596d] font-medium group-hover:font-semibold transition-all duration-300">
             {service.methodology}
           </span>
@@ -282,7 +282,7 @@ const Services = () => {
             {[...Array(6)].map((_, i) => (
               <div
                 key={i}
-                className="w-80 h-64 bg-gradient-to-br from-[#0f596d] to-[#4dd4f7] rounded-3xl blur-sm"
+                className="w-90 h-64 bg-gradient-to-br from-[#0f596d] to-[#4dd4f7] rounded-3xl blur-sm"
               ></div>
             ))}
           </div>
