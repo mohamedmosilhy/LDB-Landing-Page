@@ -208,42 +208,47 @@ export const CORE_VALUES_DATA = {
 // =============================================================================
 // PROJECTS SECTION DATA
 // =============================================================================
+// Enhanced project data with detailed information
 export const PROJECTS_DATA = [
   {
     id: 1,
     title: "ZAT",
     icon: "fas fa-chart-line",
     color: "#0f596d",
+    description:
+      "ZAT is a holistic youth development framework that builds essential competencies—integrating knowledge, skills, attitudes, and habits across the Heart, Brain, and Spirit. Grounded in values and future-focused practice, it equips young people to think critically, act purposefully, and lead with resilience and integrity.",
   },
   {
     id: 2,
-    title: "ZAT H GPT for Organizational Development",
+    title: "LIFTS Model",
     icon: "fas fa-sitemap",
     color: "#1a7a8f",
+    description:
+      "The LIFTS Model (Learning, Insight, Feedback, Transformation, Scalability) is an impact evaluation framework designed to assess the effectiveness of competency-based consulting and training interventions. It captures both the qualitative and quantitative dimensions of growth by examining what learners acquire, how deeply they reflect, how feedback shapes their progress, the degree of transformation in behaviors and outcomes, and whether results can be scaled sustainably. By integrating these five pillars, the model provides a holistic view of individual and organizational development, ensuring interventions lead to meaningful and lasting change.",
   },
   {
     id: 3,
-    title: "GEAR MODEL Product",
+    title: "GEAR Model",
     icon: "fas fa-gamepad",
     color: "#3bb8d4",
+    description:
+      "The GEAR Model (Gamified Engagement for Adaptive Results) is a universal competency-based learning framework that uses gamification to enhance engagement and skill development for learners aged 14 and above. It operates through an eight-stage cycle that aligns competencies with learner profiles, game mechanics, challenge design, feedback, and adaptive progression, while embedding systems for reflection and measurement. Rooted in competency-based learning and motivational theory, GEAR strengthens Knowledge, Skills, Attitudes, and Habits (KSAH) by making learning experiences more personalized, adaptive, and motivating, ultimately turning education into a dynamic and transformative journey.",
   },
   {
     id: 4,
-    title: "Gamified Assessment for Selection, Development and Hiring",
+    title: "ZAT–H GPT Framework",
     icon: "fas fa-clipboard-check",
     color: "#4cc5e5",
+    description:
+      "The ZAT–H GPT Framework is a next-generation competency model that extends the ZAT developmental core (Brain, Heart, Spirit, and Coaching) into four professional domains: Professional Technical Mastery, Human Intelligence, Growth-Structured Leadership, and Tech–Human Integration. It connects inner growth—identity, resilience, and purpose—with outer impact in organizations and society. Grounded in research and validated across education, ICT, healthcare, and entrepreneurship, ZAT–H GPT offers a life-span anchored, psychospiritually informed, and systemically scalable framework. It empowers individuals and institutions to align personal authenticity with professional excellence, leadership capacity, and digital transformation, making it a powerful tool for education, organizational development, and policy innovation.",
   },
   {
     id: 5,
-    title: "GEAR MODEL for Mega Projects",
-    icon: "fas fa-rocket",
-    color: "#5dd2f6",
-  },
-  {
-    id: 6,
     title: "3F Model Owner for Learning Experience Design",
     icon: "fas fa-lightbulb",
     color: "#6edfff",
+    description:
+      "This model provides an integrated framework for designing learning journeys. It starts with Frame, establishing the foundation and structure of the educational experience. Then comes Flourish, which focuses on nurturing creativity, skills, and knowledge to enable growth and development. Finally, Flow ensures a seamless, engaging, and impactful implementation that delivers meaningful learning outcomes.",
   },
 ];
 

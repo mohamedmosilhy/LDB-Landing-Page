@@ -43,10 +43,11 @@ import logoImages9 from "../assets/logos/logo-images-9.jpeg";
 import logoImages10 from "../assets/logos/logo-images-10.jpeg";
 import channels4Logo from "../assets/logos/logo-channels4_profile.jpg";
 import downloadLogo from "../assets/logos/logo-download-3-2.jpg";
-import photosLogo from "../assets/logos/logo-Photos-56-380x280.jpg";
 import psxLogo1 from "../assets/logos/logo-PSX_20220208_124911.jpg";
 import psxLogo2 from "../assets/logos/logo-PSX_20240218_173046.png";
-
+import takamol from "../assets/logos/takamol_logo_047255c86f.svg";
+import slb from "../assets/logos/slb-logo.png";
+import shell from "../assets/logos/shell-logo.png";
 // =============================================================================
 // CLIENT LOGOS COMPONENT
 // =============================================================================
@@ -199,9 +200,11 @@ const ClientLogos = () => {
     { src: logoImages10, alt: "Logo Images 10" },
     { src: channels4Logo, alt: "Channels 4 Logo" },
     { src: downloadLogo, alt: "Download Logo" },
-    { src: photosLogo, alt: "Photos Logo" },
     { src: psxLogo1, alt: "PSX Logo 1" },
     { src: psxLogo2, alt: "PSX Logo 2" },
+    { src: takamol, alt: "Takamol Logo" },
+    { src: slb, alt: "SLB Logo" },
+    { src: shell, alt: "Shell Logo" },
   ];
 
   // ===========================================================================
