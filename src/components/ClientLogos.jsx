@@ -45,7 +45,7 @@ import channels4Logo from "../assets/logos/logo-channels4_profile.jpg";
 import downloadLogo from "../assets/logos/logo-download-3-2.jpg";
 import psxLogo1 from "../assets/logos/logo-PSX_20220208_124911.jpg";
 import psxLogo2 from "../assets/logos/logo-PSX_20240218_173046.png";
-import takamol from "../assets/logos/takamol_logo_047255c86f.svg";
+import takamol from "../assets/logos/Takamull_Full_W.jpg";
 import slb from "../assets/logos/slb-logo.png";
 import shell from "../assets/logos/shell-logo.png";
 // =============================================================================
