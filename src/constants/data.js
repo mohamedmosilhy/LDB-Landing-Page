@@ -29,7 +29,7 @@ export const SERVICES_DATA = [
       "Customized, competency-based curricula",
       "Bilingual and culturally contextualized content (AR/EN/FR)",
     ],
-    methodology: "Design First, Transform Always",
+    methodology: "3Fs Learning eXperience Design Model",
   },
   {
     id: 2,
@@ -244,7 +244,7 @@ export const PROJECTS_DATA = [
   },
   {
     id: 5,
-    title: "3F Model Owner for Learning Experience Design",
+    title: "3F Learning Experience Design Model",
     icon: "fas fa-lightbulb",
     color: "#6edfff",
     description:
