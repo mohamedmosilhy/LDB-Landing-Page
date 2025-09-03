@@ -414,7 +414,7 @@ const Projects = () => {
           {/* Section Header */}
           <div className="text-center mb-16">
             <h2 className="section-title fancy-title-large text-3xl sm:text-4xl lg:text-5xl text-white mb-6">
-              Our Projects
+              Our Products
             </h2>
             <p className="section-subtitle fancy-subtitle-large text-base sm:text-lg text-white/90 max-w-4xl mx-auto">
               Innovative solutions that transform learning and development

@@ -1,4 +1,5 @@
 import React, { useState, useCallback, useEffect, useRef } from "react";
+import LDB_logo from "../assets/LDB-logo.jpg";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -93,14 +94,19 @@ const Header = () => {
       >
         <div className="px-6 sm:px-8 lg:px-12 py-4 sm:py-6 lg:py-6">
           <div className="flex items-center justify-between">
-            <div className="flex items-center">
-              <h1 className="fancy-title-medium text-xl sm:text-2xl lg:text-3xl text-white drop-shadow-lg">
+            <div className="flex items-center space-x-2 sm:space-x-3 min-w-0 flex-1">
+              <img
+                src={LDB_logo}
+                alt="LDB Logo"
+                className="h-7 w-7 sm:h-9 sm:w-9 lg:h-11 lg:w-11 object-contain rounded-lg shadow-lg flex-shrink-0"
+              />
+              <h1 className="fancy-title-medium text-lg sm:text-xl lg:text-2xl xl:text-3xl text-white drop-shadow-lg whitespace-nowrap">
                 Learning Design Boutique
               </h1>
             </div>
 
             {/* Desktop Navigation - Only visible on large screens */}
-            <div className="hidden xl:flex items-center space-x-12">
+            <div className="hidden xl:flex items-center space-x-8 2xl:space-x-12 flex-shrink-0">
               {navItems.map((item) => (
                 <a
                   key={item.id}

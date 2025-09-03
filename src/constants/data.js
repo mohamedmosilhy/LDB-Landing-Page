@@ -46,7 +46,7 @@ export const SERVICES_DATA = [
       "World-class facilitators with global accreditations",
     ],
     methodology:
-      "ZAT H GPT (ZAT x Human Intelligence x Growth Structured Leadership x Professional Technical Mastery x Technology - Human Integration)",
+      "ZAT H GPT (ZAT - Human Intelligence - Growth Structured Leadership - Professional Technical Mastery - Technology - Human Integration)",
   },
   {
     id: 3,
@@ -62,7 +62,7 @@ export const SERVICES_DATA = [
       "Gallup, Enneagram, MBTI-integrated coaching models",
       "KSAH-based progression and feedback",
     ],
-    methodology: "ZAT Coaching × Organizational Psychoanalysis Development",
+    methodology: "ZAT Coaching - Organizational Psychoanalysis Development",
   },
   {
     id: 4,
