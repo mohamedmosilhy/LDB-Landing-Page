@@ -48,6 +48,10 @@ import psxLogo2 from "../assets/logos/logo-PSX_20240218_173046.png";
 import takamol from "../assets/logos/Takamull_Full_W.jpg";
 import slb from "../assets/logos/slb-logo.png";
 import shell from "../assets/logos/shell-logo.png";
+import astrazeneka from "../assets/logos/logo-az.png";
+import schneider from "../assets/logos/شنايدر.jpg";
+import pfizer from "../assets/logos/pfizer-logo-color.svg";
+import totalenergies from "../assets/logos/logo_totalenergies.webp";
 // =============================================================================
 // CLIENT LOGOS COMPONENT
 // =============================================================================
@@ -205,6 +209,10 @@ const ClientLogos = () => {
     { src: takamol, alt: "Takamol Logo" },
     { src: slb, alt: "SLB Logo" },
     { src: shell, alt: "Shell Logo" },
+    { src: astrazeneka, alt: "AstraZeneca Logo" },
+    { src: schneider, alt: "Schneider Logo" },
+    { src: pfizer, alt: "Pfizer Logo" },
+    { src: totalenergies, alt: "TotalEnergies Logo" },
   ];
 
   // ===========================================================================
